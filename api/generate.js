@@ -5,20 +5,11 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const prompt = `Sei un autore di gialli italiani. Crea un caso murder mystery complesso e ambiguo. Rispondi SOLO con JSON valido senza markdown.
+  const prompt = `Crea un caso murder mystery italiano anni 1960-2000. Rispondi SOLO con JSON, niente altro.
 
-REGOLE FONDAMENTALI:
-- Il colpevole (guiltyIndex=1) deve avere UN solo indizio diretto contro di lui, nascosto tra prove fuorvianti
-- Gli altri sospettati devono sembrare ALTRETTANTO colpevoli con moventi forti e dettagli sospetti
-- Le risposte del colpevole devono sembrare plausibili, non ovviamente evasive
-- Almeno una busta deve contenere un falso indizio che punta a un innocente
-- Il caso deve essere ambientato in Italia tra 1960-2000, in un contesto insolito (non teatro, non ufficio generico)
-- Usa nomi italiani realistici
+{"id":"CASO #","name":"TITOLO CASO","victim":{"name":"Nome Vittima","age":"55 anni","role":"Professione","cause":"Causa morte","location":"Luogo, Citta"},"scene":"Descrizione scena crimine in 2 frasi. Dettagli ambigui.","suspects":[{"name":"Mario Rossi","role":"Socio in affari","age":"48 anni","motive":"Movente forte credibile","alibi":"Alibi con piccola falla","detail":"Dettaglio sospetto ma innocuo","icon":"▣","guilty":false,"questions":[{"q":"Dove era la sera del delitto?","a":"Risposta convincente con dettagli"},{"q":"Che rapporto aveva con la vittima?","a":"Risposta che minimizza tensioni reali"},{"q":"Sa spiegare questo dettaglio?","a":"Spiegazione logica"}]},{"name":"Anna Ferrari","role":"Amante segreta","age":"35 anni","motive":"Movente molto forte","alibi":"Alibi che sembra solido ma ha un errore fatale","detail":"Dettaglio incriminante che sembra banale","icon":"✎","guilty":true,"questions":[{"q":"Dove era la sera del delitto?","a":"Risposta apparentemente convincente ma con contraddizione"},{"q":"Qual era il suo rapporto con la vittima?","a":"Nega cio che sa gia la polizia"},{"q":"Come spiega questa prova?","a":"Risposta nervosa che rivela troppo"}]},{"name":"Giuseppe Conti","role":"Rivale storico","age":"52 anni","motive":"Movente antichissimo molto credibile","alibi":"Alibi solido ma con finestra sospetta","detail":"Elemento che lo fa sembrare il colpevole principale","icon":"▤","guilty":false,"questions":[{"q":"Dove era la sera del delitto?","a":"Risposta aggressiva che nasconde qualcosa di innocente"},{"q":"Perche odiava la vittima?","a":"Ammette odio ma spiega perche non avrebbe ucciso"},{"q":"Cosa sa di questa prova?","a":"Svela un segreto irrilevante al crimine"}]}],"envelopes":[{"id":"e1","title":"Rapporto medico","icon":"▣","locked":false,"content":"Dettagli della morte che possono essere interpretati in due modi diversi.","evidence":{"icon":"⊕","title":"Referto medico","desc":"Elemento ambiguo che non punta a nessuno in particolare"}},{"id":"e2","title":"Testimonianza anonima","icon":"✎","locked":false,"content":"Testimonianza che sembra accusare il sospettato innocente, creata dal vero colpevole.","evidence":{"icon":"◉","title":"Lettera anonima","desc":"Prova costruita per depistare le indagini"}},{"id":"e3","title":"Documento riservato","icon":"▤","locked":true,"content":"La prova nascosta che collega definitivamente il colpevole al crimine.","evidence":{"icon":"▢","title":"Prova chiave","desc":"Elemento che solo il colpevole poteva conoscere"}},{"id":"e4","title":"Movente segreto","icon":"✚","locked":true,"content":"Il vero movente, molto piu profondo di quanto sembri. Rivela la pianificazione.","evidence":{"icon":"⊞","title":"Documento segreto","desc":"Prova della premeditazione"}}],"guiltyIndex":1}
 
-JSON:
-{"id":"CASO #","name":"TITOLO","victim":{"name":"Nome Cognome","age":"XX anni","role":"Professione","cause":"Causa morte specifica","location":"Luogo preciso"},"scene":"Descrizione dettagliata scena 2-3 frasi con dettagli ambigui.","suspects":[{"name":"Nome1","role":"Ruolo1","age":"XX anni","motive":"Movente forte e credibile","alibi":"Alibi parzialmente verificabile","detail":"Dettaglio sospetto ma innocuo","icon":"▣","guilty":false,"questions":[{"q":"Domanda diretta","a":"Risposta credibile ma con piccola incongruenza"},{"q":"Domanda sull alibi","a":"Risposta dettagliata e convincente"},{"q":"Domanda sul movente","a":"Risposta che minimizza ma non nega"}]},{"name":"Nome2","role":"Ruolo2","age":"XX anni","motive":"Movente forte","alibi":"Alibi che non regge all esame attento","detail":"Dettaglio incriminante apparentemente banale","icon":"✎","guilty":true,"questions":[{"q":"Domanda sul movente","a":"Risposta che sembra convincente ma contiene un errore fatale"},{"q":"Domanda sull alibi","a":"Risposta dettagliata con un piccolo elemento impossibile"},{"q":"Domanda sulla vittima","a":"Risposta che rivela conoscenza di un dettaglio che solo il colpevole potrebbe sapere"}]},{"name":"Nome3","role":"Ruolo3","age":"XX anni","motive":"Movente molto forte, quasi più convincente del colpevole","alibi":"Alibi solido ma con finestra temporale sospetta","detail":"Dettaglio che sembra incriminante ma è innocente","icon":"▤","guilty":false,"questions":[{"q":"Domanda sul movente","a":"Risposta aggressiva che sembra nascondere qualcosa"},{"q":"Domanda sul dettaglio sospetto","a":"Spiegazione logica del dettaglio"},{"q":"Domanda sulla vittima","a":"Risposta che rivela un segreto irrilevante al crimine"}]}],"envelopes":[{"id":"e1","title":"Titolo busta 1","icon":"▣","locked":false,"content":"Contenuto che aggiunge ambiguità al caso, non punta direttamente al colpevole.","evidence":{"icon":"⊕","title":"Nome prova","desc":"Descrizione che può essere interpretata in due modi"}},{"id":"e2","title":"Titolo busta 2","icon":"✎","locked":false,"content":"Falso indizio che punta all innocente, creato apposta dal colpevole.","evidence":{"icon":"◉","title":"Nome prova fuorviante","desc":"Prova che sembra accusare un innocente"}},{"id":"e3","title":"Titolo busta 3","icon":"▤","locked":true,"content":"L unico indizio diretto contro il colpevole, nascosto e difficile da trovare.","evidence":{"icon":"▢","title":"Prova chiave","desc":"Dettaglio che inchioda definitivamente il colpevole"}},{"id":"e4","title":"Titolo busta 4","icon":"✚","locked":true,"content":"Contesto che spiega il movente profondo e rivela la pianificazione del crimine.","evidence":{"icon":"⊞","title":"Nome prova","desc":"Descrizione che completa il quadro"}}],"guiltyIndex":1}
-
-Sostituisci tutti i placeholder con contenuto originale italiano. Il caso deve mettere in dubbio il giocatore fino all'ultimo.`;
+Regole: ambientazione italiana reale (non teatro), nomi italiani, il caso deve essere difficile da risolvere, gli innocenti devono sembrare colpevoli quanto il vero assassino.`;
 
   try {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
@@ -30,7 +21,7 @@ Sostituisci tutti i placeholder con contenuto originale italiano. Il caso deve m
       },
       body: JSON.stringify({
         model: 'claude-haiku-4-5-20251001',
-        max_tokens: 2000,
+        max_tokens: 2500,
         messages: [{ role: 'user', content: prompt }]
       })
     });
@@ -43,7 +34,7 @@ Sostituisci tutti i placeholder con contenuto originale italiano. Il caso deve m
 
     const start = text.indexOf('{');
     const end = text.lastIndexOf('}');
-    if (start === -1 || end === -1) return res.status(500).json({ error: 'No JSON found' });
+    if (start === -1 || end === -1) return res.status(500).json({ error: 'No JSON found', raw: text.slice(0,200) });
 
     const caseData = JSON.parse(text.slice(start, end + 1));
     if (!caseData.suspects || !caseData.envelopes) return res.status(500).json({ error: 'Invalid structure' });
