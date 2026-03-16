@@ -517,6 +517,8 @@ body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100v
     <div id="accusa-list"></div>
     <button class="cfmbtn" id="cfm-btn" disabled onclick="doAccusa()">ACCUSA FORMALE</button>
   </div>
+  </div><!-- /tab-contents-wrap -->
+  </div><!-- /flex-wrapper -->
 </div>
 
 <div class="rov" id="rov" style="display:none;">
@@ -648,9 +650,9 @@ function appAns(s,q,ar,an=true){if(ar.querySelector('span'))ar.innerHTML='';cons
 function renderTab(){const tb=G.tabulato||M.tabulato,body=document.getElementById('tab-body'),hls=document.getElementById('tab-hls');body.innerHTML='';hls.innerHTML='';tb.forEach((r,i)=>{const tr=document.createElement('tr');if(r.s)tr.classList.add('sc');tr.innerHTML=`<td>${r.ora}</td><td>${r.da}</td><td>${r.a}</td><td>${r.dur}</td>`;body.appendChild(tr);if(r.s){const b=document.createElement('button');b.className='hlbtn';b.textContent=r.ora+' — Sospetta';b.onclick=()=>{b.classList.toggle('hl');if(b.classList.contains('hl'))addEv({icon:'☏',title:'Chiamata sospetta '+r.ora,desc:r.da+' → '+r.a+' ('+r.dur+')'});};hls.appendChild(b);}});}
 function buildDynamicPuzzle(c){
   const g=c.suspects[c.guiltyIndex];
-  const frags=["devo farlo stanotte","nessuno deve sapere","l'occasione è questa","ho preparato tutto","non ho altra scelta","deve finire così"];
+  const frags=["devo farlo stanotte","nessuno deve sapere","ho preparato tutto","non ho altra scelta","deve finire cosi","tutto e pronto"];
   const correctOrder=[0,5,4,2,1,3];
-  const reveal='Nota ricostruita: "Devo farlo stanotte — deve finire così — non ho altra scelta — l'occasione è questa — nessuno deve sapere — ho preparato tutto." La grafia corrisponde a '+g.name+'.';
+  const reveal="Nota ricostruita — La grafia corrisponde a "+g.name+".";
   return{fragments:frags,correctOrder,reveal};
 }
 function renderPuz(){const p=G.puzzle||(G._dp=G._dp||buildDynamicPuzzle(G));const fr=document.getElementById('frags'),sl=document.getElementById('dslots');fr.innerHTML='';sl.innerHTML='';puzState.slots=new Array(p.correctOrder.length).fill(null);puzState.drag=null;[...p.correctOrder].sort(()=>Math.random()-0.5).forEach(fi=>{const el=document.createElement('div');el.className='frag';el.textContent=p.fragments[fi];el.draggable=true;el.dataset.i=fi;el.ondragstart=()=>{puzState.drag=fi;};el.onclick=()=>{puzState.drag=fi;};fr.appendChild(el);});p.correctOrder.forEach((_,si)=>{const sl2=document.createElement('div');sl2.className='dslot';sl2.textContent='Frammento '+(si+1);sl2.ondragover=e=>{e.preventDefault();sl2.classList.add('over');};sl2.ondragleave=()=>sl2.classList.remove('over');sl2.ondrop=e=>{e.preventDefault();sl2.classList.remove('over');dropSlot(si,sl2,p);};sl2.onclick=()=>{if(puzState.drag!==null)dropSlot(si,sl2,p);};sl.appendChild(sl2);});document.getElementById('preveal').style.display='none';document.getElementById('puz-btn').disabled=true;}
