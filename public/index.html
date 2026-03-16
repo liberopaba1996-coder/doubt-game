@@ -71,10 +71,17 @@ body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100v
 .timer-el{font-family:'Special Elite',monospace;font-size:0.75rem;color:var(--gold);flex-shrink:0;min-width:45px;text-align:right;}
 .timer-el.urgent{color:#ff6b6b;animation:pulse 1s ease infinite;}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.5;}}
-.tabs{background:var(--tab-bg);display:flex;overflow-x:auto;flex-shrink:0;border-bottom:3px solid var(--red);scrollbar-width:none;}
-.tabs::-webkit-scrollbar{display:none;}
-.tab{font-family:'Special Elite',monospace;font-size:0.58rem;letter-spacing:0.1em;padding:0.62rem 0.8rem;cursor:pointer;color:rgba(245,240,232,0.5);background:none;border:none;white-space:nowrap;transition:all 0.15s;border-bottom:3px solid transparent;margin-bottom:-3px;}
-.tab:hover{color:var(--paper);}.tab.active{color:var(--paper);border-bottom-color:var(--red);background:rgba(139,26,26,0.15);}
+.tabs{background:#e0d8c4;padding:6px 6px 0;border-top:2px solid var(--tab-bg);flex-shrink:0;}
+.tabs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px 3px;}
+.tabs-baseline{height:2px;background:var(--tab-bg);}
+.tab{position:relative;background:var(--paper);border:1px solid var(--border);border-bottom:none;padding:6px 4px 5px;cursor:pointer;text-align:center;font-family:'Special Elite',monospace;font-size:0.44rem;letter-spacing:0.06em;color:var(--ink-faded);display:flex;flex-direction:column;align-items:center;gap:4px;transition:all 0.15s;border-radius:3px 3px 0 0;}
+.tab::before{content:'';position:absolute;top:-5px;left:4px;width:40%;height:5px;background:var(--paper);border:1px solid var(--border);border-bottom:none;border-radius:2px 2px 0 0;}
+.tab:hover{background:#fff8f0;border-color:#8b6428;}
+.tab:hover::before{background:#fff8f0;border-color:#8b6428;}
+.tab.active{background:white;border-color:var(--tab-bg);color:var(--ink);z-index:2;margin-bottom:-2px;padding-bottom:7px;}
+.tab.active::before{background:white;border-color:var(--tab-bg);}
+.tab .tdot{width:5px;height:5px;border-radius:50%;background:transparent;border:1px solid var(--border);flex-shrink:0;}
+.tab.active .tdot{background:var(--red);border-color:var(--red);}
 .tab-content{display:none;padding:1rem;flex:1;overflow-y:auto;}.tab-content.active{display:block;}#tab-interroga{flex-direction:column;}#tab-interroga.active{display:flex !important;flex-direction:column;padding:0;}
 .stitle{font-family:'Special Elite',monospace;font-size:0.58rem;letter-spacing:0.2em;color:var(--ink-faded);border-bottom:1px solid var(--border);padding-bottom:0.35rem;margin-bottom:0.75rem;}
 .notice{background:rgba(139,26,26,0.06);border:1px solid rgba(139,26,26,0.2);padding:0.65rem 0.75rem;font-size:0.85rem;font-style:italic;color:var(--ink-faded);margin-bottom:0.75rem;line-height:1.5;}
@@ -275,23 +282,27 @@ body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100v
   <div style="margin-top:2rem;text-align:center;"><button class="action-btn" onclick="showScreen('main-menu')">SALVA E TORNA</button></div>
 </div>
 
-<div id="investigation" class="screen">
+<div id="investigation" class="screen" style="flex-direction:column;">
   <div class="inv-hdr">
     <button class="back-btn" onclick="doBack()">MENU</button>
     <div class="inv-name" id="inv-name">—</div>
     <div class="timer-el" id="timer-el"></div>
   </div>
-  <div class="tabs">
-    <button class="tab active" onclick="swTab(this,'overview')">PANORAMICA</button>
-    <button class="tab" onclick="swTab(this,'indizi')">INDIZI</button>
-    <button class="tab" onclick="swTab(this,'prove')">PROVE</button>
-    <button class="tab" onclick="swTab(this,'sospettati')">SOSPETTATI</button>
-    <button class="tab" onclick="swTab(this,'interroga')">INTERROGA</button>
-    <button class="tab" onclick="swTab(this,'archivio')">ARCHIVIO</button>
-    <button class="tab" onclick="swTab(this,'note')">NOTE</button>
-    <button class="tab" onclick="swTab(this,'accusa')">ACCUSA</button>
+  <div style="flex:1;display:flex;flex-direction:column;overflow:hidden;">
+  <div class="tabs" style="order:2;">
+    <div class="tabs-grid">
+      <button class="tab active" onclick="swTab(this,'overview')"><div class="tdot"></div>PANORAMICA</button>
+      <button class="tab" onclick="swTab(this,'indizi')"><div class="tdot"></div>INDIZI</button>
+      <button class="tab" onclick="swTab(this,'prove')"><div class="tdot"></div>PROVE</button>
+      <button class="tab" onclick="swTab(this,'sospettati')"><div class="tdot"></div>SOSPETTATI</button>
+      <button class="tab" onclick="swTab(this,'interroga')"><div class="tdot"></div>INTERROGA</button>
+      <button class="tab" onclick="swTab(this,'archivio')"><div class="tdot"></div>ARCHIVIO</button>
+      <button class="tab" onclick="swTab(this,'note')"><div class="tdot"></div>NOTE</button>
+      <button class="tab" onclick="swTab(this,'accusa')"><div class="tdot"></div>ACCUSA</button>
+    </div>
+    <div class="tabs-baseline"></div>
   </div>
-
+  <div style="flex:1;overflow-y:auto;order:1;" id="tab-contents-wrap">
   <div id="tab-overview" class="tab-content active">
     <div class="stitle">RAPPORTO INIZIALE</div>
     <div class="dcard"><div class="chead"><span>SCHEDA VITTIMA</span><span class="stamp">RISERVATO</span></div>
