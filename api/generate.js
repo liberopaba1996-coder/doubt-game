@@ -4,16 +4,22 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
- 
-  const prompt = `Sei un generatore di casi investigativi italiani. Rispondi SOLO con un oggetto JSON, senza markdown, senza backtick, senza testo prima o dopo.
- 
-Genera un caso murder mystery italiano ambientato tra 1960-2000 in un contesto insolito (non un teatro). Il colpevole e' sempre il sospettato all'indice 1 dell'array.
- 
-JSON da restituire:
-{"id":"CASO #AI","name":"TITOLO CASO","victim":{"name":"Nome Cognome","age":"50 anni","role":"Professione","cause":"Causa morte","location":"Luogo"},"scene":"Descrizione scena 2 frasi.","suspects":[{"name":"Nome1","role":"Ruolo1","age":"45 anni","motive":"Movente1","alibi":"Alibi1","detail":"Dettaglio1","icon":"👔","guilty":false,"questions":[{"q":"Domanda1","a":"Risposta1"},{"q":"Domanda2","a":"Risposta2"},{"q":"Domanda3","a":"Risposta3"}]},{"name":"Nome2","role":"Ruolo2","age":"38 anni","motive":"Movente2","alibi":"Alibi2","detail":"Dettaglio incriminante","icon":"💼","guilty":true,"questions":[{"q":"Domanda1","a":"Risposta evasiva1"},{"q":"Domanda2","a":"Risposta nervosa2"},{"q":"Domanda3","a":"Si contraddice3"}]},{"name":"Nome3","role":"Ruolo3","age":"52 anni","motive":"Movente3","alibi":"Alibi3","detail":"Dettaglio3","icon":"🎭","guilty":false,"questions":[{"q":"Domanda1","a":"Risposta1"},{"q":"Domanda2","a":"Risposta2"},{"q":"Domanda3","a":"Risposta3"}]}],"envelopes":[{"id":"e1","title":"Titolo1","icon":"📋","locked":false,"content":"Contenuto busta 1.","evidence":{"icon":"🔍","title":"Prova1","desc":"Desc prova1"}},{"id":"e2","title":"Titolo2","icon":"📝","locked":false,"content":"Contenuto busta 2.","evidence":{"icon":"👁️","title":"Prova2","desc":"Desc prova2"}},{"id":"e3","title":"Titolo3","icon":"📊","locked":false,"content":"Contenuto busta 3.","evidence":{"icon":"📄","title":"Prova3","desc":"Desc prova3"}},{"id":"e4","title":"Titolo4","icon":"💊","locked":false,"content":"Contenuto busta 4.","evidence":{"icon":"🏪","title":"Prova4","desc":"Desc prova4"}}],"guiltyIndex":1}
- 
-Sostituisci tutti i valori placeholder con contenuto originale italiano coerente. Le prove devono puntare al colpevole (indice 1). Rispondi SOLO con il JSON.`;
- 
+
+  const prompt = `Sei un autore di gialli italiani. Crea un caso murder mystery complesso e ambiguo. Rispondi SOLO con JSON valido senza markdown.
+
+REGOLE FONDAMENTALI:
+- Il colpevole (guiltyIndex=1) deve avere UN solo indizio diretto contro di lui, nascosto tra prove fuorvianti
+- Gli altri sospettati devono sembrare ALTRETTANTO colpevoli con moventi forti e dettagli sospetti
+- Le risposte del colpevole devono sembrare plausibili, non ovviamente evasive
+- Almeno una busta deve contenere un falso indizio che punta a un innocente
+- Il caso deve essere ambientato in Italia tra 1960-2000, in un contesto insolito (non teatro, non ufficio generico)
+- Usa nomi italiani realistici
+
+JSON:
+{"id":"CASO #","name":"TITOLO","victim":{"name":"Nome Cognome","age":"XX anni","role":"Professione","cause":"Causa morte specifica","location":"Luogo preciso"},"scene":"Descrizione dettagliata scena 2-3 frasi con dettagli ambigui.","suspects":[{"name":"Nome1","role":"Ruolo1","age":"XX anni","motive":"Movente forte e credibile","alibi":"Alibi parzialmente verificabile","detail":"Dettaglio sospetto ma innocuo","icon":"▣","guilty":false,"questions":[{"q":"Domanda diretta","a":"Risposta credibile ma con piccola incongruenza"},{"q":"Domanda sull alibi","a":"Risposta dettagliata e convincente"},{"q":"Domanda sul movente","a":"Risposta che minimizza ma non nega"}]},{"name":"Nome2","role":"Ruolo2","age":"XX anni","motive":"Movente forte","alibi":"Alibi che non regge all esame attento","detail":"Dettaglio incriminante apparentemente banale","icon":"✎","guilty":true,"questions":[{"q":"Domanda sul movente","a":"Risposta che sembra convincente ma contiene un errore fatale"},{"q":"Domanda sull alibi","a":"Risposta dettagliata con un piccolo elemento impossibile"},{"q":"Domanda sulla vittima","a":"Risposta che rivela conoscenza di un dettaglio che solo il colpevole potrebbe sapere"}]},{"name":"Nome3","role":"Ruolo3","age":"XX anni","motive":"Movente molto forte, quasi più convincente del colpevole","alibi":"Alibi solido ma con finestra temporale sospetta","detail":"Dettaglio che sembra incriminante ma è innocente","icon":"▤","guilty":false,"questions":[{"q":"Domanda sul movente","a":"Risposta aggressiva che sembra nascondere qualcosa"},{"q":"Domanda sul dettaglio sospetto","a":"Spiegazione logica del dettaglio"},{"q":"Domanda sulla vittima","a":"Risposta che rivela un segreto irrilevante al crimine"}]}],"envelopes":[{"id":"e1","title":"Titolo busta 1","icon":"▣","locked":false,"content":"Contenuto che aggiunge ambiguità al caso, non punta direttamente al colpevole.","evidence":{"icon":"⊕","title":"Nome prova","desc":"Descrizione che può essere interpretata in due modi"}},{"id":"e2","title":"Titolo busta 2","icon":"✎","locked":false,"content":"Falso indizio che punta all innocente, creato apposta dal colpevole.","evidence":{"icon":"◉","title":"Nome prova fuorviante","desc":"Prova che sembra accusare un innocente"}},{"id":"e3","title":"Titolo busta 3","icon":"▤","locked":true,"content":"L unico indizio diretto contro il colpevole, nascosto e difficile da trovare.","evidence":{"icon":"▢","title":"Prova chiave","desc":"Dettaglio che inchioda definitivamente il colpevole"}},{"id":"e4","title":"Titolo busta 4","icon":"✚","locked":true,"content":"Contesto che spiega il movente profondo e rivela la pianificazione del crimine.","evidence":{"icon":"⊞","title":"Nome prova","desc":"Descrizione che completa il quadro"}}],"guiltyIndex":1}
+
+Sostituisci tutti i placeholder con contenuto originale italiano. Il caso deve mettere in dubbio il giocatore fino all'ultimo.`;
+
   try {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -28,23 +34,22 @@ Sostituisci tutti i valori placeholder con contenuto originale italiano coerente
         messages: [{ role: 'user', content: prompt }]
       })
     });
- 
+
     const data = await response.json();
     if (!response.ok) return res.status(500).json({ error: data });
- 
+
     let text = data.content.find(b => b.type === 'text')?.text || '';
     text = text.replace(/```json/g, '').replace(/```/g, '').trim();
- 
+
     const start = text.indexOf('{');
     const end = text.lastIndexOf('}');
     if (start === -1 || end === -1) return res.status(500).json({ error: 'No JSON found' });
- 
+
     const caseData = JSON.parse(text.slice(start, end + 1));
     if (!caseData.suspects || !caseData.envelopes) return res.status(500).json({ error: 'Invalid structure' });
- 
+
     res.status(200).json(caseData);
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
 }
- 
