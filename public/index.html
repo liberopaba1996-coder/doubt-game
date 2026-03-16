@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DOUBT — Giochi Investigativi</title>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --paper: #f5f0e8;
+  --paper-dark: #e0d8c4;
+  --ink: #1a1208;
+  --ink-faded: #5a4f3a;
+  --red: #8b1a1a;
+  --green: #1a5c2a;
+  --border: #b8a070;
+  --tab-bg: #2a1f0e;
+  --tab-text: #f5f0e8;
+  --tab-active: #8b1a1a;
+}
+
+body {
+  font-family: 'Crimson Text', Georgia, serif;
+  background: #1a1208;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+#app {
+  background: var(--paper);
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  position: relative;
+  background-image: repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(0,0,0,0.03) 28px);
+}
+
+.screen { display: none; flex-direction: column; min-height: 100vh; }
+.screen.active { display: flex; }
+
+/* ===== MENU ===== */
+#menu {
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.logo-wrap { margin-bottom: 2.5rem; }
+
+.logo-box {
+  display: inline-block;
+  border: 3px double var(--red);
+  padding: 0.6rem 2.5rem;
+  margin-bottom: 0.75rem;
+  transform: rotate(-1deg);
+}
+
+.game-title {
+  font-family: 'Special Elite', monospace;
+  font-size: 3.5rem;
+  letter-spacing: 0.35em;
+  color: var(--red);
+  line-height: 1;
+}
+
+.game-sub {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--ink-faded);
+  margin-top: 0.5rem;
+}
+
+.section-label {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  color: var(--ink-faded);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.4rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  width: 100%;
+}
+
+.case-card {
+  background: white;
+  border: 1px solid var(--border);
+  padding: 1.2rem;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  box-shadow: 3px 3px 0 var(--paper-dark);
+  transition: all 0.15s;
+  position: relative;
+}
+
+.case-card:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--paper-dark); }
+
+.case-num {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: var(--ink-faded);
+  margin-bottom: 0.25rem;
+}
+
+.case-title {
+  font-family: 'Special Elite', monospace;
+  font-size: 1rem;
+  color: var(--ink);
+  margin-bottom: 0.35rem;
+}
+
+.case-desc {
+  font-size: 0.85rem;
+  color: var(--ink-faded);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.case-card.ai { border-style: dashed; border-color: var(--green); }
+
+.ai-badge {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: var(--green);
+  color: white;
+  font-family: 'Special Elite', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  padding: 2px 7px;
+}
+
+/* ===== LOADING ===== */
+#loading-screen {
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.spinner {
+  width: 44px;
+  height: 44px;
+  border: 3px solid var(--paper-dark);
+  border-top-color: var(--red);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.loading-msg {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--ink-faded);
+  text-align: center;
+}
+
+/* ===== INVESTIGATION ===== */
+#investigation { padding: 0; }
+
+.inv-header {
+  background: var(--tab-bg);
+  color: var(--paper);
+  padding: 0.7rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.inv-case-name {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  flex: 1;
+  text-align: center;
+}
+
+.back-btn {
+  background: none;
+  border: 1px solid rgba(245,240,232,0.35);
+  color: var(--paper);
+  font-family: 'Special Elite', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.back-btn:hover { background: rgba(255,255,255,0.1); }
+
+/* TABS — dark background, paper text, red active */
+.tabs {
+  background: var(--tab-bg);
+  display: flex;
+  overflow-x: auto;
+  flex-shrink: 0;
+  border-bottom: 3px solid var(--tab-active);
+  scrollbar-width: none;
+}
+
+.tabs::-webkit-scrollbar { display: none; }
+
+.tab {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  padding: 0.65rem 0.9rem;
+  cursor: pointer;
+  color: rgba(245,240,232,0.55);
+  background: none;
+  border: none;
+  white-space: nowrap;
+  transition: all 0.15s;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -3px;
+}
+
+.tab:hover { color: var(--paper); }
+
+.tab.active {
+  color: var(--paper);
+  border-bottom-color: var(--tab-active);
+  background: rgba(139,26,26,0.15);
+}
+
+.tab-content { display: none; padding: 1rem; flex: 1; overflow-y: auto; }
+.tab-content.active { display: block; }
+
+/* ===== SHARED COMPONENTS ===== */
+.section-title {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  color: var(--ink-faded);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.notice {
+  background: rgba(139,26,26,0.06);
+  border: 1px solid rgba(139,26,26,0.2);
+  padding: 0.65rem 0.75rem;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--ink-faded);
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+.dossier-card {
+  background: white;
+  border: 1px solid var(--border);
+  margin-bottom: 0.75rem;
+  box-shadow: 1px 1px 0 var(--paper-dark);
+}
+
+.card-head {
+  background: var(--tab-bg);
+  color: var(--paper);
+  padding: 0.45rem 0.75rem;
+  font-family: 'Special Elite', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-body { padding: 0.75rem; }
+
+.field {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+  border-bottom: 1px dotted var(--paper-dark);
+  padding-bottom: 0.4rem;
+}
+
+.field:last-child { border: none; margin: 0; padding: 0; }
+
+.field-lbl {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-faded);
+  min-width: 80px;
+  padding-top: 2px;
+  flex-shrink: 0;
+}
+
+.field-val { font-size: 0.9rem; color: var(--ink); line-height: 1.4; }
+
+.stamp {
+  display: inline-block;
+  border: 2px solid var(--red);
+  color: var(--red);
+  font-family: 'Special Elite', monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.2em;
+  padding: 1px 6px;
+  transform: rotate(-4deg);
+  opacity: 0.7;
+}
+
+/* ENVELOPES */
+.env-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem; margin-bottom: 1rem; }
+
+.envelope {
+  background: white;
+  border: 1px solid var(--border);
+  padding: 1rem 0.75rem;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 2px 2px 0 var(--paper-dark);
+  transition: all 0.15s;
+  position: relative;
+}
+
+.envelope:hover:not(.opened) { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 var(--paper-dark); }
+.envelope.opened { opacity: 0.5; cursor: default; }
+
+.env-icon { font-size: 1.8rem; margin-bottom: 0.4rem; }
+
+.env-title {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  line-height: 1.3;
+}
+
+.env-status { font-size: 0.65rem; color: var(--ink-faded); font-style: italic; margin-top: 0.2rem; }
+
+/* EVIDENCE */
+.ev-item {
+  display: flex;
+  gap: 0.65rem;
+  padding: 0.65rem;
+  background: white;
+  border: 1px solid var(--border);
+  margin-bottom: 0.5rem;
+  align-items: flex-start;
+}
+
+.ev-icon { font-size: 1.4rem; flex-shrink: 0; }
+
+.ev-title {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.2rem;
+  color: var(--ink);
+}
+
+.ev-desc { font-size: 0.82rem; color: var(--ink-faded); font-style: italic; line-height: 1.4; }
+
+/* SUSPECTS */
+.suspect-card {
+  background: white;
+  border: 1px solid var(--border);
+  margin-bottom: 0.75rem;
+}
+
+.suspect-head {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: var(--paper-dark);
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+}
+
+.suspect-photo {
+  width: 48px;
+  height: 48px;
+  border: 2px solid var(--border);
+  background: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+
+.suspect-name {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+
+.suspect-role { font-size: 0.8rem; color: var(--ink-faded); font-style: italic; }
+
+/* INTERROGATION */
+.interr-sel {
+  width: 100%;
+  background: white;
+  border: 1px solid var(--border);
+  padding: 0.55rem 0.65rem;
+  font-family: 'Special Elite', monospace;
+  font-size: 0.7rem;
+  color: var(--ink);
+  margin-bottom: 0.65rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+}
+
+.q-btn {
+  display: block;
+  width: 100%;
+  background: var(--paper-dark);
+  border: 1px solid var(--border);
+  padding: 0.6rem 0.75rem;
+  cursor: pointer;
+  text-align: left;
+  font-family: 'Crimson Text', serif;
+  font-size: 0.9rem;
+  color: var(--ink);
+  margin-bottom: 0.35rem;
+  transition: all 0.15s;
+  line-height: 1.3;
+}
+
+.q-btn:hover:not(:disabled) { background: white; border-color: var(--ink-faded); }
+.q-btn:disabled { opacity: 0.45; cursor: default; }
+
+.interr-area {
+  background: var(--tab-bg);
+  color: var(--paper);
+  padding: 0.85rem;
+  min-height: 180px;
+  margin-top: 0.5rem;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.response-bubble {
+  background: rgba(255,255,255,0.08);
+  border-left: 2px solid var(--border);
+  padding: 0.6rem 0.75rem;
+  margin-top: 0.5rem;
+  font-style: italic;
+  animation: fadeIn 0.3s ease;
+}
+
+.interr-q-label { font-size: 0.78rem; opacity: 0.5; margin-bottom: 0.3rem; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* MINIGAME */
+.puzzle-area {
+  background: white;
+  border: 1px solid var(--border);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.puzzle-title {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--ink-faded);
+  margin-bottom: 0.75rem;
+}
+
+.fragments { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem; }
+
+.fragment {
+  background: var(--paper-dark);
+  border: 1px dashed var(--border);
+  padding: 0.4rem 0.65rem;
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--ink);
+  cursor: grab;
+  transition: all 0.15s;
+  user-select: none;
+}
+
+.fragment:hover { background: white; border-style: solid; }
+.fragment.dragging { opacity: 0.4; }
+.fragment.placed { background: #e8f0e8; border-color: var(--green); border-style: solid; cursor: default; }
+
+.drop-slots { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 0.75rem; }
+
+.drop-slot {
+  min-height: 36px;
+  border: 2px dashed var(--paper-dark);
+  display: flex;
+  align-items: center;
+  padding: 0.3rem 0.5rem;
+  font-size: 0.82rem;
+  color: var(--ink-faded);
+  font-style: italic;
+  transition: all 0.15s;
+}
+
+.drop-slot.over { border-color: var(--red); background: rgba(139,26,26,0.05); }
+.drop-slot.filled { border-color: var(--green); border-style: solid; color: var(--ink); font-style: normal; background: #f0f5f0; }
+
+.puzzle-btn {
+  background: var(--tab-bg);
+  color: var(--paper);
+  border: none;
+  padding: 0.6rem 1.5rem;
+  font-family: 'Special Elite', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.puzzle-btn:hover { background: var(--red); }
+.puzzle-btn:disabled { opacity: 0.3; cursor: default; }
+
+.puzzle-reveal {
+  background: rgba(26,92,42,0.08);
+  border: 1px solid rgba(26,92,42,0.3);
+  padding: 0.75rem;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.5;
+  display: none;
+}
+
+/* ACCUSA */
+.accusa-title {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--red);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.choice-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  background: white;
+  border: 1px solid var(--border);
+  padding: 0.85rem 1rem;
+  cursor: pointer;
+  font-family: 'Special Elite', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+  transition: all 0.15s;
+  text-align: left;
+}
+
+.choice-btn:hover { background: var(--paper-dark); border-color: var(--ink-faded); }
+.choice-btn.selected { background: var(--red); color: white; border-color: var(--red); }
+
+.confirm-btn {
+  display: block;
+  margin: 1rem auto 0;
+  background: var(--tab-bg);
+  color: var(--paper);
+  border: none;
+  padding: 0.85rem 2.5rem;
+  font-family: 'Special Elite', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.confirm-btn:hover:not(:disabled) { background: var(--red); }
+.confirm-btn:disabled { opacity: 0.3; cursor: default; }
+
+/* RESULT */
+.result-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10,8,4,0.93);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.result-box {
+  background: var(--paper);
+  border: 3px double var(--border);
+  padding: 2rem 1.5rem;
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+}
+
+.result-stamp {
+  font-family: 'Special Elite', monospace;
+  font-size: 1.6rem;
+  letter-spacing: 0.15em;
+  display: inline-block;
+  padding: 0.3rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.result-stamp.ok { color: var(--green); border: 3px solid var(--green); transform: rotate(-2deg); }
+.result-stamp.fail { color: var(--red); border: 3px solid var(--red); transform: rotate(2deg); }
+
+.result-text { font-size: 0.95rem; line-height: 1.6; color: var(--ink); margin: 1rem 0; }
+
+.again-btn {
+  background: var(--tab-bg);
+  color: var(--paper);
+  border: none;
+  padding: 0.75rem 2rem;
+  font-family: 'Special Elite', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+.again-btn:hover { background: var(--red); }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- MENU -->
+  <div id="menu" class="screen active">
+    <div class="logo-wrap">
+      <div class="logo-box"><div class="game-title">DOUBT</div></div>
+      <div class="game-sub">GIOCHI INVESTIGATIVI — DOSSIER RISERVATI</div>
+    </div>
+    <div class="section-label">SELEZIONA CASO</div>
+    <div class="case-card" onclick="startCase()">
+      <div class="case-num">CASO #001 — MILANO, 1987</div>
+      <div class="case-title">L'Ufficio di Mantini</div>
+      <div class="case-desc">Edoardo Mantini, direttore artistico del Teatro Reale, trovato morto nel suo ufficio. Causa: avvelenamento da digitoxina.</div>
+    </div>
+    <div class="case-card ai" onclick="startAICase()">
+      <div class="ai-badge">AI</div>
+      <div class="case-num">CASO GENERATO — OGNI PARTITA È UNICA</div>
+      <div class="case-title">Caso Procedurale</div>
+      <div class="case-desc">Un caso completamente nuovo generato dall'intelligenza artificiale. Vittima, sospettati e colpevole cambiano ad ogni partita.</div>
+    </div>
+  </div>
+
+  <!-- LOADING -->
+  <div id="loading-screen" class="screen">
+    <div class="spinner"></div>
+    <div class="loading-msg" id="loading-msg">L'intelligenza artificiale<br>costruisce il caso...</div>
+  </div>
+
+  <!-- INVESTIGATION -->
+  <div id="investigation" class="screen">
+    <div class="inv-header">
+      <button class="back-btn" onclick="goToMenu()">← MENU</button>
+      <div class="inv-case-name" id="inv-name">—</div>
+      <div style="width:60px;"></div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="overview" onclick="switchTab(this,'overview')">PANORAMICA</button>
+      <button class="tab" data-tab="indizi" onclick="switchTab(this,'indizi')">INDIZI</button>
+      <button class="tab" data-tab="prove" onclick="switchTab(this,'prove')">PROVE</button>
+      <button class="tab" data-tab="sospettati" onclick="switchTab(this,'sospettati')">SOSPETTATI</button>
+      <button class="tab" data-tab="interroga" onclick="switchTab(this,'interroga')">INTERROGA</button>
+      <button class="tab" data-tab="minigame" onclick="switchTab(this,'minigame')">DOCUMENTO</button>
+      <button class="tab" data-tab="accusa" onclick="switchTab(this,'accusa')">ACCUSA</button>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div id="tab-overview" class="tab-content active">
+      <div class="section-title">RAPPORTO INIZIALE</div>
+      <div class="dossier-card">
+        <div class="card-head"><span>SCHEDA VITTIMA</span><span class="stamp">RISERVATO</span></div>
+        <div class="card-body">
+          <div class="field"><div class="field-lbl">NOME</div><div class="field-val" id="v-name">—</div></div>
+          <div class="field"><div class="field-lbl">ETÀ</div><div class="field-val" id="v-age">—</div></div>
+          <div class="field"><div class="field-lbl">RUOLO</div><div class="field-val" id="v-role">—</div></div>
+          <div class="field"><div class="field-lbl">CAUSA MORTE</div><div class="field-val" id="v-cause">—</div></div>
+          <div class="field"><div class="field-lbl">LUOGO</div><div class="field-val" id="v-loc">—</div></div>
+        </div>
+      </div>
+      <div class="dossier-card">
+        <div class="card-head">SCENA DEL CRIMINE</div>
+        <div class="card-body"><p id="v-scene" style="font-size:0.92rem;line-height:1.7;font-style:italic;color:var(--ink);">—</p></div>
+      </div>
+      <div class="notice">Analizza gli indizi, interroga i sospettati, risolvi il minigame del documento, poi procedi con l'accusa.</div>
+    </div>
+
+    <!-- INDIZI -->
+    <div id="tab-indizi" class="tab-content">
+      <div class="section-title">BUSTE DEGLI INDIZI</div>
+      <div class="notice">Apri le buste per scoprire nuovi elementi del caso.</div>
+      <div class="env-grid" id="env-grid"></div>
+      <div id="opened-clues"></div>
+    </div>
+
+    <!-- PROVE -->
+    <div id="tab-prove" class="tab-content">
+      <div class="section-title">PROVE RACCOLTE</div>
+      <div id="ev-list"><div style="font-style:italic;color:var(--ink-faded);font-size:0.88rem;">Apri le buste per raccogliere prove.</div></div>
+    </div>
+
+    <!-- SOSPETTATI -->
+    <div id="tab-sospettati" class="tab-content">
+      <div class="section-title">SCHEDE SOSPETTATI</div>
+      <div id="suspects-list"></div>
+    </div>
+
+    <!-- INTERROGA -->
+    <div id="tab-interroga" class="tab-content">
+      <div class="section-title">SALA INTERROGATORI</div>
+      <select class="interr-sel" id="s-select" onchange="loadQuestions()">
+        <option value="">— Seleziona sospettato —</option>
+      </select>
+      <div id="q-list"></div>
+      <div class="interr-area" id="interr-area"><span style="opacity:0.4;font-style:italic;">Seleziona un sospettato e fai una domanda...</span></div>
+    </div>
+
+    <!-- MINIGAME -->
+    <div id="tab-minigame" class="tab-content">
+      <div class="section-title">RICOSTRUZIONE DOCUMENTO</div>
+      <div class="notice">Ricostruisci il documento strappato trascinando i frammenti nell'ordine corretto.</div>
+      <div class="puzzle-area">
+        <div class="puzzle-title">FRAMMENTI DISPONIBILI</div>
+        <div class="fragments" id="fragments"></div>
+        <div class="puzzle-title" style="margin-top:0.75rem;">ORDINE CORRETTO</div>
+        <div class="drop-slots" id="drop-slots"></div>
+        <button class="puzzle-btn" id="puzzle-btn" onclick="checkPuzzle()" disabled>VERIFICA DOCUMENTO</button>
+        <div class="puzzle-reveal" id="puzzle-reveal"></div>
+      </div>
+    </div>
+
+    <!-- ACCUSA -->
+    <div id="tab-accusa" class="tab-content">
+      <div class="accusa-title">— ACCUSA FINALE —</div>
+      <div class="notice">Hai raccolto abbastanza prove? Scegli il colpevole con attenzione. Non puoi tornare indietro.</div>
+      <div id="accusa-list"></div>
+      <button class="confirm-btn" id="confirm-btn" disabled onclick="confirmAccusa()">ACCUSA FORMALE</button>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="result-overlay" id="result-overlay" style="display:none;">
+    <div class="result-box">
+      <div class="result-stamp" id="r-stamp">—</div>
+      <p class="result-text" id="r-text">—</p>
+      <button class="again-btn" onclick="goToMenu()">NUOVO CASO</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const MANTINI = {
+  id:'CASO #001', name:"L'Ufficio di Mantini",
+  victim:{name:'Edoardo Mantini',age:'61 anni',role:'Direttore artistico, Teatro Reale di Milano',cause:'Avvelenamento da digitoxina',location:'Ufficio privato, Teatro Reale — Piano 3'},
+  scene:'La sera del 14 marzo 1987, Edoardo Mantini viene trovato privo di vita nel suo ufficio al terzo piano del Teatro Reale. Sul tavolo: un bicchiere di cognac con tracce di digitoxina, documenti finanziari sparsi e una sedia rovesciata. La porta era chiusa dall\'interno.',
+  suspects:[
+    {name:'Carlo Negri',role:'Direttore amministrativo',age:'52 anni',motive:'Dispute finanziarie con Mantini. Negri stava per essere licenziato dopo irregolarità nei conti.',alibi:'Afferma di essere stato nella sala riunioni fino alle 22:30.',detail:'Impronte sul manico della porta dell\'ufficio di Mantini.',icon:'👔',guilty:false,
+     questions:[{q:'Dove si trovava la sera del 14 marzo?',a:'Ero nella sala riunioni con Bianchi e Ferrara. Non mi sono avvicinato all\'ufficio.'},{q:'Aveva conflitti con la vittima?',a:'Non andavamo d\'accordo su alcune questioni contabili. Ma ucciderlo sarebbe stata una follia.'},{q:'Come spieghi le sue impronte sulla porta?',a:'Sono passato nel pomeriggio per consegnare documenti.'}]},
+    {name:'Alessia Conti',role:'Assistente personale',age:'34 anni',motive:'Mantini stava pianificando di licenziarla dopo sette anni di servizio.',alibi:'Sostiene di essere stata nel camerino di Ginevra Landi fino alle 23:00.',detail:'Le sue impronte digitali sono sul flacone del veleno.',icon:'💼',guilty:true,
+     questions:[{q:'Dove si trovava la sera del 14 marzo?',a:'Ero con Ginevra nel suo camerino. Stavamo lavorando al calendario delle prove.'},{q:'Perché le sue impronte sono sul flacone?',a:'...Io... maneggio molti flaconi nel mio lavoro. Potrebbe essere una coincidenza.'},{q:'Sapeva che Mantini la voleva licenziare?',a:'Ne avevo sentito parlare... Ma sono tanti anni che lavoro qui...'}]},
+    {name:'Ginevra Landi',role:'Prima attrice del teatro',age:'44 anni',motive:'Mantini aveva scritto critiche devastanti sulla sua ultima performance.',alibi:'Dice di essere nel camerino con Alessia Conti la sera del delitto.',detail:'Ha acquistato digitoxina in farmacia due settimane prima.',icon:'🎭',guilty:false,
+     questions:[{q:'Dove si trovava la sera del 14 marzo?',a:'Nel mio camerino con Alessia. Stavamo preparando il calendario delle prove.'},{q:'Perché ha acquistato digitoxina?',a:'Ho avuto alcuni problemi al cuore. Era per uso personale, ovviamente.'},{q:'Cosa pensava delle critiche di Mantini?',a:'Le critiche fanno parte del mestiere. Le sue erano particolarmente crudeli.'}]}
+  ],
+  envelopes:[
+    {id:'e1',title:'Rapporto medico legale',icon:'📋',locked:false,content:'Il medico legale conferma: Mantini è morto tra le 21:00 e le 22:30. La digitoxina era nel cognac. Dose letale. Nessun segno di lotta.',evidence:{icon:'🧪',title:'Referto tossicologico',desc:'Digitoxina nel bicchiere di cognac. Dose sei volte superiore al letale.'}},
+    {id:'e2',title:'Testimonianza custode',icon:'📝',locked:false,content:'Il custode Enzo Ferri: "Ho visto la Conti uscire dall\'ufficio di Mantini verso le 21:15. Sembrava agitata. Non l\'ho detto prima perché pensavo fosse normale."',evidence:{icon:'👁️',title:'Testimonianza custode',desc:'Alessia Conti vista uscire dall\'ufficio della vittima alle 21:15.'}},
+    {id:'e3',title:'Documenti finanziari',icon:'📊',locked:false,content:'Trovati nell\'ufficio: Mantini stava preparando una lettera di licenziamento per Alessia Conti, datata 13 marzo. Carlo Negri era segnalato solo come "avvertimento".',evidence:{icon:'📄',title:'Lettera di licenziamento',desc:'Bozza firmata da Mantini: licenziamento di Alessia Conti con decorrenza immediata.'}},
+    {id:'e4',title:'Registro farmacia',icon:'💊',locked:false,content:'La farmacia conferma: Ginevra Landi ha acquistato digitoxina il 28 febbraio. Alessia Conti risulta in lista con acquisto del 10 marzo — con nome falso. La firma corrisponde.',evidence:{icon:'🏪',title:'Ricevuta farmacia',desc:'Acquisto di digitoxina il 10 marzo con nome falso. Firma corrispondente ad Alessia Conti.'}}
+  ],
+  guiltyIndex:1,
+  puzzle:{
+    clue:'Nota segreta trovata nello strappo del tappeto',
+    fragments:['devo farlo stasera','dopo le 21','il cognac è pronto','non tornerà più','nessuno deve sapere','ho paura ma non ho scelta'],
+    correctOrder:[0,5,4,1,2,3],
+    reveal:'La nota ricostruita recita: "Devo farlo stasera — ho paura ma non ho scelta — nessuno deve sapere — dopo le 21 — il cognac è pronto — non tornerà più." La calligrafia corrisponde ad Alessia Conti.'
+  }
+};
+
+let G = null;
+let openedEnv = new Set();
+let evidence = [];
+let selectedAccusa = null;
+let interrHistory = {};
+let puzzleState = { slotData: [], dragging: null };
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function goToMenu() {
+  showScreen('menu');
+  document.getElementById('result-overlay').style.display = 'none';
+  openedEnv = new Set(); evidence = []; selectedAccusa = null; interrHistory = {};
+}
+
+function switchTab(btn, name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+}
+
+function startCase() {
+  G = JSON.parse(JSON.stringify(MANTINI));
+  loadCase();
+}
+
+async function startAICase() {
+  showScreen('loading-screen');
+  try {
+    const res = await fetch('/api/generate', { method: 'POST', headers: {'Content-Type':'application/json'} });
+    if (!res.ok) throw new Error('API error');
+    G = await res.json();
+    if (!G.puzzle) G.puzzle = MANTINI.puzzle;
+    loadCase();
+  } catch(e) {
+    document.getElementById('loading-msg').textContent = 'Errore nella generazione.\nRiprova tra un momento.';
+    setTimeout(goToMenu, 2500);
+  }
+}
+
+function loadCase() {
+  document.getElementById('inv-name').textContent = G.name;
+  document.getElementById('v-name').textContent = G.victim.name;
+  document.getElementById('v-age').textContent = G.victim.age;
+  document.getElementById('v-role').textContent = G.victim.role;
+  document.getElementById('v-cause').textContent = G.victim.cause;
+  document.getElementById('v-loc').textContent = G.victim.location;
+  document.getElementById('v-scene').textContent = G.scene;
+
+  renderEnvelopes(); renderSuspects(); renderAccusa(); renderPuzzle();
+  populateSelect();
+
+  document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', i===0));
+  document.querySelectorAll('.tab-content').forEach((t,i) => t.classList.toggle('active', i===0));
+  document.getElementById('ev-list').innerHTML = '<div style="font-style:italic;color:var(--ink-faded);font-size:0.88rem;">Apri le buste per raccogliere prove.</div>';
+  document.getElementById('opened-clues').innerHTML = '';
+  openedEnv = new Set(); evidence = []; selectedAccusa = null; interrHistory = {};
+  document.getElementById('confirm-btn').disabled = true;
+  showScreen('investigation');
+}
+
+function renderEnvelopes() {
+  const grid = document.getElementById('env-grid');
+  grid.innerHTML = '';
+  G.envelopes.forEach(env => {
+    const d = document.createElement('div');
+    d.className = 'envelope';
+    d.id = 'env-' + env.id;
+    d.innerHTML = `<div class="env-icon">${env.icon}</div><div class="env-title">${env.title}</div><div class="env-status">Tocca per aprire</div>`;
+    d.onclick = () => openEnv(env.id);
+    grid.appendChild(d);
+  });
+}
+
+function openEnv(id) {
+  if (openedEnv.has(id)) return;
+  openedEnv.add(id);
+  const env = G.envelopes.find(e => e.id === id);
+  const el = document.getElementById('env-' + id);
+  el.classList.add('opened');
+  el.querySelector('.env-status').textContent = 'Aperta';
+
+  const c = document.getElementById('opened-clues');
+  const card = document.createElement('div');
+  card.className = 'dossier-card';
+  card.innerHTML = `<div class="card-head">${env.icon} ${env.title}</div><div class="card-body"><p style="font-size:0.9rem;line-height:1.6;font-style:italic;color:var(--ink);">${env.content}</p></div>`;
+  c.appendChild(card);
+  addEvidence(env.evidence);
+}
+
+function addEvidence(ev) {
+  evidence.push(ev);
+  const list = document.getElementById('ev-list');
+  if (evidence.length === 1) list.innerHTML = '';
+  const item = document.createElement('div');
+  item.className = 'ev-item';
+  item.innerHTML = `<div class="ev-icon">${ev.icon}</div><div><div class="ev-title">${ev.title}</div><div class="ev-desc">${ev.desc}</div></div>`;
+  list.appendChild(item);
+}
+
+function renderSuspects() {
+  const list = document.getElementById('suspects-list');
+  list.innerHTML = '';
+  G.suspects.forEach(s => {
+    const c = document.createElement('div');
+    c.className = 'suspect-card';
+    c.innerHTML = `<div class="suspect-head"><div class="suspect-photo">${s.icon}</div><div><div class="suspect-name">${s.name}</div><div class="suspect-role">${s.role} — ${s.age}</div></div></div>
+    <div class="card-body">
+      <div class="field"><div class="field-lbl">MOVENTE</div><div class="field-val">${s.motive}</div></div>
+      <div class="field"><div class="field-lbl">ALIBI</div><div class="field-val">${s.alibi}</div></div>
+      <div class="field"><div class="field-lbl">DETTAGLIO</div><div class="field-val">${s.detail}</div></div>
+    </div>`;
+    list.appendChild(c);
+  });
+}
+
+function populateSelect() {
+  const sel = document.getElementById('s-select');
+  sel.innerHTML = '<option value="">— Seleziona sospettato —</option>';
+  G.suspects.forEach((s,i) => {
+    const o = document.createElement('option');
+    o.value = i; o.textContent = s.icon + ' ' + s.name;
+    sel.appendChild(o);
+  });
+  document.getElementById('q-list').innerHTML = '';
+  document.getElementById('interr-area').innerHTML = '<span style="opacity:0.4;font-style:italic;">Seleziona un sospettato e fai una domanda...</span>';
+}
+
+function loadQuestions() {
+  const idx = document.getElementById('s-select').value;
+  const qlist = document.getElementById('q-list');
+  const area = document.getElementById('interr-area');
+  if (idx === '') { qlist.innerHTML = ''; area.innerHTML = '<span style="opacity:0.4;font-style:italic;">Seleziona un sospettato e fai una domanda...</span>'; return; }
+  const s = G.suspects[idx];
+  if (!interrHistory[idx]) interrHistory[idx] = [];
+  qlist.innerHTML = '';
+  s.questions.forEach((q,qi) => {
+    const asked = interrHistory[idx].includes(qi);
+    const btn = document.createElement('button');
+    btn.className = 'q-btn';
+    btn.textContent = (asked ? '✓ ' : '') + q.q;
+    btn.disabled = asked;
+    btn.onclick = () => { interrHistory[idx].push(qi); btn.disabled = true; btn.textContent = '✓ ' + q.q; appendAnswer(s, q, area); };
+    qlist.appendChild(btn);
+  });
+  if (interrHistory[idx].length === 0) area.innerHTML = `<span style="opacity:0.4;font-style:italic;">Fai una domanda a ${s.name}...</span>`;
+  else { area.innerHTML = ''; interrHistory[idx].forEach(qi => appendAnswer(s, s.questions[qi], area, false)); }
+}
+
+function appendAnswer(s, q, area, animate=true) {
+  if (area.querySelector('span')) area.innerHTML = '';
+  const div = document.createElement('div');
+  div.style.marginBottom = '0.75rem';
+  div.innerHTML = `<div class="interr-q-label">&gt; ${q.q}</div><div class="response-bubble">${s.name}: "${q.a}"</div>`;
+  if (animate) div.style.animation = 'fadeIn 0.3s ease';
+  area.appendChild(div);
+  area.scrollTop = area.scrollHeight;
+}
+
+function renderPuzzle() {
+  const p = G.puzzle || MANTINI.puzzle;
+  const frags = document.getElementById('fragments');
+  const slots = document.getElementById('drop-slots');
+  frags.innerHTML = ''; slots.innerHTML = '';
+  puzzleState.slotData = new Array(p.correctOrder.length).fill(null);
+  puzzleState.dragging = null;
+
+  const shuffled = [...p.correctOrder].sort(() => Math.random() - 0.5);
+  shuffled.forEach(fi => {
+    const el = document.createElement('div');
+    el.className = 'fragment';
+    el.textContent = p.fragments[fi];
+    el.draggable = true;
+    el.dataset.idx = fi;
+    el.ondragstart = e => { puzzleState.dragging = fi; el.classList.add('dragging'); };
+    el.ondragend = () => el.classList.remove('dragging');
+    el.ontouchstart = e => { puzzleState.dragging = fi; };
+    frags.appendChild(el);
+  });
+
+  p.correctOrder.forEach((_, si) => {
+    const slot = document.createElement('div');
+    slot.className = 'drop-slot';
+    slot.textContent = `Frammento ${si + 1}`;
+    slot.dataset.slot = si;
+    slot.ondragover = e => { e.preventDefault(); slot.classList.add('over'); };
+    slot.ondragleave = () => slot.classList.remove('over');
+    slot.ondrop = e => { e.preventDefault(); slot.classList.remove('over'); dropOnSlot(si, slot, p); };
+    slot.onclick = () => { if (puzzleState.dragging !== null) dropOnSlot(si, slot, p); };
+    slots.appendChild(slot);
+  });
+
+  document.getElementById('puzzle-reveal').style.display = 'none';
+  document.getElementById('puzzle-btn').disabled = true;
+}
+
+function dropOnSlot(si, slot, p) {
+  const fi = puzzleState.dragging;
+  if (fi === null) return;
+  puzzleState.slotData[si] = fi;
+  slot.textContent = p.fragments[fi];
+  slot.classList.add('filled');
+  slot.classList.remove('over');
+  puzzleState.dragging = null;
+
+  const fragEl = document.querySelector(`.fragment[data-idx="${fi}"]`);
+  if (fragEl) { fragEl.classList.add('placed'); fragEl.draggable = false; }
+
+  if (puzzleState.slotData.every(v => v !== null)) document.getElementById('puzzle-btn').disabled = false;
+}
+
+function checkPuzzle() {
+  const p = G.puzzle || MANTINI.puzzle;
+  const correct = puzzleState.slotData.every((v, i) => v === p.correctOrder[i]);
+  const reveal = document.getElementById('puzzle-reveal');
+  reveal.style.display = 'block';
+  if (correct) {
+    reveal.style.background = 'rgba(26,92,42,0.08)';
+    reveal.style.borderColor = 'rgba(26,92,42,0.3)';
+    reveal.innerHTML = '<strong>Documento ricostruito correttamente.</strong><br>' + p.reveal;
+    addEvidence({icon:'📜', title:'Documento ricostruito', desc: p.reveal.substring(0,80) + '...'});
+  } else {
+    reveal.style.background = 'rgba(139,26,26,0.06)';
+    reveal.style.borderColor = 'rgba(139,26,26,0.2)';
+    reveal.textContent = 'Ordine errato. Riprova — i frammenti non corrispondono.';
+    renderPuzzle();
+  }
+}
+
+function renderAccusa() {
+  const list = document.getElementById('accusa-list');
+  list.innerHTML = '';
+  G.suspects.forEach((s, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.innerHTML = `<span>${s.icon}</span><span>${s.name} — ${s.role}</span>`;
+    btn.onclick = () => {
+      selectedAccusa = i;
+      document.querySelectorAll('.choice-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      document.getElementById('confirm-btn').disabled = false;
+    };
+    list.appendChild(btn);
+  });
+}
+
+function confirmAccusa() {
+  if (selectedAccusa === null) return;
+  const correct = G.suspects[selectedAccusa].guilty;
+  const guilty = G.suspects[G.guiltyIndex];
+  const accused = G.suspects[selectedAccusa];
+  const overlay = document.getElementById('result-overlay');
+  const stamp = document.getElementById('r-stamp');
+  const text = document.getElementById('r-text');
+  overlay.style.display = 'flex';
+  if (correct) {
+    stamp.textContent = 'CASO RISOLTO'; stamp.className = 'result-stamp ok';
+    text.textContent = `Corretto. ${accused.name} è il colpevole. ${accused.motive} Era questo il movente. La giustizia ha trionfato.`;
+  } else {
+    stamp.textContent = 'CASO IRRISOLTO'; stamp.className = 'result-stamp fail';
+    text.textContent = `Sbagliato. Hai accusato ${accused.name}, ma il vero colpevole era ${guilty.name}. ${guilty.motive} Le prove erano lì — bisognava saperle leggere.`;
+  }
+}
+</script>
+</body>
+</html>
