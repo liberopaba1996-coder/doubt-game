@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DOUBT — Giochi Investigativi</title>
-<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{--paper:#f5f0e8;--paper-dark:#e0d8c4;--ink:#1a1208;--ink-faded:#5a4f3a;--red:#8b1a1a;--green:#1a5c2a;--border:#b8a070;--tab-bg:#2a1f0e;--gold:#c8a84b;}
@@ -97,11 +97,11 @@ body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100v
 .envelope{background:white;border:1px solid var(--border);padding:1rem 0.75rem;cursor:pointer;text-align:center;box-shadow:2px 2px 0 var(--paper-dark);transition:all 0.15s;position:relative;}
 .envelope:hover:not(.opened):not(.locked-env){transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--paper-dark);}
 .envelope.opened{opacity:0.5;cursor:default;}.envelope.locked-env{opacity:0.6;cursor:not-allowed;background:var(--paper-dark);}
-.eico{font-size:1.8rem;margin-bottom:0.4rem;}
+.eico{font-size:1.4rem;margin-bottom:0.4rem;font-family:'Special Elite',monospace;color:var(--ink-faded);}
 .etit{font-family:'Special Elite',monospace;font-size:0.6rem;letter-spacing:0.08em;color:var(--ink);line-height:1.3;}
 .esta{font-size:0.6rem;color:var(--ink-faded);font-style:italic;margin-top:0.2rem;}
 .ev-item{display:flex;gap:0.65rem;padding:0.65rem;background:white;border:1px solid var(--border);margin-bottom:0.5rem;align-items:flex-start;}
-.ev-ico{font-size:1.4rem;flex-shrink:0;}.ev-tit{font-family:'Special Elite',monospace;font-size:0.66rem;letter-spacing:0.08em;margin-bottom:0.2rem;color:var(--ink);}
+.ev-ico{font-size:1.1rem;flex-shrink:0;font-family:'Special Elite',monospace;color:var(--ink-faded);min-width:24px;text-align:center;}.ev-tit{font-family:'Special Elite',monospace;font-size:0.66rem;letter-spacing:0.08em;margin-bottom:0.2rem;color:var(--ink);}
 .ev-dsc{font-size:0.82rem;color:var(--ink-faded);font-style:italic;line-height:1.4;}
 .susp-card{background:white;border:1px solid var(--border);margin-bottom:0.75rem;}
 .susp-hd{display:flex;gap:0.75rem;padding:0.75rem;background:var(--paper-dark);border-bottom:1px solid var(--border);align-items:center;}
@@ -140,7 +140,7 @@ body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100v
 .preveal.wrong{background:rgba(139,26,26,0.06);border-color:rgba(139,26,26,0.2);}
 .mgabtn{background:var(--tab-bg);color:var(--paper);border:none;padding:0.55rem 1.5rem;font-family:'Special Elite',monospace;font-size:0.63rem;letter-spacing:0.15em;cursor:pointer;transition:all 0.15s;}
 .mgabtn:hover{background:var(--red);}.mgabtn:disabled{opacity:0.3;cursor:default;}
-.notepad{width:100%;min-height:300px;background:white;border:1px solid var(--border);padding:0.85rem;font-family:'Crimson Text',serif;font-size:0.95rem;color:var(--ink);resize:vertical;line-height:1.8;background-image:repeating-linear-gradient(transparent,transparent 28px,rgba(184,160,112,0.3) 29px);}
+.notepad{width:100%;min-height:300px;background:#faf7f0;border:1px solid var(--border);padding:0.85rem;font-family:'Courier Prime',Courier,monospace;font-size:0.82rem;color:var(--ink);resize:vertical;line-height:1.9;background-image:repeating-linear-gradient(transparent,transparent 29px,rgba(184,160,112,0.25) 30px);letter-spacing:0.02em;}
 .notepad:focus{outline:none;border-color:var(--red);}
 .atit{font-family:'Special Elite',monospace;font-size:0.68rem;letter-spacing:0.2em;color:var(--red);text-align:center;margin-bottom:1rem;}
 .chbtn{display:flex;align-items:center;gap:0.75rem;width:100%;background:white;border:1px solid var(--border);padding:0.85rem 1rem;cursor:pointer;font-family:'Special Elite',monospace;font-size:0.76rem;letter-spacing:0.06em;color:var(--ink);margin-bottom:0.5rem;transition:all 0.15s;text-align:left;}
@@ -202,6 +202,12 @@ body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100v
 #inxt{background:rgba(139,26,26,0.2);border:1px solid rgba(139,26,26,0.38);padding:4px 12px;font-family:'Special Elite',monospace;font-size:0.48rem;letter-spacing:0.1em;color:#c07060;cursor:pointer;transition:all 0.15s;}
 #inxt:hover{background:rgba(139,26,26,0.45);color:#f0a090;}
 #inxt:disabled{opacity:0.18;cursor:default;}
+
+.tutorial-panel{display:flex;gap:0.75rem;align-items:flex-start;margin-bottom:0.85rem;padding-bottom:0.85rem;border-bottom:1px dotted var(--border);}
+.tutorial-panel:last-of-type{border-bottom:none;margin-bottom:0;}
+.tut-scene{width:120px;flex-shrink:0;border:1px solid var(--border);background:#f0ebe0;overflow:hidden;}
+.tut-text{font-family:'Crimson Text',serif;font-size:0.78rem;color:var(--ink-faded);line-height:1.5;font-style:italic;flex:1;}
+.tut-n{font-family:'Special Elite',monospace;font-size:0.55rem;color:var(--red);margin-right:4px;font-style:normal;}
 </style>
 </head>
 <body>
@@ -214,7 +220,7 @@ body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100v
   </div>
   <div class="menu-divider"></div>
   <button class="menu-btn primary" onclick="showScreen('difficulty-screen')">
-    <span class="lbl">PARTITA RAPIDA</span><span class="dsc">Caso generato dall'intelligenza artificiale</span><span class="arr">→</span>
+    <span class="lbl">PARTITA RAPIDA</span><span class="dsc">Caso procedurale — ogni partita è unica</span><span class="arr">→</span>
   </button>
   <button class="menu-btn" onclick="startCase()">
     <span class="lbl">CASO MANTINI</span><span class="dsc">L'Ufficio di Mantini — Milano, 1987</span><span class="arr">→</span>
@@ -222,7 +228,7 @@ body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100v
   <button class="menu-btn" onclick="showScreen('options-screen')">
     <span class="lbl">OPZIONI</span><span class="dsc">Timer, display, preferenze</span><span class="arr">→</span>
   </button>
-  <div class="ver">DOUBT v1.1 — BETA</div>
+  <div class="ver">DOUBT — v1.1</div>
 </div>
 
 <div id="difficulty-screen" class="screen">
@@ -248,9 +254,134 @@ body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100v
   </div>
 </div>
 
-<div id="loading-screen" class="screen">
-  <div class="spinner"></div>
-  <div class="load-msg">Stiamo sfogliando l'archivio<span class="load-dots"></span><br><span style="font-size:0.6rem;opacity:0.6;display:block;margin-top:0.4rem;">Preparazione dossier riservato</span></div>
+<div id="loading-screen" class="screen" style="background:#f5f0e8;background-image:repeating-linear-gradient(0deg,transparent,transparent 27px,rgba(0,0,0,0.03) 28px);">
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:1.5rem;">
+    <div style="font-family:'Special Elite',monospace;font-size:0.6rem;letter-spacing:0.2em;color:var(--ink-faded);text-align:center;margin-bottom:1.5rem;border-bottom:1px solid var(--border);padding-bottom:0.75rem;">COME FUNZIONA</div>
+    <!-- Vignetta 1 -->
+    <div class="tutorial-panel" id="tp1">
+      <div class="tut-scene">
+        <svg viewBox="0 0 260 110" width="100%">
+          <rect x="10" y="10" width="240" height="90" fill="#f0ebe0" rx="2" stroke="#b8a070" stroke-width="1"/>
+          <rect x="20" y="20" width="100" height="12" fill="#2a1f0e" rx="1"/>
+          <rect x="20" y="36" width="220" height="2" fill="#b8a070" opacity="0.4"/>
+          <rect x="20" y="44" width="180" height="6" fill="#e0d8c4" rx="1"/>
+          <rect x="20" y="54" width="160" height="6" fill="#e0d8c4" rx="1"/>
+          <rect x="20" y="64" width="140" height="6" fill="#e0d8c4" rx="1"/>
+          <rect x="20" y="74" width="120" height="6" fill="#e0d8c4" rx="1"/>
+          <rect x="175" y="68" width="60" height="22" fill="#8b1a1a" rx="2"/>
+          <text x="205" y="83" text-anchor="middle" font-family="Special Elite" font-size="7" fill="#f5f0e8">APRI DOSSIER</text>
+          <rect x="140" y="18" width="2" height="8" fill="#8b1a1a" transform="rotate(-5,141,22)"/>
+          <rect x="148" y="15" width="2" height="8" fill="#8b1a1a" transform="rotate(5,149,19)"/>
+          <rect x="156" y="17" width="2" height="8" fill="#8b1a1a" transform="rotate(-3,157,21)"/>
+        </svg>
+      </div>
+      <div class="tut-text"><span class="tut-n">01</span>Ricevi il dossier del caso. Leggi la scena del crimine e i dettagli della vittima.</div>
+    </div>
+    <!-- Vignetta 2 -->
+    <div class="tutorial-panel" id="tp2">
+      <div class="tut-scene">
+        <svg viewBox="0 0 260 110" width="100%">
+          <rect x="10" y="10" width="55" height="65" fill="#f0ebe0" rx="2" stroke="#b8a070" stroke-width="1"/>
+          <rect x="14" y="14" width="47" height="8" fill="#e0d8c4" rx="1"/>
+          <rect x="14" y="26" width="47" height="6" fill="#e0d8c4" rx="1"/>
+          <rect x="14" y="36" width="47" height="6" fill="#e0d8c4" rx="1"/>
+          <rect x="14" y="46" width="47" height="8" fill="#2a1f0e" rx="1"/>
+          <text x="37" y="53" text-anchor="middle" font-family="Special Elite" font-size="5" fill="#f5f0e8">APRI</text>
+          <rect x="75" y="10" width="55" height="65" fill="#f0ebe0" rx="2" stroke="#b8a070" stroke-width="1"/>
+          <rect x="79" y="14" width="47" height="8" fill="#e0d8c4" rx="1"/>
+          <rect x="79" y="26" width="47" height="6" fill="#e0d8c4" rx="1"/>
+          <rect x="79" y="36" width="47" height="6" fill="#e0d8c4" rx="1"/>
+          <rect x="79" y="46" width="47" height="8" fill="#2a1f0e" rx="1"/>
+          <text x="102" y="53" text-anchor="middle" font-family="Special Elite" font-size="5" fill="#f5f0e8">APRI</text>
+          <rect x="140" y="10" width="55" height="65" fill="#f0ebe0" rx="2" stroke="#b8a070" stroke-width="1"/>
+          <rect x="144" y="14" width="47" height="8" fill="#e0d8c4" rx="1"/>
+          <rect x="144" y="26" width="47" height="6" fill="#e0d8c4" rx="1"/>
+          <rect x="144" y="36" width="47" height="6" fill="#e0d8c4" rx="1"/>
+          <rect x="144" y="46" width="47" height="8" fill="#2a1f0e" rx="1"/>
+          <text x="167" y="53" text-anchor="middle" font-family="Special Elite" font-size="5" fill="#f5f0e8">APRI</text>
+          <rect x="205" y="10" width="45" height="65" fill="#f0ebe0" rx="2" stroke="#b8a070" stroke-width="1"/>
+          <rect x="209" y="14" width="37" height="8" fill="#e0d8c4" rx="1"/>
+          <rect x="209" y="26" width="37" height="6" fill="#e0d8c4" rx="1"/>
+          <path d="M220 55 L230 45 L240 55 Z" fill="#8b1a1a" opacity="0.6"/>
+          <!-- envelope opened indicator -->
+          <text x="37" y="85" text-anchor="middle" font-family="Special Elite" font-size="6" fill="#b8a070">BUSTA 1</text>
+          <text x="102" y="85" text-anchor="middle" font-family="Special Elite" font-size="6" fill="#b8a070">BUSTA 2</text>
+          <text x="167" y="85" text-anchor="middle" font-family="Special Elite" font-size="6" fill="#b8a070">BUSTA 3</text>
+          <text x="227" y="85" text-anchor="middle" font-family="Special Elite" font-size="6" fill="#8b1a1a">BLOCCATA</text>
+        </svg>
+      </div>
+      <div class="tut-text"><span class="tut-n">02</span>Apri le buste degli indizi per raccogliere prove. Alcune si sbloccano dopo le interrogazioni.</div>
+    </div>
+    <!-- Vignetta 3 -->
+    <div class="tutorial-panel" id="tp3">
+      <div class="tut-scene">
+        <svg viewBox="0 0 260 110" width="100%">
+          <rect x="10" y="8" width="240" height="94" fill="#0a0806" rx="2"/>
+          <!-- detective silhouette -->
+          <ellipse cx="60" cy="40" rx="12" ry="13" fill="#060402"/>
+          <rect x="48" y="32" width="24" height="6" fill="#060402" rx="1"/>
+          <rect x="52" y="22" width="16" height="12" fill="#060402" rx="2"/>
+          <rect x="44" y="52" width="32" height="40" fill="#060402" rx="2"/>
+          <rect x="38" y="55" width="10" height="22" fill="#060402" rx="1"/>
+          <rect x="68" y="55" width="10" height="22" fill="#060402" rx="1"/>
+          <!-- suspect -->
+          <ellipse cx="185" cy="42" rx="14" ry="15" fill="#c09060"/>
+          <rect x="173" y="36" width="24" height="8" fill="#1a1008" rx="2"/>
+          <rect x="173" y="56" width="24" height="40" fill="#2a3828" rx="2"/>
+          <rect x="165" y="60" width="12" height="28" fill="#2a3828" rx="2"/>
+          <rect x="193" y="60" width="12" height="28" fill="#2a3828" rx="2"/>
+          <!-- table -->
+          <rect x="80" y="78" width="100" height="8" fill="#2a1a08"/>
+          <!-- lamp -->
+          <line x1="130" y1="8" x2="130" y2="28" stroke="#3a2a10" stroke-width="2"/>
+          <polygon points="115,28 145,28 140,38 120,38" fill="#4a3518"/>
+          <polygon points="120,38 140,38 155,78 105,78" fill="#c89008" opacity="0.06"/>
+          <!-- speech bubble -->
+          <rect x="100" y="48" width="60" height="22" fill="white" rx="3" stroke="#b8a070" stroke-width="0.8"/>
+          <polygon points="118,70 112,78 124,70" fill="white" stroke="#b8a070" stroke-width="0.8"/>
+          <text x="130" y="59" text-anchor="middle" font-family="Special Elite" font-size="5" fill="#1a1208">Dove eri la</text>
+          <text x="130" y="67" text-anchor="middle" font-family="Special Elite" font-size="5" fill="#1a1208">sera del 14?</text>
+        </svg>
+      </div>
+      <div class="tut-text"><span class="tut-n">03</span>Interroga i sospettati. Le risposte vengono salvate automaticamente nelle tue note.</div>
+    </div>
+    <!-- Vignetta 4 -->
+    <div class="tutorial-panel" id="tp4">
+      <div class="tut-scene">
+        <svg viewBox="0 0 260 110" width="100%">
+          <rect x="10" y="10" width="240" height="90" fill="#f0ebe0" rx="2" stroke="#b8a070" stroke-width="1"/>
+          <!-- 3 suspect cards -->
+          <rect x="20" y="22" width="60" height="70" fill="white" rx="2" stroke="#b8a070" stroke-width="0.8"/>
+          <ellipse cx="50" cy="40" rx="14" ry="14" fill="#e0d0b0"/>
+          <rect x="25" y="58" width="50" height="5" fill="#e0d8c4" rx="1"/>
+          <rect x="28" y="66" width="44" height="4" fill="#e0d8c4" rx="1"/>
+          <rect x="28" y="73" width="38" height="4" fill="#e0d8c4" rx="1"/>
+          <rect x="100" y="22" width="60" height="70" fill="white" rx="2" stroke="#8b1a1a" stroke-width="1.5"/>
+          <ellipse cx="130" cy="40" rx="14" ry="14" fill="#c8a070"/>
+          <rect x="105" y="58" width="50" height="5" fill="#e0d8c4" rx="1"/>
+          <rect x="108" y="66" width="44" height="4" fill="#e0d8c4" rx="1"/>
+          <rect x="108" y="73" width="38" height="4" fill="#e0d8c4" rx="1"/>
+          <!-- red X mark on middle card -->
+          <line x1="108" y1="28" x2="152" y2="68" stroke="#8b1a1a" stroke-width="2" opacity="0.3"/>
+          <line x1="152" y1="28" x2="108" y2="68" stroke="#8b1a1a" stroke-width="2" opacity="0.3"/>
+          <rect x="180" y="22" width="60" height="70" fill="white" rx="2" stroke="#b8a070" stroke-width="0.8"/>
+          <ellipse cx="210" cy="40" rx="14" ry="14" fill="#d0b890"/>
+          <rect x="185" y="58" width="50" height="5" fill="#e0d8c4" rx="1"/>
+          <rect x="188" y="66" width="44" height="4" fill="#e0d8c4" rx="1"/>
+          <rect x="188" y="73" width="38" height="4" fill="#e0d8c4" rx="1"/>
+          <!-- accusation stamp on middle -->
+          <rect x="108" y="80" width="44" height="8" fill="#8b1a1a" rx="1"/>
+          <text x="130" y="87" text-anchor="middle" font-family="Special Elite" font-size="5" fill="#f5f0e8">ACCUSATO</text>
+        </svg>
+      </div>
+      <div class="tut-text"><span class="tut-n">04</span>Analizza le prove, usa il taccuino e accusa il colpevole. Attenzione — hai una sola possibilità.</div>
+    </div>
+    <!-- spinner piccolo in basso -->
+    <div style="display:flex;align-items:center;justify-content:center;gap:0.75rem;margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--border);">
+      <div class="spinner" style="width:20px;height:20px;border-width:2px;"></div>
+      <div style="font-family:'Special Elite',monospace;font-size:0.52rem;letter-spacing:0.15em;color:var(--ink-faded);">Preparazione dossier<span class="load-dots"></span></div>
+    </div>
+  </div>
 </div>
 
 <div id="case-intro" class="screen">
@@ -356,8 +487,8 @@ body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100v
   <div id="tab-archivio" class="tab-content">
     <div class="stitle">ARCHIVIO INVESTIGATIVO</div>
     <div class="mg-sel">
-      <div class="mg-btn amg" id="mgb-tab" onclick="swMG('tab')"><div class="mg-itxt">📞</div><div class="mg-nm">TABULATO</div></div>
-      <div class="mg-btn" id="mgb-puz" onclick="swMG('puz')"><div class="mg-itxt">📄</div><div class="mg-nm">DOCUMENTO</div></div>
+      <div class="mg-btn amg" id="mgb-tab" onclick="swMG('tab')"><div class="mg-itxt">☏</div><div class="mg-nm">TABULATO</div></div>
+      <div class="mg-btn" id="mgb-puz" onclick="swMG('puz')"><div class="mg-itxt">▢</div><div class="mg-nm">DOCUMENTO</div></div>
     </div>
     <div id="mg-tab" class="mgarea">
       <div class="mgtit">TABULATO TELEFONICO — Notte del delitto</div>
@@ -399,7 +530,7 @@ body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100v
 
 </div>
 <script>
-const M={id:'CASO #001',name:"L'Ufficio di Mantini",victim:{name:'Edoardo Mantini',age:'61 anni',role:'Direttore artistico, Teatro Reale di Milano',cause:'Avvelenamento da digitoxina',location:'Ufficio privato, Teatro Reale — Piano 3'},scene:"La sera del 14 marzo 1987, Edoardo Mantini viene trovato privo di vita nel suo ufficio. Sul tavolo: un bicchiere di cognac con tracce di digitoxina e documenti finanziari sparsi. La porta era chiusa dall'interno.",suspects:[{name:'Carlo Negri',role:'Direttore amministrativo',age:'52 anni',motive:'Dispute finanziarie. Stava per essere licenziato.',alibi:'Sala riunioni fino alle 22:30.',detail:'Impronte sulla porta ufficio vittima.',icon:'👔',guilty:false,questions:[{q:'Dove si trovava la sera del 14 marzo?',a:'Sala riunioni con Bianchi e Ferrara. Non mi sono avvicinato.'},{q:'Aveva conflitti con la vittima?',a:'Non andavamo d\'accordo su questioni contabili. Ucciderlo? Assurdo.'},{q:'Come spieghi le impronte sulla porta?',a:'Sono passato nel pomeriggio per consegnare documenti.'}]},{name:'Alessia Conti',role:'Assistente personale',age:'34 anni',motive:'Mantini stava pianificando di licenziarla dopo sette anni.',alibi:'Camerino di Ginevra Landi fino alle 23:00.',detail:'Impronte digitali sul flacone del veleno.',icon:'💼',guilty:true,questions:[{q:'Dove si trovava la sera del 14 marzo?',a:'Ero con Ginevra nel camerino. Lavoravamo al calendario prove.'},{q:'Perche le sue impronte sono sul flacone?',a:'...Maneggio molti flaconi. Potrebbe essere una coincidenza...'},{q:'Sapeva che Mantini la voleva licenziare?',a:'Ne avevo sentito parlare... ma sette anni di lavoro...'}]},{name:'Ginevra Landi',role:'Prima attrice del teatro',age:'44 anni',motive:'Critiche devastanti di Mantini sulla sua performance.',alibi:'Camerino con Alessia Conti la sera del delitto.',detail:'Ha acquistato digitoxina due settimane prima.',icon:'🎭',guilty:false,questions:[{q:'Dove si trovava la sera del 14 marzo?',a:'Nel camerino con Alessia. Calendario prove per aprile.'},{q:'Perche ha acquistato digitoxina?',a:'Problemi cardiaci. Era per uso personale.'},{q:'Cosa pensava delle critiche di Mantini?',a:'Fanno parte del mestiere. Le sue erano particolarmente crudeli.'}]}],envelopes:[{id:'e1',title:'Rapporto medico legale',icon:'📋',locked:false,content:"Morte tra le 21:00 e 22:30. Digitoxina nel cognac, dose letale. Nessun segno di lotta.",evidence:{icon:'🧪',title:'Referto tossicologico',desc:'Digitoxina nel cognac. Dose 6x superiore al letale.'}},{id:'e2',title:'Testimonianza custode',icon:'📝',locked:false,content:'Custode Enzo Ferri: "Ho visto la Conti uscire dall\'ufficio di Mantini alle 21:15. Sembrava agitata."',evidence:{icon:'👁️',title:'Testimonianza custode',desc:'Alessia Conti uscita ufficio vittima alle 21:15.'}},{id:'e3',title:'Documenti finanziari',icon:'📊',locked:false,content:"Trovata bozza lettera licenziamento per Alessia Conti datata 13 marzo. Mantini aveva firmato.",evidence:{icon:'📄',title:'Lettera licenziamento',desc:'Licenziamento Alessia Conti con decorrenza immediata.'}},{id:'e4',title:'Registro farmacia',icon:'💊',locked:false,content:"Conti ha acquistato digitoxina il 10 marzo con nome falso. La firma corrisponde.",evidence:{icon:'🏪',title:'Ricevuta farmacia',desc:'Acquisto digitoxina 10 marzo, nome falso, firma: A. Conti.'}}],guiltyIndex:1,puzzle:{fragments:["devo farlo stasera","dopo le 21","il cognac e' pronto","non tornera' piu'",'nessuno deve sapere','ho paura ma non ho scelta'],correctOrder:[0,5,4,1,2,3],reveal:"Nota ricostruita: 'Devo farlo stasera — ho paura ma non ho scelta — nessuno deve sapere — dopo le 21 — il cognac e' pronto — non tornera' piu'.' Calligrafia: Alessia Conti."},tabulato:[{ora:'20:45',da:'A. Conti',a:'G. Landi',dur:'3 min',s:false},{ora:'21:08',da:'A. Conti',a:'Uff. Mantini',dur:'12 min',s:true},{ora:'21:22',da:'C. Negri',a:'Casa',dur:'5 min',s:false},{ora:'21:45',da:'G. Landi',a:'A. Conti',dur:'2 min',s:false},{ora:'22:10',da:'A. Conti',a:'Sconosciuto',dur:'8 min',s:true},{ora:'22:35',da:'C. Negri',a:'G. Landi',dur:'4 min',s:false}]};
+const M={id:'CASO #001',name:"L'Ufficio di Mantini",victim:{name:'Edoardo Mantini',age:'61 anni',role:'Direttore artistico, Teatro Reale di Milano',cause:'Avvelenamento da digitoxina',location:'Ufficio privato, Teatro Reale — Piano 3'},scene:"La sera del 14 marzo 1987, Edoardo Mantini viene trovato privo di vita nel suo ufficio. Sul tavolo: un bicchiere di cognac con tracce di digitoxina e documenti finanziari sparsi. La porta era chiusa dall'interno.",suspects:[{name:'Carlo Negri',role:'Direttore amministrativo',age:'52 anni',motive:'Dispute finanziarie. Stava per essere licenziato.',alibi:'Sala riunioni fino alle 22:30.',detail:'Impronte sulla porta ufficio vittima.',icon:'👔',guilty:false,questions:[{q:'Dove si trovava la sera del 14 marzo?',a:'Sala riunioni con Bianchi e Ferrara. Non mi sono avvicinato.'},{q:'Aveva conflitti con la vittima?',a:'Non andavamo d\'accordo su questioni contabili. Ucciderlo? Assurdo.'},{q:'Come spieghi le impronte sulla porta?',a:'Sono passato nel pomeriggio per consegnare documenti.'}]},{name:'Alessia Conti',role:'Assistente personale',age:'34 anni',motive:'Mantini stava pianificando di licenziarla dopo sette anni.',alibi:'Camerino di Ginevra Landi fino alle 23:00.',detail:'Impronte digitali sul flacone del veleno.',icon:'💼',guilty:true,questions:[{q:'Dove si trovava la sera del 14 marzo?',a:'Ero con Ginevra nel camerino. Lavoravamo al calendario prove.'},{q:'Perche le sue impronte sono sul flacone?',a:'...Maneggio molti flaconi. Potrebbe essere una coincidenza...'},{q:'Sapeva che Mantini la voleva licenziare?',a:'Ne avevo sentito parlare... ma sette anni di lavoro...'}]},{name:'Ginevra Landi',role:'Prima attrice del teatro',age:'44 anni',motive:'Critiche devastanti di Mantini sulla sua performance.',alibi:'Camerino con Alessia Conti la sera del delitto.',detail:'Ha acquistato digitoxina due settimane prima.',icon:'🎭',guilty:false,questions:[{q:'Dove si trovava la sera del 14 marzo?',a:'Nel camerino con Alessia. Calendario prove per aprile.'},{q:'Perche ha acquistato digitoxina?',a:'Problemi cardiaci. Era per uso personale.'},{q:'Cosa pensava delle critiche di Mantini?',a:'Fanno parte del mestiere. Le sue erano particolarmente crudeli.'}]}],envelopes:[{id:'e1',title:'Rapporto medico legale',icon:'▣',locked:false,content:"Morte tra le 21:00 e 22:30. Digitoxina nel cognac, dose letale. Nessun segno di lotta.",evidence:{icon:'⚗',title:'Referto tossicologico',desc:'Digitoxina nel cognac. Dose 6x superiore al letale.'}},{id:'e2',title:'Testimonianza custode',icon:'✎',locked:false,content:'Custode Enzo Ferri: "Ho visto la Conti uscire dall\'ufficio di Mantini alle 21:15. Sembrava agitata."',evidence:{icon:'◉',title:'Testimonianza custode',desc:'Alessia Conti uscita ufficio vittima alle 21:15.'}},{id:'e3',title:'Documenti finanziari',icon:'▤',locked:false,content:"Trovata bozza lettera licenziamento per Alessia Conti datata 13 marzo. Mantini aveva firmato.",evidence:{icon:'▢',title:'Lettera licenziamento',desc:'Licenziamento Alessia Conti con decorrenza immediata.'}},{id:'e4',title:'Registro farmacia',icon:'✚',locked:false,content:"Conti ha acquistato digitoxina il 10 marzo con nome falso. La firma corrisponde.",evidence:{icon:'⊞',title:'Ricevuta farmacia',desc:'Acquisto digitoxina 10 marzo, nome falso, firma: A. Conti.'}}],guiltyIndex:1,puzzle:{fragments:["devo farlo stasera","dopo le 21","il cognac e' pronto","non tornera' piu'",'nessuno deve sapere','ho paura ma non ho scelta'],correctOrder:[0,5,4,1,2,3],reveal:"Nota ricostruita: 'Devo farlo stasera — ho paura ma non ho scelta — nessuno deve sapere — dopo le 21 — il cognac e' pronto — non tornera' piu'.' Calligrafia: Alessia Conti."},tabulato:[{ora:'20:45',da:'A. Conti',a:'G. Landi',dur:'3 min',s:false},{ora:'21:08',da:'A. Conti',a:'Uff. Mantini',dur:'12 min',s:true},{ora:'21:22',da:'C. Negri',a:'Casa',dur:'5 min',s:false},{ora:'21:45',da:'G. Landi',a:'A. Conti',dur:'2 min',s:false},{ora:'22:10',da:'A. Conti',a:'Sconosciuto',dur:'8 min',s:true},{ora:'22:35',da:'C. Negri',a:'G. Landi',dur:'4 min',s:false}]};
 
 
 let iCur=0,iSuspects=[];
@@ -460,7 +591,7 @@ function iRender(){
   ql.innerHTML='';
   (s.questions||[]).forEach(q=>{
     const btn=document.createElement('button');btn.className='iqb';btn.textContent=q.q;
-    btn.onclick=()=>{btn.classList.add('used');iType(s.name+': "'+q.a+'"');};
+    btn.onclick=()=>{btn.classList.add('used');iType(s.name+': "'+q.a+'"');addToNotes(s.name,q.q,q.a);intCount++;};
     ql.appendChild(btn);
   });
 }
@@ -468,6 +599,11 @@ function iType(txt){
   const el=document.getElementById('idtxt');if(!el)return;
   el.textContent='';let i=0;
   const iv=setInterval(()=>{el.textContent+=txt[i++];if(i>=txt.length)clearInterval(iv);},16);
+}
+function addToNotes(suspName, question, answer){
+  const pad=document.getElementById('notepad');if(!pad)return;
+  const line='\n['+suspName+']\n> '+question+'\n'+answer+'\n';
+  pad.value=(pad.value||'')+line;
 }
 function iNext(){
   if(iCur>=iSuspects.length-1)return;
@@ -509,10 +645,19 @@ function renderSusp(){const l=document.getElementById('suspects-list');l.innerHT
 function popSel(){const s=document.getElementById('s-sel');if(s){s.innerHTML='<option value="">— Seleziona sospettato —</option>';G.suspects.forEach((x,i)=>{const o=document.createElement('option');o.value=i;o.textContent=(x.icon||'?')+' '+x.name;s.appendChild(o);});const qa=document.getElementById('q-list');if(qa)qa.innerHTML='';const ia=document.getElementById('iarea');if(ia)ia.innerHTML='<span style="opacity:0.4;font-style:italic;">Seleziona un sospettato e fai una domanda...</span>';}}
 function loadQ(){const i=document.getElementById('s-sel').value,ql=document.getElementById('q-list'),ar=document.getElementById('iarea');if(i===''){ql.innerHTML='';ar.innerHTML='<span style="opacity:0.4;font-style:italic;">Seleziona un sospettato e fai una domanda...</span>';return;}const s=G.suspects[i];if(!iHist[i])iHist[i]=[];ql.innerHTML='';s.questions.forEach((q,qi)=>{const asked=iHist[i].includes(qi),b=document.createElement('button');b.className='qbtn';b.textContent=(asked?'✓ ':'')+q.q;b.disabled=asked;b.onclick=()=>{iHist[i].push(qi);intCount++;b.disabled=true;b.textContent='✓ '+q.q;appAns(s,q,ar);};ql.appendChild(b);});if(!iHist[i].length)ar.innerHTML=`<span style="opacity:0.4;font-style:italic;">Fai una domanda a ${s.name}...</span>`;else{ar.innerHTML='';iHist[i].forEach(qi=>appAns(s,s.questions[qi],ar,false));}}
 function appAns(s,q,ar,an=true){if(ar.querySelector('span'))ar.innerHTML='';const d=document.createElement('div');d.style.marginBottom='0.75rem';d.innerHTML=`<div class="qlbl">&gt; ${q.q}</div><div class="rbubble">${s.name}: "${q.a}"</div>`;if(an)d.style.animation='fi 0.3s ease';ar.appendChild(d);ar.scrollTop=ar.scrollHeight;}
-function renderTab(){const tb=G.tabulato||M.tabulato,body=document.getElementById('tab-body'),hls=document.getElementById('tab-hls');body.innerHTML='';hls.innerHTML='';tb.forEach((r,i)=>{const tr=document.createElement('tr');if(r.s)tr.classList.add('sc');tr.innerHTML=`<td>${r.ora}</td><td>${r.da}</td><td>${r.a}</td><td>${r.dur}</td>`;body.appendChild(tr);if(r.s){const b=document.createElement('button');b.className='hlbtn';b.textContent=r.ora+' — Sospetta';b.onclick=()=>{b.classList.toggle('hl');if(b.classList.contains('hl'))addEv({icon:'📞',title:'Chiamata sospetta '+r.ora,desc:r.da+' → '+r.a+' ('+r.dur+')'});};hls.appendChild(b);}});}
-function renderPuz(){const p=G.puzzle||M.puzzle,fr=document.getElementById('frags'),sl=document.getElementById('dslots');fr.innerHTML='';sl.innerHTML='';puzState.slots=new Array(p.correctOrder.length).fill(null);puzState.drag=null;[...p.correctOrder].sort(()=>Math.random()-0.5).forEach(fi=>{const el=document.createElement('div');el.className='frag';el.textContent=p.fragments[fi];el.draggable=true;el.dataset.i=fi;el.ondragstart=()=>{puzState.drag=fi;};el.onclick=()=>{puzState.drag=fi;};fr.appendChild(el);});p.correctOrder.forEach((_,si)=>{const sl2=document.createElement('div');sl2.className='dslot';sl2.textContent='Frammento '+(si+1);sl2.ondragover=e=>{e.preventDefault();sl2.classList.add('over');};sl2.ondragleave=()=>sl2.classList.remove('over');sl2.ondrop=e=>{e.preventDefault();sl2.classList.remove('over');dropSlot(si,sl2,p);};sl2.onclick=()=>{if(puzState.drag!==null)dropSlot(si,sl2,p);};sl.appendChild(sl2);});document.getElementById('preveal').style.display='none';document.getElementById('puz-btn').disabled=true;}
+function renderTab(){const tb=G.tabulato||M.tabulato,body=document.getElementById('tab-body'),hls=document.getElementById('tab-hls');body.innerHTML='';hls.innerHTML='';tb.forEach((r,i)=>{const tr=document.createElement('tr');if(r.s)tr.classList.add('sc');tr.innerHTML=`<td>${r.ora}</td><td>${r.da}</td><td>${r.a}</td><td>${r.dur}</td>`;body.appendChild(tr);if(r.s){const b=document.createElement('button');b.className='hlbtn';b.textContent=r.ora+' — Sospetta';b.onclick=()=>{b.classList.toggle('hl');if(b.classList.contains('hl'))addEv({icon:'☏',title:'Chiamata sospetta '+r.ora,desc:r.da+' → '+r.a+' ('+r.dur+')'});};hls.appendChild(b);}});}
+function buildDynamicPuzzle(c){
+  const g=c.suspects[c.guiltyIndex];
+  const frags=["devo farlo stanotte","nessuno deve sapere","l'occasione è questa","ho preparato tutto","non ho altra scelta","deve finire così"];
+  const correctOrder=[0,5,4,2,1,3];
+  const reveal='Nota ricostruita: "Devo farlo stanotte — deve finire così — non ho altra scelta — l'occasione è questa — nessuno deve sapere — ho preparato tutto." La grafia corrisponde a '+g.name+'.';
+  return{fragments:frags,correctOrder,reveal};
+}
+function renderPuz(){const p=G.puzzle||(G._dynPuzzle=G._dynPuzzle||buildDynamicPuzzle(G));
+  const pp=p;fr=document.getElementById('frags'),sl=document.getElementById('dslots');fr.innerHTML='';sl.innerHTML='';puzState.slots=new Array(p.correctOrder.length).fill(null);puzState.drag=null;[...p.correctOrder].sort(()=>Math.random()-0.5).forEach(fi=>{const el=document.createElement('div');el.className='frag';el.textContent=p.fragments[fi];el.draggable=true;el.dataset.i=fi;el.ondragstart=()=>{puzState.drag=fi;};el.onclick=()=>{puzState.drag=fi;};fr.appendChild(el);});p.correctOrder.forEach((_,si)=>{const sl2=document.createElement('div');sl2.className='dslot';sl2.textContent='Frammento '+(si+1);sl2.ondragover=e=>{e.preventDefault();sl2.classList.add('over');};sl2.ondragleave=()=>sl2.classList.remove('over');sl2.ondrop=e=>{e.preventDefault();sl2.classList.remove('over');dropSlot(si,sl2,p);};sl2.onclick=()=>{if(puzState.drag!==null)dropSlot(si,sl2,p);};sl.appendChild(sl2);});document.getElementById('preveal').style.display='none';document.getElementById('puz-btn').disabled=true;}
 function dropSlot(si,sl,p){const fi=puzState.drag;if(fi===null)return;puzState.slots[si]=fi;sl.textContent=p.fragments[fi];sl.classList.add('filled');puzState.drag=null;const fe=document.querySelector(`.frag[data-i="${fi}"]`);if(fe){fe.classList.add('placed');fe.draggable=false;}if(puzState.slots.every(v=>v!==null))document.getElementById('puz-btn').disabled=false;}
-function chkPuz(){const p=G.puzzle||M.puzzle,ok=puzState.slots.every((v,i)=>v===p.correctOrder[i]),rv=document.getElementById('preveal');rv.style.display='block';if(ok){rv.className='preveal';rv.innerHTML='<strong>Documento ricostruito correttamente.</strong><br>'+p.reveal;addEv({icon:'📜',title:'Documento ricostruito',desc:p.reveal.substring(0,80)+'...'});}else{rv.className='preveal wrong';rv.textContent='Ordine errato. Riprova.';renderPuz();}}
+function chkPuz(){const p=G.puzzle||G._dp||M.puzzle;
+const ok=puzState.slots.every((v,i)=>v===p.correctOrder[i]),rv=document.getElementById('preveal');rv.style.display='block';if(ok){rv.className='preveal';rv.innerHTML='<strong>Documento ricostruito correttamente.</strong><br>'+p.reveal;addEv({icon:'✦',title:'Documento ricostruito',desc:p.reveal.substring(0,80)+'...'});}else{rv.className='preveal wrong';rv.textContent='Ordine errato. Riprova.';renderPuz();}}
 function renderAcc(){const l=document.getElementById('accusa-list');l.innerHTML='';G.suspects.forEach((s,i)=>{const b=document.createElement('button');b.className='chbtn';b.innerHTML=`<span>${s.icon}</span><span>${s.name} — ${s.role}</span>`;b.onclick=()=>{selAcc=i;document.querySelectorAll('.chbtn').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');document.getElementById('cfm-btn').disabled=false;};l.appendChild(b);});}
 function doBack(){if(opts.confirm){if(confirm('Vuoi abbandonare il caso?'))goMenu();}else goMenu();}
 function calcScore(){let sc=100,t=(Date.now()-startT)/1000;sc-=Math.min(40,Math.floor(t/60)*3);sc+=evid.length*5;sc+=intCount*3;return Math.max(0,Math.min(100,Math.round(sc)));}
