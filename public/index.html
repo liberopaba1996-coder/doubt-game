@@ -626,10 +626,18 @@ function togOpt(k){opts[k]=!opts[k];document.getElementById('tog-'+k).classList.
 function startCase(){G=JSON.parse(JSON.stringify(M));diff='easy';showIntro();}
 async function startAICase(){
   showScreen('loading-screen');
-  try{const r=await fetch('/api/generate',{method:'POST',headers:{'Content-Type':'application/json'}});
-  if(!r.ok)throw new Error();G=await r.json();
-  if(!G.puzzle)G.puzzle=M.puzzle;if(!G.tabulato)G.tabulato=genTab(G);showIntro();}
-  catch(e){document.querySelector('.load-msg').innerHTML='Errore nel recupero del dossier.<br><span style="font-size:0.6rem;opacity:0.6;">Riprova tra un momento</span>';setTimeout(()=>showScreen('main-menu'),2500);}
+  try{
+    const r=await fetch('/api/generate',{method:'POST',headers:{'Content-Type':'application/json'}});
+    if(!r.ok)throw new Error('API '+r.status);
+    G=await r.json();
+    if(!G.puzzle)G.puzzle=M.puzzle;
+    if(!G.tabulato)G.tabulato=genTab(G);
+    showIntro();
+  }catch(e){
+    console.error('Errore generazione:',e);
+    alert('Errore nella generazione del caso. Riprova.');
+    showScreen('main-menu');
+  }
 }
 function genTab(c){const g=c.suspects[c.guiltyIndex],o=c.suspects.filter((_,i)=>i!==c.guiltyIndex);
 return[{ora:'20:30',da:o[0]?.name||'Scon.',a:'Casa',dur:'5 min',s:false},{ora:'21:05',da:g.name,a:'Vittima',dur:'11 min',s:true},{ora:'21:20',da:o[0]?.name||'Scon.',a:g.name,dur:'2 min',s:false},{ora:'21:48',da:g.name,a:'Sconosciuto',dur:'7 min',s:true},{ora:'22:15',da:o[1]?.name||'Scon.',a:'Casa',dur:'3 min',s:false},{ora:'22:40',da:g.name,a:o[0]?.name||'Scon.',dur:'4 min',s:false}];}
