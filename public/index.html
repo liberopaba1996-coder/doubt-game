@@ -1,6 +1,3 @@
-Index · HTML
-Copia
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -11,8 +8,8 @@ Copia
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{--paper:#f5f0e8;--paper-dark:#e0d8c4;--ink:#1a1208;--ink-faded:#5a4f3a;--red:#8b1a1a;--green:#1a5c2a;--border:#b8a070;--tab-bg:#2a1f0e;--gold:#c8a84b;}
-body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100vh;display:flex;justify-content:center;}
-#app{background:var(--paper);width:100%;max-width:480px;min-height:100vh;background-image:repeating-linear-gradient(0deg,transparent,transparent 27px,rgba(0,0,0,0.03) 28px);}
+body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100vh;display:flex;justify-content:center;align-items:flex-start;}
+#app{background:var(--paper);width:100%;max-width:480px;min-height:100vh;margin:0 auto;background-image:repeating-linear-gradient(0deg,transparent,transparent 27px,rgba(0,0,0,0.03) 28px);}
 .screen{display:none;flex-direction:column;min-height:100vh;}.screen.active{display:flex;}
 #main-menu{align-items:center;justify-content:center;padding:2rem 1.5rem;text-align:center;}
 .logo-box{display:inline-block;border:3px double var(--red);padding:0.6rem 2.5rem;margin-bottom:0.75rem;transform:rotate(-1deg);}
@@ -78,7 +75,7 @@ body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100v
 .tabs::-webkit-scrollbar{display:none;}
 .tab{font-family:'Special Elite',monospace;font-size:0.58rem;letter-spacing:0.1em;padding:0.62rem 0.8rem;cursor:pointer;color:rgba(245,240,232,0.5);background:none;border:none;white-space:nowrap;transition:all 0.15s;border-bottom:3px solid transparent;margin-bottom:-3px;}
 .tab:hover{color:var(--paper);}.tab.active{color:var(--paper);border-bottom-color:var(--red);background:rgba(139,26,26,0.15);}
-.tab-content{display:none;padding:1rem;flex:1;overflow-y:auto;}.tab-content.active{display:block;}#tab-interroga.active{display:flex;flex-direction:column;padding:0;}
+.tab-content{display:none;padding:1rem;flex:1;overflow-y:auto;}.tab-content.active{display:block;}#tab-interroga{flex-direction:column;}#tab-interroga.active{display:flex !important;flex-direction:column;padding:0;}
 .stitle{font-family:'Special Elite',monospace;font-size:0.58rem;letter-spacing:0.2em;color:var(--ink-faded);border-bottom:1px solid var(--border);padding-bottom:0.35rem;margin-bottom:0.75rem;}
 .notice{background:rgba(139,26,26,0.06);border:1px solid rgba(139,26,26,0.2);padding:0.65rem 0.75rem;font-size:0.85rem;font-style:italic;color:var(--ink-faded);margin-bottom:0.75rem;line-height:1.5;}
 .dcard{background:white;border:1px solid var(--border);margin-bottom:0.75rem;box-shadow:1px 1px 0 var(--paper-dark);}
@@ -153,7 +150,7 @@ body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100v
 .scr-box .snum{font-size:2rem;color:var(--ink);display:block;margin-top:0.25rem;}
 .agbtn{background:var(--tab-bg);color:var(--paper);border:none;padding:0.75rem 2rem;font-family:'Special Elite',monospace;font-size:0.66rem;letter-spacing:0.15em;cursor:pointer;margin-top:0.5rem;}
 .agbtn:hover{background:var(--red);}
- 
+
 #interr-scene{width:100%;height:310px;background:#0a0806;position:relative;overflow:hidden;flex-shrink:0;}
 #iwall{position:absolute;top:0;left:0;right:0;height:52%;background:#111009;}
 #ifloor{position:absolute;bottom:0;left:0;right:0;height:48%;background:#0d0c0a;}
@@ -202,7 +199,7 @@ body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100v
 </head>
 <body>
 <div id="app">
- 
+
 <div id="main-menu" class="screen active">
   <div style="margin-bottom:3rem;">
     <div class="logo-box"><div class="game-title">DOUBT</div></div>
@@ -220,7 +217,7 @@ body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100v
   </button>
   <div class="ver">DOUBT v1.1 — BETA</div>
 </div>
- 
+
 <div id="difficulty-screen" class="screen">
   <div style="padding:2rem 1.5rem;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;">
     <div class="scr-title">SELEZIONA DIFFICOLTA</div>
@@ -243,12 +240,12 @@ body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100v
     <div class="back-lnk" onclick="showScreen('main-menu')">Torna al menu</div>
   </div>
 </div>
- 
+
 <div id="loading-screen" class="screen">
   <div class="spinner"></div>
   <div class="load-msg">Stiamo sfogliando l'archivio<span class="load-dots"></span><br><span style="font-size:0.6rem;opacity:0.6;display:block;margin-top:0.4rem;">Preparazione dossier riservato</span></div>
 </div>
- 
+
 <div id="case-intro" class="screen">
   <div style="padding:2rem 1.5rem;flex:1;display:flex;align-items:center;justify-content:center;">
     <div class="dossier-cover">
@@ -264,7 +261,7 @@ body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100v
     </div>
   </div>
 </div>
- 
+
 <div id="options-screen" class="screen" style="padding:1.5rem;">
   <div class="opt-hdr">OPZIONI</div>
   <div class="opt-row">
@@ -277,7 +274,7 @@ body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100v
   </div>
   <div style="margin-top:2rem;text-align:center;"><button class="action-btn" onclick="showScreen('main-menu')">SALVA E TORNA</button></div>
 </div>
- 
+
 <div id="investigation" class="screen">
   <div class="inv-hdr">
     <button class="back-btn" onclick="doBack()">MENU</button>
@@ -294,7 +291,7 @@ body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100v
     <button class="tab" onclick="swTab(this,'note')">NOTE</button>
     <button class="tab" onclick="swTab(this,'accusa')">ACCUSA</button>
   </div>
- 
+
   <div id="tab-overview" class="tab-content active">
     <div class="stitle">RAPPORTO INIZIALE</div>
     <div class="dcard"><div class="chead"><span>SCHEDA VITTIMA</span><span class="stamp">RISERVATO</span></div>
@@ -309,24 +306,24 @@ body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100v
     <div class="cbody"><p id="v-scene" style="font-size:0.9rem;line-height:1.7;font-style:italic;color:var(--ink);">—</p></div></div>
     <div class="notice" id="diff-notice"></div>
   </div>
- 
+
   <div id="tab-indizi" class="tab-content">
     <div class="stitle">BUSTE DEGLI INDIZI</div>
     <div class="notice">Apri le buste per scoprire nuovi elementi del caso.</div>
     <div class="env-grid" id="env-grid"></div>
     <div id="opened-clues"></div>
   </div>
- 
+
   <div id="tab-prove" class="tab-content">
     <div class="stitle">PROVE RACCOLTE</div>
     <div id="ev-list"><div style="font-style:italic;color:var(--ink-faded);font-size:0.88rem;">Apri le buste per raccogliere prove.</div></div>
   </div>
- 
+
   <div id="tab-sospettati" class="tab-content">
     <div class="stitle">SCHEDE SOSPETTATI</div>
     <div id="suspects-list"></div>
   </div>
- 
+
   <div id="tab-interroga" class="tab-content" style="padding:0;display:none;flex-direction:column;">
     <div id="interr-scene">
       <div id="iwall"></div><div id="ifloor"></div><div id="iwallline"></div>
@@ -344,7 +341,7 @@ body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100v
       <div id="inav"><div id="ictr"></div><button id="inxt" onclick="iNext()">PROSSIMO →</button></div>
     </div>
   </div>
- 
+
   <div id="tab-archivio" class="tab-content">
     <div class="stitle">ARCHIVIO INVESTIGATIVO</div>
     <div class="mg-sel">
@@ -365,13 +362,13 @@ body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100v
       <div class="preveal" id="preveal"></div>
     </div>
   </div>
- 
+
   <div id="tab-note" class="tab-content">
     <div class="stitle">TACCUINO DEL DETECTIVE</div>
     <div class="notice">Scrivi qui le tue osservazioni e deduzioni.</div>
     <textarea class="notepad" id="notepad" placeholder="Le tue note..."></textarea>
   </div>
- 
+
   <div id="tab-accusa" class="tab-content">
     <div class="atit">— ACCUSA FINALE —</div>
     <div class="notice">Hai raccolto abbastanza prove? Scegli con attenzione.</div>
@@ -379,7 +376,7 @@ body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100v
     <button class="cfmbtn" id="cfm-btn" disabled onclick="doAccusa()">ACCUSA FORMALE</button>
   </div>
 </div>
- 
+
 <div class="rov" id="rov" style="display:none;">
   <div class="rbox">
     <div class="rstamp" id="rstamp">—</div>
@@ -388,12 +385,12 @@ body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100v
     <button class="agbtn" onclick="goMenu()">NUOVO CASO</button>
   </div>
 </div>
- 
+
 </div>
 <script>
 const M={id:'CASO #001',name:"L'Ufficio di Mantini",victim:{name:'Edoardo Mantini',age:'61 anni',role:'Direttore artistico, Teatro Reale di Milano',cause:'Avvelenamento da digitoxina',location:'Ufficio privato, Teatro Reale — Piano 3'},scene:"La sera del 14 marzo 1987, Edoardo Mantini viene trovato privo di vita nel suo ufficio. Sul tavolo: un bicchiere di cognac con tracce di digitoxina e documenti finanziari sparsi. La porta era chiusa dall'interno.",suspects:[{name:'Carlo Negri',role:'Direttore amministrativo',age:'52 anni',motive:'Dispute finanziarie. Stava per essere licenziato.',alibi:'Sala riunioni fino alle 22:30.',detail:'Impronte sulla porta ufficio vittima.',icon:'👔',guilty:false,questions:[{q:'Dove si trovava la sera del 14 marzo?',a:'Sala riunioni con Bianchi e Ferrara. Non mi sono avvicinato.'},{q:'Aveva conflitti con la vittima?',a:'Non andavamo d\'accordo su questioni contabili. Ucciderlo? Assurdo.'},{q:'Come spieghi le impronte sulla porta?',a:'Sono passato nel pomeriggio per consegnare documenti.'}]},{name:'Alessia Conti',role:'Assistente personale',age:'34 anni',motive:'Mantini stava pianificando di licenziarla dopo sette anni.',alibi:'Camerino di Ginevra Landi fino alle 23:00.',detail:'Impronte digitali sul flacone del veleno.',icon:'💼',guilty:true,questions:[{q:'Dove si trovava la sera del 14 marzo?',a:'Ero con Ginevra nel camerino. Lavoravamo al calendario prove.'},{q:'Perche le sue impronte sono sul flacone?',a:'...Maneggio molti flaconi. Potrebbe essere una coincidenza...'},{q:'Sapeva che Mantini la voleva licenziare?',a:'Ne avevo sentito parlare... ma sette anni di lavoro...'}]},{name:'Ginevra Landi',role:'Prima attrice del teatro',age:'44 anni',motive:'Critiche devastanti di Mantini sulla sua performance.',alibi:'Camerino con Alessia Conti la sera del delitto.',detail:'Ha acquistato digitoxina due settimane prima.',icon:'🎭',guilty:false,questions:[{q:'Dove si trovava la sera del 14 marzo?',a:'Nel camerino con Alessia. Calendario prove per aprile.'},{q:'Perche ha acquistato digitoxina?',a:'Problemi cardiaci. Era per uso personale.'},{q:'Cosa pensava delle critiche di Mantini?',a:'Fanno parte del mestiere. Le sue erano particolarmente crudeli.'}]}],envelopes:[{id:'e1',title:'Rapporto medico legale',icon:'📋',locked:false,content:"Morte tra le 21:00 e 22:30. Digitoxina nel cognac, dose letale. Nessun segno di lotta.",evidence:{icon:'🧪',title:'Referto tossicologico',desc:'Digitoxina nel cognac. Dose 6x superiore al letale.'}},{id:'e2',title:'Testimonianza custode',icon:'📝',locked:false,content:'Custode Enzo Ferri: "Ho visto la Conti uscire dall\'ufficio di Mantini alle 21:15. Sembrava agitata."',evidence:{icon:'👁️',title:'Testimonianza custode',desc:'Alessia Conti uscita ufficio vittima alle 21:15.'}},{id:'e3',title:'Documenti finanziari',icon:'📊',locked:false,content:"Trovata bozza lettera licenziamento per Alessia Conti datata 13 marzo. Mantini aveva firmato.",evidence:{icon:'📄',title:'Lettera licenziamento',desc:'Licenziamento Alessia Conti con decorrenza immediata.'}},{id:'e4',title:'Registro farmacia',icon:'💊',locked:false,content:"Conti ha acquistato digitoxina il 10 marzo con nome falso. La firma corrisponde.",evidence:{icon:'🏪',title:'Ricevuta farmacia',desc:'Acquisto digitoxina 10 marzo, nome falso, firma: A. Conti.'}}],guiltyIndex:1,puzzle:{fragments:["devo farlo stasera","dopo le 21","il cognac e' pronto","non tornera' piu'",'nessuno deve sapere','ho paura ma non ho scelta'],correctOrder:[0,5,4,1,2,3],reveal:"Nota ricostruita: 'Devo farlo stasera — ho paura ma non ho scelta — nessuno deve sapere — dopo le 21 — il cognac e' pronto — non tornera' piu'.' Calligrafia: Alessia Conti."},tabulato:[{ora:'20:45',da:'A. Conti',a:'G. Landi',dur:'3 min',s:false},{ora:'21:08',da:'A. Conti',a:'Uff. Mantini',dur:'12 min',s:true},{ora:'21:22',da:'C. Negri',a:'Casa',dur:'5 min',s:false},{ora:'21:45',da:'G. Landi',a:'A. Conti',dur:'2 min',s:false},{ora:'22:10',da:'A. Conti',a:'Sconosciuto',dur:'8 min',s:true},{ora:'22:35',da:'C. Negri',a:'G. Landi',dur:'4 min',s:false}]};
- 
- 
+
+
 let iCur=0,iSuspects=[];
 function iDraw(s){
   const svg=document.getElementById('issvg');
@@ -468,13 +465,13 @@ function iNext(){
   setTimeout(()=>{iCur++;iRender();w.className='enter';},420);
   intCount++;
 }
- 
+
 let G=null,diff='easy',openedEnv=new Set(),evid=[],selAcc=null,iHist={},puzState={slots:[],drag:null},timerInt=null,timerSec=0,startT=null,intCount=0,opts={timer:true,confirm:true},amg='tab';
- 
+
 function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
 function goMenu(){clearInterval(timerInt);showScreen('main-menu');document.getElementById('rov').style.display='none';openedEnv=new Set();evid=[];selAcc=null;iHist={};intCount=0;}
 function selDiff(d){diff=d;document.querySelectorAll('.diff-card').forEach(c=>c.classList.remove('selected'));document.getElementById('diff-'+d).classList.add('selected');document.getElementById('start-ai-btn').disabled=false;}
-function swTab(b,n){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));b.classList.add('active');const tc=document.getElementById('tab-'+n);tc.classList.add('active');if(n==='interroga'){tc.style.display='flex';}}
+function swTab(b,n){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-content').forEach(t=>{t.classList.remove('active');if(t.id==='tab-interroga')t.style.display='none';});b.classList.add('active');const tc=document.getElementById('tab-'+n);tc.classList.add('active');if(n==='interroga')tc.style.display='flex';}
 function swMG(n){amg=n;document.getElementById('mg-tab').style.display=n==='tab'?'block':'none';document.getElementById('mg-puz').style.display=n==='puz'?'block':'none';document.getElementById('mgb-tab').classList.toggle('amg',n==='tab');document.getElementById('mgb-puz').classList.toggle('amg',n==='puz');}
 function togOpt(k){opts[k]=!opts[k];document.getElementById('tog-'+k).classList.toggle('on',opts[k]);}
 function startCase(){G=JSON.parse(JSON.stringify(M));diff='easy';showIntro();}
@@ -493,7 +490,7 @@ function beginInv(){startT=Date.now();applyDiff();loadCase();startTimer();}
 function startTimer(){clearInterval(timerInt);const lim={easy:0,medium:900,hard:480}[diff];if(!lim||!opts.timer){document.getElementById('timer-el').textContent='';return;}timerSec=lim;updTimer();timerInt=setInterval(()=>{timerSec--;updTimer();if(timerSec<=0){clearInterval(timerInt);timeUp();}},1000);}
 function updTimer(){const el=document.getElementById('timer-el');if(!opts.timer){el.textContent='';return;}const m=Math.floor(timerSec/60),s=timerSec%60;el.textContent=m+':'+(s<10?'0':'')+s;el.classList.toggle('urgent',timerSec<=60);}
 function timeUp(){document.getElementById('rov').style.display='flex';document.getElementById('rstamp').textContent='TEMPO SCADUTO';document.getElementById('rstamp').className='rstamp fail';document.getElementById('rtxt').textContent='Il tempo e\' esaurito. Il colpevole era '+G.suspects[G.guiltyIndex].name+'. '+G.suspects[G.guiltyIndex].motive;document.getElementById('rscore').textContent='0 / 100';}
-function loadCase(){document.getElementById('inv-name').textContent=G.name;document.getElementById('v-name').textContent=G.victim.name;document.getElementById('v-age').textContent=G.victim.age;document.getElementById('v-role').textContent=G.victim.role;document.getElementById('v-cause').textContent=G.victim.cause;document.getElementById('v-loc').textContent=G.victim.location;document.getElementById('v-scene').textContent=G.scene;const ns={easy:'Modalita Principiante — tutti gli indizi disponibili.',medium:'Modalita Investigatore — buste progressive, timer 15 minuti.',hard:'Modalita Detective Capo — attenzione ai depistaggi, timer 8 minuti.'};document.getElementById('diff-notice').textContent=ns[diff];renderEnv();renderSusp();renderAcc();renderPuz();renderTab();popSel();document.getElementById('notepad').value='';document.getElementById('ev-list').innerHTML='<div style="font-style:italic;color:var(--ink-faded);font-size:0.88rem;">Apri le buste per raccogliere prove.</div>';document.getElementById('opened-clues').innerHTML='';openedEnv=new Set();evid=[];selAcc=null;iHist={};intCount=0;document.getElementById('cfm-btn').disabled=true;document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',i===0));document.querySelectorAll('.tab-content').forEach((t,i)=>t.classList.toggle('active',i===0));showScreen('investigation');iLoad();}
+function loadCase(){document.getElementById('inv-name').textContent=G.name;document.getElementById('v-name').textContent=G.victim.name;document.getElementById('v-age').textContent=G.victim.age;document.getElementById('v-role').textContent=G.victim.role;document.getElementById('v-cause').textContent=G.victim.cause;document.getElementById('v-loc').textContent=G.victim.location;document.getElementById('v-scene').textContent=G.scene;const ns={easy:'Modalita Principiante — tutti gli indizi disponibili.',medium:'Modalita Investigatore — buste progressive, timer 15 minuti.',hard:'Modalita Detective Capo — attenzione ai depistaggi, timer 8 minuti.'};document.getElementById('diff-notice').textContent=ns[diff];renderEnv();renderSusp();renderAcc();renderPuz();renderTab();popSel();document.getElementById('notepad').value='';document.getElementById('ev-list').innerHTML='<div style="font-style:italic;color:var(--ink-faded);font-size:0.88rem;">Apri le buste per raccogliere prove.</div>';document.getElementById('opened-clues').innerHTML='';openedEnv=new Set();evid=[];selAcc=null;iHist={};intCount=0;document.getElementById('cfm-btn').disabled=true;document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',i===0));document.querySelectorAll('.tab-content').forEach((t,i)=>{t.classList.toggle('active',i===0);if(t.id==='tab-interroga'&&!t.classList.contains('active'))t.style.display='none';else if(t.id==='tab-interroga'&&t.classList.contains('active'))t.style.display='flex';});showScreen('investigation');iLoad();}
 function renderEnv(){const g=document.getElementById('env-grid');g.innerHTML='';G.envelopes.forEach(e=>{const d=document.createElement('div'),lk=e.locked;d.className='envelope'+(lk?' locked-env':'');d.id='env-'+e.id;d.innerHTML=`<div class="eico">${e.icon}</div><div class="etit">${e.title}</div><div class="esta">${lk?'Bloccata':'Tocca per aprire'}</div>`;if(!lk)d.onclick=()=>openEnv(e.id);g.appendChild(d);});}
 function openEnv(id){if(openedEnv.has(id))return;openedEnv.add(id);const e=G.envelopes.find(x=>x.id===id);document.getElementById('env-'+id).classList.add('opened');document.getElementById('env-'+id).querySelector('.esta').textContent='Aperta';const c=document.getElementById('opened-clues'),k=document.createElement('div');k.className='dcard';k.innerHTML=`<div class="chead">${e.icon} ${e.title}</div><div class="cbody"><p style="font-size:0.9rem;line-height:1.6;font-style:italic;color:var(--ink);">${e.content}</p></div>`;c.appendChild(k);if(e.evidence)addEv(e.evidence);if(diff!=='easy'&&openedEnv.size>=2){G.envelopes.forEach(x=>{if(x.locked)x.locked=false;});renderEnv();}}
 function addEv(e){evid.push(e);const l=document.getElementById('ev-list');if(evid.length===1)l.innerHTML='';const i=document.createElement('div');i.className='ev-item';i.innerHTML=`<div class="ev-ico">${e.icon}</div><div><div class="ev-tit">${e.title}</div><div class="ev-dsc">${e.desc}</div></div>`;l.appendChild(i);}
