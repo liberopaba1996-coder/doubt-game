@@ -616,7 +616,7 @@ intCount++;
 
 let G=null,diff=‘easy’,openedEnv=new Set(),evid=[],selAcc=null,iHist={},puzState={slots:[],drag:null},timerInt=null,timerSec=0,startT=null,intCount=0,opts={timer:true,confirm:true},amg=‘tab’;
 
-function showScreen(id){document.querySelectorAll(’.screen’).forEach(s=>s.classList.remove(‘active’));document.getElementById(id).classList.add(‘active’);}
+function showScreen(id){document.querySelectorAll(’.screen’).forEach(s=>s.classList.remove(‘active’));document.getElementById(id).classList.add(‘active’);if(id===‘archivio-screen’)buildArchivio();}
 function goMenu(){clearInterval(timerInt);showScreen(‘main-menu’);document.getElementById(‘rov’).style.display=‘none’;openedEnv=new Set();evid=[];selAcc=null;iHist={};intCount=0;}
 function selDiff(d){diff=d;document.querySelectorAll(’.diff-card’).forEach(c=>c.classList.remove(‘selected’));document.getElementById(‘diff-’+d).classList.add(‘selected’);document.getElementById(‘start-ai-btn’).disabled=false;}
 function swTab(b,n){document.querySelectorAll(’.tab’).forEach(t=>t.classList.remove(‘active’));document.querySelectorAll(’.tab-content’).forEach(t=>{t.classList.remove(‘active’);if(t.id===‘tab-interroga’)t.style.display=‘none’;});b.classList.add(‘active’);const tc=document.getElementById(‘tab-’+n);tc.classList.add(‘active’);if(n===‘interroga’)tc.style.display=‘flex’;}
@@ -810,12 +810,8 @@ diff=‘hard’;
 showIntro();
 }
 
-// Build archivio when screen shown
-const _origShowScreen=showScreen;
-function showScreen(id){
-_origShowScreen(id);
-if(id===‘archivio-screen’)buildArchivio();
-}
+// Build archivio on show
+document.addEventListener(‘DOMContentLoaded’,()=>{});
 
 </script>
 </body>
