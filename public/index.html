@@ -71,10 +71,10 @@ body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100v
 .timer-el{font-family:'Special Elite',monospace;font-size:0.75rem;color:var(--gold);flex-shrink:0;min-width:45px;text-align:right;}
 .timer-el.urgent{color:#ff6b6b;animation:pulse 1s ease infinite;}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.5;}}
-.tabs{background:#e0d8c4;padding:6px 6px 0;border-top:2px solid var(--tab-bg);flex-shrink:0;}
+.tabs{background:#e0d8c4;padding:6px 6px 0;border-top:2px solid var(--tab-bg);flex-shrink:0;position:sticky;bottom:0;z-index:10;}
 .tabs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px 3px;}
 .tabs-baseline{height:2px;background:var(--tab-bg);}
-.tab{position:relative;background:var(--paper);border:1px solid var(--border);border-bottom:none;padding:6px 4px 5px;cursor:pointer;text-align:center;font-family:'Special Elite',monospace;font-size:0.44rem;letter-spacing:0.06em;color:var(--ink-faded);display:flex;flex-direction:column;align-items:center;gap:4px;transition:all 0.15s;border-radius:3px 3px 0 0;}
+.tab{position:relative;background:var(--paper);border:1px solid var(--border);border-bottom:none;padding:8px 4px 6px;cursor:pointer;text-align:center;font-family:'Special Elite',monospace;font-size:0.5rem;letter-spacing:0.06em;color:var(--ink-faded);display:flex;flex-direction:column;align-items:center;gap:4px;transition:all 0.15s;border-radius:3px 3px 0 0;min-height:44px;}
 .tab::before{content:'';position:absolute;top:-5px;left:4px;width:40%;height:5px;background:var(--paper);border:1px solid var(--border);border-bottom:none;border-radius:2px 2px 0 0;}
 .tab:hover{background:#fff8f0;border-color:#8b6428;}
 .tab:hover::before{background:#fff8f0;border-color:#8b6428;}
@@ -125,7 +125,6 @@ body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100v
 .ttbl{width:100%;border-collapse:collapse;font-size:0.78rem;}
 .ttbl th{font-family:'Special Elite',monospace;font-size:0.56rem;letter-spacing:0.1em;color:var(--ink-faded);text-align:left;padding:0.3rem 0.4rem;border-bottom:2px solid var(--border);}
 .ttbl td{padding:0.3rem 0.4rem;border-bottom:1px dotted var(--paper-dark);color:var(--ink);}
-.ttbl tr.sc{background:rgba(139,26,26,0.06);}.ttbl tr.sc td{color:var(--red);}
 .thls{margin-top:0.75rem;display:flex;gap:0.5rem;flex-wrap:wrap;}
 .hlbtn{background:var(--paper-dark);border:1px solid var(--border);padding:4px 10px;font-family:'Special Elite',monospace;font-size:0.58rem;cursor:pointer;transition:all 0.15s;}
 .hlbtn:hover{background:white;}.hlbtn.hl{background:rgba(139,26,26,0.1);border-color:var(--red);color:var(--red);}
@@ -158,32 +157,8 @@ body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100v
 .agbtn{background:var(--tab-bg);color:var(--paper);border:none;padding:0.75rem 2rem;font-family:'Special Elite',monospace;font-size:0.66rem;letter-spacing:0.15em;cursor:pointer;margin-top:0.5rem;}
 .agbtn:hover{background:var(--red);}
 
-#interr-scene{width:100%;height:310px;background:#0a0806;position:relative;overflow:hidden;flex-shrink:0;}
-#iwall{position:absolute;top:0;left:0;right:0;height:52%;background:#111009;}
-#ifloor{position:absolute;bottom:0;left:0;right:0;height:48%;background:#0d0c0a;}
-#iwallline{position:absolute;top:52%;left:0;right:0;height:1px;background:rgba(255,255,255,0.04);}
-#ilampwire{position:absolute;top:0;left:50%;transform:translateX(-50%);width:3px;height:52px;background:#2a1e0e;}
-#ilampshade{position:absolute;top:48px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:26px solid transparent;border-right:26px solid transparent;border-top:15px solid #4a3518;}
-#ilampbulb{position:absolute;top:61px;left:50%;transform:translateX(-50%);width:11px;height:7px;background:#fff8d0;border-radius:50%;}
-#ilightcone{position:absolute;top:68px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:130px solid transparent;border-right:130px solid transparent;border-bottom:230px solid rgba(220,180,60,0.06);}
-#itable-wrap{position:absolute;bottom:82px;left:50%;transform:translateX(-50%);width:270px;}
-#itable-top{height:13px;background:#2a1a08;border-top:2px solid #5a3510;border-radius:2px;}
-#itable-legs{display:flex;justify-content:space-between;padding:0 18px;}
-.itleg{width:10px;height:40px;background:#1e1208;}
-#ichair{position:absolute;bottom:82px;right:22px;}
-.icback{width:58px;height:44px;border:3px solid #2a1a08;border-bottom:none;margin:0 auto;}
-.icseat{width:64px;height:9px;background:#2a1a08;}
-.iclegs{display:flex;justify-content:space-between;padding:0 5px;}
-.icleg{width:8px;height:32px;background:#1e1208;}
-#idet{position:absolute;bottom:81px;left:0;width:135px;}
-.idhatbrim{width:70px;height:8px;background:#080604;border-radius:2px;margin:0 auto;}
-.idhatbody{width:50px;height:25px;background:#080604;border-radius:4px 4px 0 0;margin:0 auto;}
-.idneck{width:18px;height:10px;background:#080604;margin:0 auto;}
-.idshoulders{width:88px;height:15px;background:#080604;border-radius:7px 7px 0 0;margin:0 auto;}
-.idbody{width:72px;height:76px;background:#060402;margin:0 auto;position:relative;}
-.idarm{position:absolute;bottom:0;width:17px;height:58px;background:#060402;border-radius:0 0 4px 4px;}
-.idarm.l{left:-15px;}.idarm.r{right:-15px;}
-#iswrap{position:absolute;bottom:81px;right:4px;width:162px;}
+#interr-scene{width:100%;height:310px;position:relative;overflow:hidden;flex-shrink:0;background:#1a1208;}
+#iswrap{position:absolute;bottom:0;right:0;height:88%;z-index:3;}
 #iswrap.enter{animation:isIn 0.5s cubic-bezier(.22,.61,.36,1) forwards;}
 #iswrap.exit{animation:isOut 0.4s ease-in forwards;}
 @keyframes isIn{from{opacity:0;transform:translateX(40px);}to{opacity:1;transform:translateX(0);}}
@@ -225,6 +200,11 @@ body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100v
 .arch-card-loc{font-family:'Special Elite',monospace;font-size:0.52rem;letter-spacing:0.06em;color:var(--border);}
 .arch-diff-sel{padding:1rem;display:flex;flex-direction:column;gap:0.65rem;}
 .arch-diff-title{font-family:'Special Elite',monospace;font-size:0.62rem;letter-spacing:0.18em;color:var(--ink-faded);text-align:center;border-bottom:1px solid var(--border);padding-bottom:0.5rem;}
+.arch-diff-btn{background:white;border:1px solid var(--border);padding:1rem 1.25rem;margin-bottom:0.65rem;cursor:pointer;box-shadow:2px 2px 0 var(--paper-dark);transition:all 0.15s;}
+.arch-diff-btn:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--paper-dark);border-color:var(--ink-faded);}
+.arch-diff-name{font-family:'Special Elite',monospace;font-size:0.95rem;letter-spacing:0.1em;margin-bottom:0.3rem;}
+.arch-diff-desc{font-size:0.8rem;color:var(--ink-faded);font-style:italic;}
+.tab-badge{position:absolute;top:-4px;right:-4px;background:var(--red);color:white;font-family:'Special Elite',monospace;font-size:0.5rem;width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:5;}
 </style>
 </head>
 <body>
@@ -260,17 +240,11 @@ window.addEventListener('unhandledrejection', function(e) {
     <div class="game-sub">GIOCHI INVESTIGATIVI - DOSSIER RISERVATI</div>
   </div>
   <div class="menu-divider"></div>
-  <button class="menu-btn primary" onclick="showScreen('difficulty-screen')">
-    <span class="lbl">PARTITA RAPIDA</span><span class="dsc">Caso procedurale - ogni partita è unica</span><span class="arr">\u2192</span>
-  </button>
-  <button class="menu-btn" onclick="startCase()">
-    <span class="lbl">CASO MANTINI</span><span class="dsc">L'Ufficio di Mantini - Milano, 1987</span><span class="arr">\u2192</span>
-  </button>
-  <button class="menu-btn" onclick="showScreen('archivio-screen')">
-    <span class="lbl">ARCHIVIO CASI</span><span class="dsc">5 casi - difficoltà: Difficile</span><span class="arr">\u2192</span>
+  <button class="menu-btn primary" onclick="showScreen('archivio-diff-screen')">
+    <span class="lbl">ARCHIVIO CASI</span><span class="dsc">15 casi investigativi — scegli la difficolta</span><span class="arr">&#x2192;</span>
   </button>
   <button class="menu-btn" onclick="showScreen('options-screen')">
-    <span class="lbl">OPZIONI</span><span class="dsc">Timer, display, preferenze</span><span class="arr">\u2192</span>
+    <span class="lbl">OPZIONI</span><span class="dsc">Timer, display, preferenze</span><span class="arr">&#x2192;</span>
   </button>
   <div class="ver">DOUBT - v1.1</div>
 </div>
@@ -467,7 +441,7 @@ window.addEventListener('unhandledrejection', function(e) {
   <div class="tabs" style="order:2;">
     <div class="tabs-grid">
       <button class="tab active" onclick="swTab(this,'overview')"><div class="tdot"></div>PANORAMICA</button>
-      <button class="tab" onclick="swTab(this,'indizi')"><div class="tdot"></div>INDIZI</button>
+      <button class="tab" id="tab-btn-indizi" onclick="swTab(this,'indizi')"><div class="tdot"></div>INDIZI</button>
       <button class="tab" onclick="swTab(this,'prove')"><div class="tdot"></div>PROVE</button>
       <button class="tab" onclick="swTab(this,'sospettati')"><div class="tdot"></div>SOSPETTATI</button>
       <button class="tab" onclick="swTab(this,'interroga')"><div class="tdot"></div>INTERROGA</button>
@@ -512,27 +486,80 @@ window.addEventListener('unhandledrejection', function(e) {
 
   <div id="tab-interroga" class="tab-content" style="padding:0;display:none;flex-direction:column;">
     <div id="interr-scene">
-      <div id="iwall"></div><div id="ifloor"></div><div id="iwallline"></div>
-      <div id="ilampwire"></div><div id="ilampshade"></div><div id="ilampbulb"></div><div id="ilightcone"></div>
-      <div id="itable-wrap"><div id="itable-top"></div><div id="itable-legs"><div class="itleg"></div><div class="itleg"></div></div></div>
-      <div id="ichair"><div class="icback"></div><div class="icseat"></div><div class="iclegs"><div class="icleg"></div><div class="icleg"></div></div></div>
-      <div id="idet"><div class="idhatbrim"></div><div class="idhatbody"></div><div class="idneck"></div><div class="idshoulders"></div><div class="idbody"><div class="idarm l"></div><div class="idarm r"></div></div></div>
-      <div id="iswrap" class="enter"><svg id="issvg" viewBox="0 0 170 280"></svg></div>
+      <img id="iimg-sfondo" src="/sfondo_stanza.png" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;" alt="" onerror="this.style.display='none';document.getElementById('isvg-scene').style.display='block'">
+      <!-- SVG fallback scena interrogatorio (sempre visibile se PNG mancano) -->
+      <svg id="isvg-scene" viewBox="0 0 480 310" width="100%" height="310" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:0;left:0;z-index:1;display:block;">
+        <!-- sfondo parete -->
+        <rect x="0" y="0" width="480" height="310" fill="#111009"/>
+        <rect x="0" y="0" width="480" height="160" fill="#1a1508"/>
+        <!-- parquet pavimento -->
+        <rect x="0" y="160" width="480" height="150" fill="#0d0b08"/>
+        <line x1="0" y1="161" x2="480" y2="161" stroke="#1e1810" stroke-width="1"/>
+        <line x1="0" y1="180" x2="480" y2="300" stroke="#131108" stroke-width="8" opacity="0.4"/>
+        <line x1="80" y1="160" x2="80" y2="310" stroke="#131108" stroke-width="1.5" opacity="0.3"/>
+        <line x1="160" y1="160" x2="160" y2="310" stroke="#131108" stroke-width="1.5" opacity="0.3"/>
+        <line x1="240" y1="160" x2="240" y2="310" stroke="#131108" stroke-width="1.5" opacity="0.3"/>
+        <line x1="320" y1="160" x2="320" y2="310" stroke="#131108" stroke-width="1.5" opacity="0.3"/>
+        <line x1="400" y1="160" x2="400" y2="310" stroke="#131108" stroke-width="1.5" opacity="0.3"/>
+        <!-- cornice finestra sfondo -->
+        <rect x="330" y="20" width="100" height="110" rx="2" fill="#0d0b06" stroke="#2a2010" stroke-width="2"/>
+        <line x1="380" y1="20" x2="380" y2="130" stroke="#2a2010" stroke-width="1.5"/>
+        <line x1="330" y1="75" x2="430" y2="75" stroke="#2a2010" stroke-width="1.5"/>
+        <!-- filo lampada -->
+        <line x1="240" y1="0" x2="240" y2="52" stroke="#2a1e0e" stroke-width="3"/>
+        <!-- paralume lampada -->
+        <polygon points="210,52 270,52 262,70 218,70" fill="#4a3518"/>
+        <polygon points="218,70 262,70 278,160 202,160" fill="#c89008" opacity="0.05"/>
+        <!-- bulbo lampada -->
+        <ellipse cx="240" cy="56" rx="7" ry="5" fill="#fff8d0" opacity="0.9"/>
+        <!-- alone luce -->
+        <radialGradient id="lg1" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#c89008" stop-opacity="0.18"/>
+          <stop offset="100%" stop-color="#c89008" stop-opacity="0"/>
+        </radialGradient>
+        <ellipse cx="240" cy="160" rx="140" ry="80" fill="url(#lg1)"/>
+        <!-- tavolo interrogatorio -->
+        <rect x="130" y="185" width="220" height="14" rx="2" fill="#2a1a08"/>
+        <line x1="130" y1="185" x2="350" y2="185" stroke="#5a3510" stroke-width="2"/>
+        <rect x="148" y="199" width="10" height="50" fill="#1e1208"/>
+        <rect x="322" y="199" width="10" height="50" fill="#1e1208"/>
+        <!-- detective di spalle -->
+        <g id="isvg-detective">
+          <!-- cappello -->
+          <rect x="15" y="68" width="90" height="10" rx="3" fill="#080604"/>
+          <rect x="25" y="45" width="70" height="28" rx="5" fill="#080604"/>
+          <!-- testa/collo -->
+          <rect x="45" y="73" width="30" height="15" fill="#0a0806"/>
+          <!-- spalle/corpo -->
+          <rect x="8" y="88" width="104" height="20" rx="8" fill="#060402"/>
+          <rect x="18" y="108" width="84" height="90" fill="#060402"/>
+          <!-- braccia -->
+          <rect x="2" y="108" width="18" height="70" rx="4" fill="#060402"/>
+          <rect x="100" y="108" width="18" height="70" rx="4" fill="#060402"/>
+        </g>
+        <!-- sospettato (SVG generato da iDraw) -->
+        <g id="isvg-suspect-group" transform="translate(310, 50)"></g>
+      </svg>
+      <img id="iimg-tavolo" src="/tavolo.png" style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);height:52%;z-index:2;object-fit:contain;display:none;" alt="">
+      <img id="iimg-detective" src="/detective_spalle.png" style="position:absolute;bottom:0;left:0;height:88%;z-index:3;object-fit:contain;display:none;" alt="">
+      <div id="iswrap" class="enter" style="position:absolute;bottom:0;right:0;height:88%;z-index:3;display:none;">
+        <img id="iimg-suspect" src="" style="height:100%;object-fit:contain;" alt="">
+      </div>
     </div>
     <div id="idialog">
       <div id="isid">INTERROGATORIO</div>
       <div id="isname"></div>
       <div id="idtxt"></div>
       <div id="iql"></div>
-      <div id="inav"><div id="ictr"></div><button id="inxt" onclick="iNext()">PROSSIMO \u2192</button></div>
+      <div id="inav"><div id="ictr"></div><button id="inxt" onclick="iNext()">PROSSIMO &#x2192;</button></div>
     </div>
   </div>
 
   <div id="tab-archivio" class="tab-content">
     <div class="stitle">ARCHIVIO INVESTIGATIVO</div>
     <div class="mg-sel">
-      <div class="mg-btn amg" id="mgb-tab" onclick="swMG('tab')"><div class="mg-itxt">\u260F</div><div class="mg-nm">TABULATO</div></div>
-      <div class="mg-btn" id="mgb-puz" onclick="swMG('puz')"><div class="mg-itxt">\u25A2</div><div class="mg-nm">DOCUMENTO</div></div>
+      <div class="mg-btn amg" id="mgb-tab" onclick="swMG('tab')"><div class="mg-itxt" style="font-size:1rem;font-family:'Special Elite',monospace;">TEL</div><div class="mg-nm">TABULATO</div></div>
+      <div class="mg-btn" id="mgb-puz" onclick="swMG('puz')"><div class="mg-itxt" style="font-size:1rem;font-family:'Special Elite',monospace;">DOC</div><div class="mg-nm">DOCUMENTO</div></div>
     </div>
     <div id="mg-tab" class="mgarea">
       <div class="mgtit">TABULATO TELEFONICO - Notte del delitto</div>
@@ -565,10 +592,33 @@ window.addEventListener('unhandledrejection', function(e) {
   </div><!-- /flex-wrapper -->
 </div>
 
+<!-- Schermata selezione difficolta archivio — layout identico difficulty-screen -->
+<div id="archivio-diff-screen" class="screen">
+  <div style="padding:2rem 1.5rem;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+    <div class="scr-title">SELEZIONA DIFFICOLTA</div>
+    <div class="diff-card" onclick="openArchivio('easy')">
+      <div class="diff-name">PRINCIPIANTE</div>
+      <div class="diff-desc">Indizi chiari, tutte le buste disponibili, nessun limite di tempo.</div>
+      <div class="diff-tags"><span class="dtag">Tutte le buste</span><span class="dtag">Nessun timer</span><span class="dtag">Indizi diretti</span></div>
+    </div>
+    <div class="diff-card" onclick="openArchivio('normal')">
+      <div class="diff-name">INVESTIGATORE</div>
+      <div class="diff-desc">2 buste si sbloccano dopo le interrogazioni. Timer 15 minuti.</div>
+      <div class="diff-tags"><span class="dtag">Buste progressive</span><span class="dtag r">Timer 15min</span><span class="dtag">Alibi ambigui</span></div>
+    </div>
+    <div class="diff-card" onclick="openArchivio('hard')">
+      <div class="diff-name">DETECTIVE CAPO</div>
+      <div class="diff-desc">Una busta depista. Timer 8 minuti. Massima difficolta.</div>
+      <div class="diff-tags"><span class="dtag r">Busta falsa</span><span class="dtag r">Timer 8min</span><span class="dtag r">Massima difficolta</span></div>
+    </div>
+    <div class="back-lnk" onclick="showScreen('main-menu')">Torna al menu</div>
+  </div>
+</div>
+
 <div id="archivio-screen" class="screen">
   <div class="arch-header">
-    <button class="arch-back" onclick="showScreen('main-menu')">\u2190 MENU</button>
-    <div class="arch-title">ARCHIVIO INVESTIGATIVO</div>
+    <button class="arch-back" onclick="showScreen('archivio-diff-screen')">&#x2190; INDIETRO</button>
+    <div class="arch-title" id="arch-title-label">ARCHIVIO INVESTIGATIVO</div>
   </div>
   <div class="arch-list" id="arch-list"></div>
 </div>
@@ -589,54 +639,82 @@ const M={id:'CASO #001',name:"L'Ufficio di Mantini",victim:{name:'Edoardo Mantin
 
 
 let iCur=0,iSuspects=[];
-function iDraw(s){
-  const svg=document.getElementById('issvg');
-  if(!svg)return;
-  const{bc,sk,hc,female,name}=s;
-  svg.innerHTML=`
-    <rect x="50" y="240" width="7" height="38" fill="#1e1208"/>
-    <rect x="113" y="240" width="7" height="38" fill="#1e1208"/>
-    <rect x="38" y="233" width="96" height="9" fill="#2a1a08" rx="1"/>
-    <rect x="40" y="185" width="8" height="49" fill="#2a1a08"/>
-    <rect x="124" y="185" width="8" height="49" fill="#2a1a08"/>
-    <rect x="40" y="182" width="92" height="8" fill="#2a1a08" rx="2"/>
-    <rect x="48" y="158" width="76" height="76" fill="${bc}" rx="3"/>
-    ${female?`<path d="M48 206 Q86 220 124 206 L124 234 L48 234 Z" fill="${bc}"/>`:``}
-    <rect x="30" y="163" width="21" height="50" fill="${bc}" rx="4"/>
-    <rect x="121" y="163" width="21" height="50" fill="${bc}" rx="4"/>
-    <ellipse cx="40" cy="217" rx="9" ry="6" fill="${sk}"/>
-    <ellipse cx="132" cy="217" rx="9" ry="6" fill="${sk}"/>
-    <rect x="77" y="146" width="18" height="16" fill="${sk}"/>
-    <ellipse cx="86" cy="118" rx="30" ry="34" fill="${sk}"/>
-    ${female?
-      `<path d="M56 110 Q58 74 86 68 Q114 74 116 110" fill="${hc}"/>
-       <rect x="56" y="106" width="10" height="28" fill="${hc}" rx="5"/>
-       <rect x="106" y="106" width="10" height="28" fill="${hc}" rx="5"/>`:
-      `<path d="M56 110 Q58 80 86 74 Q114 80 116 110" fill="${hc}"/>
-       <rect x="56" y="104" width="9" height="11" fill="${hc}" rx="3"/>
-       <rect x="107" y="104" width="9" height="11" fill="${hc}" rx="3"/>`}
-    <ellipse cx="56" cy="117" rx="6" ry="8" fill="${sk}"/>
-    <ellipse cx="116" cy="117" rx="6" ry="8" fill="${sk}"/>
-    <ellipse cx="74" cy="113" rx="6" ry="6.5" fill="#f8f4ec"/>
-    <ellipse cx="98" cy="113" rx="6" ry="6.5" fill="#f8f4ec"/>
-    <ellipse cx="74" cy="114" rx="3.5" ry="4" fill="#1a0a06"/>
-    <ellipse cx="98" cy="114" rx="3.5" ry="4" fill="#1a0a06"/>
-    <ellipse cx="72" cy="112" rx="1.2" ry="1.2" fill="white" opacity="0.7"/>
-    <ellipse cx="96" cy="112" rx="1.2" ry="1.2" fill="white" opacity="0.7"/>
-    <path d="M66 104 Q74 101 82 103" stroke="#1a0a06" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-    <path d="M90 103 Q98 101 106 104" stroke="#1a0a06" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-    <path d="M80 118 Q82 128 80 131 Q86 134 92 131 Q90 128 92 118" fill="rgba(0,0,0,0.09)"/>
-    <path d="M75 136 Q86 142 97 136" stroke="#8b5030" stroke-width="1.5" fill="none"/>
+// Colori sospettati - variati per indice
+const SUSP_COLORS = [
+  {bc:'#2a3828',sk:'#c09060',hc:'#1a1008'},
+  {bc:'#3a1a2a',sk:'#d4a870',hc:'#0a0604'},
+  {bc:'#1a2a4a',sk:'#c89060',hc:'#1a0a06'},
+  {bc:'#2a2a1a',sk:'#b87850',hc:'#2a1a08'},
+  {bc:'#3a2a10',sk:'#c8a070',hc:'#0a0806'}
+];
+// Determina se il sospettato è femminile
+function getSpriteForSuspect(s, idx){
+  const femNames=/^(Nadia|Giorgia|Lara|Elena|Vera|Carla|Lorena|Irene|Petra|Mara|Renata|Chiara|Adele|Daria|Sara|Beatrice|Laura|Giulia|Nadine|Helene|Roberta|Suor)/;
+  const femRoles=/(assist|attr|donna|curatrice|infermiera|segretaria|costumista|restauratrice|enologa|nipote|moglie|giornalista|ricercatrice|dottoressa|studentessa|prima attrice)/i;
+  const isFemale = (s.role&&femRoles.test(s.role)) || (s.name&&femNames.test(s.name));
+  return isFemale ? 'donna_0'+(idx%10+1) : 'uomo_0'+(idx%10+1);
+}
+function iDraw(s, idx){
+  const col = SUSP_COLORS[idx % SUSP_COLORS.length];
+  const female = getSpriteForSuspect(s, idx).startsWith('donna');
+  const g = document.getElementById('isvg-suspect-group');
+  if(!g) return;
+  // SVG sospettato seduto (160x250 viewbox locale, transform nel gruppo)
+  const bc=col.bc, sk=col.sk, hc=col.hc;
+  g.innerHTML = `
+    <!-- sedia -->
+    <rect x="8" y="195" width="10" height="50" fill="#1e1208"/>
+    <rect x="142" y="195" width="10" height="50" fill="#1e1208"/>
+    <rect x="4" y="188" width="152" height="10" rx="2" fill="#2a1a08"/>
+    <rect x="8" y="140" width="10" height="50" fill="#2a1a08"/>
+    <rect x="142" y="140" width="10" height="50" fill="#2a1a08"/>
+    <rect x="4" y="136" width="152" height="10" rx="2" fill="#2a1a08"/>
+    <!-- corpo -->
+    <rect x="38" y="112" width="84" height="80" fill="${bc}" rx="3"/>
+    ${female?`<path d="M38 164 Q80 178 122 164 L122 192 L38 192 Z" fill="${bc}"/>`:''}
+    <!-- braccia -->
+    <rect x="18" y="118" width="22" height="55" fill="${bc}" rx="4"/>
+    <rect x="120" y="118" width="22" height="55" fill="${bc}" rx="4"/>
+    <!-- mani -->
+    <ellipse cx="29" cy="177" rx="10" ry="7" fill="${sk}"/>
+    <ellipse cx="131" cy="177" rx="10" ry="7" fill="${sk}"/>
+    <!-- collo -->
+    <rect x="71" y="100" width="18" height="16" fill="${sk}"/>
+    <!-- testa -->
+    <ellipse cx="80" cy="72" rx="30" ry="34" fill="${sk}"/>
+    <!-- capelli -->
+    ${female
+      ? `<path d="M50 65 Q52 28 80 22 Q108 28 110 65" fill="${hc}"/>
+         <rect x="50" y="60" width="10" height="28" fill="${hc}" rx="5"/>
+         <rect x="100" y="60" width="10" height="28" fill="${hc}" rx="5"/>`
+      : `<path d="M52 65 Q54 36 80 30 Q106 36 108 65" fill="${hc}"/>
+         <rect x="52" y="60" width="9" height="12" fill="${hc}" rx="3"/>
+         <rect x="99" y="60" width="9" height="12" fill="${hc}" rx="3"/>`}
+    <!-- orecchie -->
+    <ellipse cx="50" cy="72" rx="7" ry="9" fill="${sk}"/>
+    <ellipse cx="110" cy="72" rx="7" ry="9" fill="${sk}"/>
+    <!-- occhi -->
+    <ellipse cx="68" cy="68" rx="7" ry="7.5" fill="#f8f4ec"/>
+    <ellipse cx="92" cy="68" rx="7" ry="7.5" fill="#f8f4ec"/>
+    <ellipse cx="68" cy="69" rx="4" ry="4.5" fill="#1a0a06"/>
+    <ellipse cx="92" cy="69" rx="4" ry="4.5" fill="#1a0a06"/>
+    <ellipse cx="66" cy="67" rx="1.5" ry="1.5" fill="white" opacity="0.7"/>
+    <ellipse cx="90" cy="67" rx="1.5" ry="1.5" fill="white" opacity="0.7"/>
+    <!-- sopracciglia -->
+    <path d="M61 59 Q68 56 75 58" stroke="#1a0a06" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M85 58 Q92 56 99 59" stroke="#1a0a06" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <!-- bocca -->
+    <path d="M71 86 Q80 92 89 86" stroke="#8b5030" stroke-width="1.8" fill="none"/>
   `;
 }
 function iLoad(){
   if(!G||!G.suspects)return;
-  iSuspects=G.suspects.map((s,i)=>({...s,bc:['#2a3828','#3a1a2a','#1a2a4a','#2a2a1a','#3a2a10'][i%5],sk:['#c09060','#d4a870','#c89060','#b87850','#c8a070'][i%5],hc:['#1a1008','#0a0604','#1a0a06','#2a1a08','#0a0806'][i%5],female:s.role&&(s.role.toLowerCase().includes('assist')||s.role.toLowerCase().includes('attr')||s.role.toLowerCase().includes('donna'))}));
+  iSuspects=G.suspects.map((s,i)=>({...s,_idx:i}));
   iCur=0;iRender();
 }
 function iRender(){
   const s=iSuspects[iCur];if(!s)return;
-  iDraw(s);
+  iDraw(s, s._idx!==undefined ? s._idx : iCur);
   const n=document.getElementById('isname'),t=document.getElementById('idtxt'),c=document.getElementById('ictr'),b=document.getElementById('inxt');
   if(n)n.textContent=s.name+' - '+s.role;
   if(t)t.textContent=s.intro||'Sono pronto a rispondere alle tue domande.';
@@ -646,7 +724,7 @@ function iRender(){
   ql.innerHTML='';
   (s.questions||[]).forEach(q=>{
     const btn=document.createElement('button');btn.className='iqb';btn.textContent=q.q;
-    btn.onclick=()=>{btn.classList.add('used');iType(s.name+': "'+q.a+'"');addToNotes(s.name,q.q,q.a);intCount++;};
+    btn.onclick=()=>{btn.classList.add('used');iType(s.name+': "'+q.a+'"');addToNotes(s.name,q.q,q.a);intCount++;checkEnvUnlock();};
     ql.appendChild(btn);
   });
 }
@@ -666,14 +744,35 @@ function iNext(){
   w.className='exit';
   setTimeout(()=>{iCur++;iRender();w.className='enter';},420);
   intCount++;
+  checkEnvUnlock();
 }
 
 let G=null,diff='easy',openedEnv=new Set(),evid=[],selAcc=null,iHist={},puzState={slots:[],drag:null},timerInt=null,timerSec=0,startT=null,intCount=0,opts={timer:true,confirm:true},amg='tab';
 
-function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');if(id==='archivio-screen')buildArchivio();}
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  const el=document.getElementById(id);
+  if(el)el.classList.add('active');
+  if(id==='archivio-screen')buildArchivio(_archDiff);
+}
 function goMenu(){clearInterval(timerInt);showScreen('main-menu');document.getElementById('rov').style.display='none';openedEnv=new Set();evid=[];selAcc=null;iHist={};intCount=0;}
 function selDiff(d){diff=d;document.querySelectorAll('.diff-card').forEach(c=>c.classList.remove('selected'));document.getElementById('diff-'+d).classList.add('selected');document.getElementById('start-ai-btn').disabled=false;}
-function swTab(b,n){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-content').forEach(t=>{t.classList.remove('active');if(t.id==='tab-interroga')t.style.display='none';});b.classList.add('active');const tc=document.getElementById('tab-'+n);tc.classList.add('active');if(n==='interroga')tc.style.display='flex';}
+function swTab(b,n){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t=>{
+    t.classList.remove('active');
+    if(t.id==='tab-interroga')t.style.display='none';
+  });
+  b.classList.add('active');
+  const tc=document.getElementById('tab-'+n);
+  tc.classList.add('active');
+  if(n==='interroga')tc.style.display='flex';
+  // rimuovi badge se si apre INDIZI
+  if(n==='indizi'){
+    const badge=b.querySelector('.tab-badge');
+    if(badge)badge.remove();
+  }
+}
 function swMG(n){amg=n;document.getElementById('mg-tab').style.display=n==='tab'?'block':'none';document.getElementById('mg-puz').style.display=n==='puz'?'block':'none';document.getElementById('mgb-tab').classList.toggle('amg',n==='tab');document.getElementById('mgb-puz').classList.toggle('amg',n==='puz');}
 function togOpt(k){opts[k]=!opts[k];document.getElementById('tog-'+k).classList.toggle('on',opts[k]);}
 function startCase(){G=JSON.parse(JSON.stringify(M));diff='easy';showIntro();}
@@ -700,15 +799,137 @@ function beginInv(){startT=Date.now();applyDiff();loadCase();startTimer();}
 function startTimer(){clearInterval(timerInt);const lim={easy:0,medium:900,hard:480}[diff];if(!lim||!opts.timer){document.getElementById('timer-el').textContent='';return;}timerSec=lim;updTimer();timerInt=setInterval(()=>{timerSec--;updTimer();if(timerSec<=0){clearInterval(timerInt);timeUp();}},1000);}
 function updTimer(){const el=document.getElementById('timer-el');if(!opts.timer){el.textContent='';return;}const m=Math.floor(timerSec/60),s=timerSec%60;el.textContent=m+':'+(s<10?'0':'')+s;el.classList.toggle('urgent',timerSec<=60);}
 function timeUp(){document.getElementById('rov').style.display='flex';document.getElementById('rstamp').textContent='TEMPO SCADUTO';document.getElementById('rstamp').className='rstamp fail';document.getElementById('rtxt').textContent='Il tempo e\' esaurito. Il colpevole era '+G.suspects[G.guiltyIndex].name+'. '+G.suspects[G.guiltyIndex].motive;document.getElementById('rscore').textContent='0 / 100';}
-function loadCase(){document.getElementById('inv-name').textContent=G.name;document.getElementById('v-name').textContent=G.victim.name;document.getElementById('v-age').textContent=G.victim.age;document.getElementById('v-role').textContent=G.victim.role;document.getElementById('v-cause').textContent=G.victim.cause;document.getElementById('v-loc').textContent=G.victim.location;document.getElementById('v-scene').textContent=G.scene;const ns={easy:'Modalita Principiante - tutti gli indizi disponibili.',medium:'Modalita Investigatore - buste progressive, timer 15 minuti.',hard:'Modalita Detective Capo - attenzione ai depistaggi, timer 8 minuti.'};document.getElementById('diff-notice').textContent=ns[diff];renderEnv();renderSusp();renderAcc();renderPuz();renderTab();popSel();document.getElementById('notepad').value='';document.getElementById('ev-list').innerHTML='<div style="font-style:italic;color:var(--ink-faded);font-size:0.88rem;">Apri le buste per raccogliere prove.</div>';document.getElementById('opened-clues').innerHTML='';openedEnv=new Set();evid=[];selAcc=null;iHist={};intCount=0;document.getElementById('cfm-btn').disabled=true;document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',i===0));document.querySelectorAll('.tab-content').forEach((t,i)=>{t.classList.toggle('active',i===0);if(t.id==='tab-interroga'&&!t.classList.contains('active'))t.style.display='none';else if(t.id==='tab-interroga'&&t.classList.contains('active'))t.style.display='flex';});showScreen('investigation');iLoad();}
-function renderEnv(){const g=document.getElementById('env-grid');g.innerHTML='';G.envelopes.forEach(e=>{const d=document.createElement('div'),lk=e.locked;d.className='envelope'+(lk?' locked-env':'');d.id='env-'+e.id;d.innerHTML=`<div class="eico">${e.icon}</div><div class="etit">${e.title}</div><div class="esta">${lk?'Bloccata':'Tocca per aprire'}</div>`;if(!lk)d.onclick=()=>openEnv(e.id);g.appendChild(d);});}
-function openEnv(id){if(openedEnv.has(id))return;openedEnv.add(id);const e=G.envelopes.find(x=>x.id===id);document.getElementById('env-'+id).classList.add('opened');document.getElementById('env-'+id).querySelector('.esta').textContent='Aperta';const c=document.getElementById('opened-clues'),k=document.createElement('div');k.className='dcard';k.innerHTML=`<div class="chead">${e.icon} ${e.title}</div><div class="cbody"><p style="font-size:0.9rem;line-height:1.6;font-style:italic;color:var(--ink);">${e.content}</p></div>`;c.appendChild(k);if(e.evidence)addEv(e.evidence);if(diff!=='easy'&&openedEnv.size>=2){G.envelopes.forEach(x=>{if(x.locked)x.locked=false;});renderEnv();}}
-function addEv(e){evid.push(e);const l=document.getElementById('ev-list');if(evid.length===1)l.innerHTML='';const i=document.createElement('div');i.className='ev-item';i.innerHTML=`<div class="ev-ico">${e.icon}</div><div><div class="ev-tit">${e.title}</div><div class="ev-dsc">${e.desc}</div></div>`;l.appendChild(i);}
+function loadCase(){
+  document.getElementById('inv-name').textContent=G.name;
+  document.getElementById('v-name').textContent=G.victim.name;
+  document.getElementById('v-age').textContent=G.victim.age;
+  document.getElementById('v-role').textContent=G.victim.role;
+  document.getElementById('v-cause').textContent=G.victim.cause;
+  document.getElementById('v-loc').textContent=G.victim.location;
+  document.getElementById('v-scene').textContent=G.scene;
+  const ns={easy:'Modalita Principiante - tutti gli indizi disponibili.',medium:'Modalita Investigatore - buste progressive, timer 15 minuti.',hard:'Modalita Detective Capo - attenzione ai depistaggi, timer 8 minuti.'};
+  document.getElementById('diff-notice').textContent=ns[diff];
+  // buste 3 e 4 sempre bloccate all'inizio (si sbloccano col primo interrogatorio)
+  if(G.envelopes[2])G.envelopes[2].locked=true;
+  if(G.envelopes[3])G.envelopes[3].locked=true;
+  renderEnv();renderSusp();renderAcc();renderPuz();renderTab();popSel();
+  document.getElementById('notepad').value='';
+  document.getElementById('ev-list').innerHTML='<div style="font-style:italic;color:var(--ink-faded);font-size:0.88rem;">Apri le buste per raccogliere prove.</div>';
+  document.getElementById('opened-clues').innerHTML='';
+  openedEnv=new Set();evid=[];selAcc=null;iHist={};intCount=0;
+  document.getElementById('cfm-btn').disabled=true;
+  // reset badge INDIZI
+  const indziBadge=document.querySelector('#tab-btn-indizi .tab-badge');
+  if(indziBadge)indziBadge.remove();
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',i===0));
+  document.querySelectorAll('.tab-content').forEach((t,i)=>{
+    t.classList.toggle('active',i===0);
+    if(t.id==='tab-interroga'&&!t.classList.contains('active'))t.style.display='none';
+    else if(t.id==='tab-interroga'&&t.classList.contains('active'))t.style.display='flex';
+  });
+  showScreen('investigation');
+  iLoad();
+}
+// SVG inline per le icone buste — nessun file esterno richiesto
+const SVG_ICONS = {
+  documento:`<svg viewBox="0 0 40 40" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="7" y="4" width="22" height="28" rx="2" fill="#f5f0e8" stroke="#b8a070" stroke-width="1.5"/><rect x="11" y="10" width="14" height="1.5" rx="0.75" fill="#b8a070"/><rect x="11" y="14" width="14" height="1.5" rx="0.75" fill="#b8a070"/><rect x="11" y="18" width="10" height="1.5" rx="0.75" fill="#b8a070"/><rect x="25" y="4" width="6" height="6" rx="1" fill="#e0d8c4" stroke="#b8a070" stroke-width="1.5"/><path d="M25 4 L31 10" stroke="#b8a070" stroke-width="1.5"/></svg>`,
+  lettera:`<svg viewBox="0 0 40 40" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="10" width="30" height="20" rx="2" fill="#f5f0e8" stroke="#b8a070" stroke-width="1.5"/><path d="M5 12 L20 22 L35 12" stroke="#b8a070" stroke-width="1.5" fill="none"/><path d="M5 30 L15 20" stroke="#b8a070" stroke-width="1.2"/><path d="M35 30 L25 20" stroke="#b8a070" stroke-width="1.2"/></svg>`,
+  chiave:`<svg viewBox="0 0 40 40" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="16" r="8" fill="#f5f0e8" stroke="#b8a070" stroke-width="1.8"/><circle cx="14" cy="16" r="4" fill="none" stroke="#b8a070" stroke-width="1.5"/><path d="M20 20 L34 34" stroke="#b8a070" stroke-width="2" stroke-linecap="round"/><rect x="28" y="28" width="4" height="3" rx="0.5" fill="#b8a070"/><rect x="31" y="31" width="3" height="3" rx="0.5" fill="#b8a070"/></svg>`,
+  veleno:`<svg viewBox="0 0 40 40" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 8 L16 14 C10 16 7 21 7 27 C7 32 11 36 20 36 C29 36 33 32 33 27 C33 21 30 16 24 14 L24 8 Z" fill="#f5f0e8" stroke="#b8a070" stroke-width="1.5"/><rect x="15" y="5" width="10" height="5" rx="1" fill="#e0d8c4" stroke="#b8a070" stroke-width="1.2"/><path d="M17 24 C17 20 23 20 23 24 C23 28 17 28 17 24 Z" fill="#8b1a1a" opacity="0.5"/><path d="M20 20 L20 23" stroke="#8b1a1a" stroke-width="1.5"/></svg>`,
+  impronta:`<svg viewBox="0 0 40 40" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="20" cy="26" rx="8" ry="9" fill="#f5f0e8" stroke="#b8a070" stroke-width="1.5"/><ellipse cx="13" cy="16" rx="3" ry="4" fill="#f5f0e8" stroke="#b8a070" stroke-width="1.2"/><ellipse cx="17" cy="13" rx="3" ry="4" fill="#f5f0e8" stroke="#b8a070" stroke-width="1.2"/><ellipse cx="23" cy="13" rx="3" ry="4" fill="#f5f0e8" stroke="#b8a070" stroke-width="1.2"/><ellipse cx="27" cy="16" rx="3" ry="4" fill="#f5f0e8" stroke="#b8a070" stroke-width="1.2"/><path d="M14 26 C14 22 26 22 26 26" stroke="#b8a070" stroke-width="1.2" fill="none"/></svg>`,
+  telefono:`<svg viewBox="0 0 40 40" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 8 C12 8 10 10 10 13 C10 22 18 30 27 30 C30 30 32 28 32 28 L28 24 C28 24 26 25 25 25 C22 25 15 18 15 15 C15 14 16 12 16 12 Z" fill="#f5f0e8" stroke="#b8a070" stroke-width="1.5" stroke-linejoin="round"/></svg>`,
+  pistola:`<svg viewBox="0 0 40 40" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 18 L26 18 L26 14 L32 14 L32 18 L28 18 L28 22 L24 28 L14 28 L12 24 L8 24 Z" fill="#f5f0e8" stroke="#b8a070" stroke-width="1.5" stroke-linejoin="round"/><rect x="8" y="18" width="4" height="6" rx="1" fill="#e0d8c4" stroke="#b8a070" stroke-width="1"/><path d="M14 28 L16 34" stroke="#b8a070" stroke-width="1.5" stroke-linecap="round"/><path d="M24 28 L22 34" stroke="#b8a070" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+  orologio:`<svg viewBox="0 0 40 40" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="21" r="13" fill="#f5f0e8" stroke="#b8a070" stroke-width="1.8"/><path d="M20 14 L20 21 L25 21" stroke="#b8a070" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="17" y="7" width="6" height="3" rx="1" fill="#e0d8c4" stroke="#b8a070" stroke-width="1.2"/></svg>`
+};
+const ICON_MAP = {
+  '\u25A3':'documento','\u270E':'lettera','\u25A4':'chiave','\u271A':'veleno',
+  '\u2295':'impronta','\u25C9':'telefono','\u25A2':'documento','\u229E':'pistola',
+  '\u2697':'veleno','\u2726':'orologio','\u260F':'telefono'
+};
+function envIcon(ico){
+  const name=ICON_MAP[ico];
+  if(name&&SVG_ICONS[name])return SVG_ICONS[name];
+  return `<span style="font-size:1.4rem;color:var(--ink-faded);">${ico}</span>`;
+}
+function renderEnv(){
+  const g=document.getElementById('env-grid');
+  g.innerHTML='';
+  G.envelopes.forEach(e=>{
+    const d=document.createElement('div');
+    const lk=e.locked;
+    d.className='envelope'+(lk?' locked-env':'');
+    d.id='env-'+e.id;
+    const lockMsg=(e.id==='e3'||e.id==='e4')?'Fai un interrogatorio':'Bloccata';
+    d.innerHTML=`<div class="eico">${envIcon(e.icon)}</div><div class="etit">${e.title}</div><div class="esta">${lk?lockMsg:'Tocca per aprire'}</div>`;
+    if(openedEnv.has(e.id)){d.classList.add('opened');d.querySelector('.esta').textContent='Aperta';}
+    else if(!lk)d.onclick=()=>openEnv(e.id);
+    g.appendChild(d);
+  });
+}
+function openEnv(id){
+  if(openedEnv.has(id))return;
+  const e=G.envelopes.find(x=>x.id===id);
+  if(!e)return;
+  // buste 3 e 4 richiedono almeno un interrogatorio
+  if((id==='e3'||id==='e4')&&intCount===0){
+    alert("Devi fare almeno un interrogatorio prima di aprire questa busta.");
+    return;
+  }
+  openedEnv.add(id);
+  const envEl=document.getElementById('env-'+id);
+  if(envEl){envEl.classList.add('opened');const st=envEl.querySelector('.esta');if(st)st.textContent='Aperta';}
+  const c=document.getElementById('opened-clues'),k=document.createElement('div');
+  k.className='dcard';
+  k.innerHTML=`<div class="chead">${e.icon} ${e.title}</div><div class="cbody"><p style="font-size:0.9rem;line-height:1.6;font-style:italic;color:var(--ink);">${e.content}</p></div>`;
+  c.appendChild(k);
+  if(e.evidence)addEv(e.evidence);
+}
+function checkEnvUnlock(){
+  // chiamata dopo ogni interrogatorio: sblocca buste 3/4 se bloccate e mostra badge
+  let anyNewUnlock=false;
+  G.envelopes.forEach(e=>{
+    if((e.id==='e3'||e.id==='e4')&&e.locked){
+      e.locked=false;
+      anyNewUnlock=true;
+    }
+  });
+  if(anyNewUnlock){
+    renderEnv();
+    const btn=document.getElementById('tab-btn-indizi');
+    if(btn&&!btn.querySelector('.tab-badge')){
+      const badge=document.createElement('span');
+      badge.className='tab-badge';
+      badge.textContent='!';
+      btn.appendChild(badge);
+    }
+  }
+}
+function addEv(e){
+  evid.push(e);
+  const l=document.getElementById('ev-list');
+  if(evid.length===1)l.innerHTML='';
+  const i=document.createElement('div');
+  i.className='ev-item';
+  i.innerHTML=`<div class="ev-ico">${envIcon(e.icon)}</div><div><div class="ev-tit">${e.title}</div><div class="ev-dsc">${e.desc}</div></div>`;
+  l.appendChild(i);
+}
 function renderSusp(){const l=document.getElementById('suspects-list');l.innerHTML='';G.suspects.forEach(s=>{const c=document.createElement('div');c.className='susp-card';c.innerHTML=`<div class="susp-hd"><div class="susp-photo">${s.icon}</div><div><div class="susp-name">${s.name}</div><div class="susp-role">${s.role} - ${s.age}</div></div></div><div class="cbody"><div class="field"><div class="flbl">MOVENTE</div><div class="fval">${s.motive}</div></div><div class="field"><div class="flbl">ALIBI</div><div class="fval">${s.alibi}</div></div><div class="field"><div class="flbl">DETTAGLIO</div><div class="fval">${s.detail}</div></div></div>`;l.appendChild(c);});}
 function popSel(){const s=document.getElementById('s-sel');if(s){s.innerHTML='<option value="">- Seleziona sospettato -</option>';G.suspects.forEach((x,i)=>{const o=document.createElement('option');o.value=i;o.textContent=(x.icon||'?')+' '+x.name;s.appendChild(o);});const qa=document.getElementById('q-list');if(qa)qa.innerHTML='';const ia=document.getElementById('iarea');if(ia)ia.innerHTML='<span style="opacity:0.4;font-style:italic;">Seleziona un sospettato e fai una domanda...</span>';}}
-function loadQ(){const i=document.getElementById('s-sel').value,ql=document.getElementById('q-list'),ar=document.getElementById('iarea');if(i===''){ql.innerHTML='';ar.innerHTML='<span style="opacity:0.4;font-style:italic;">Seleziona un sospettato e fai una domanda...</span>';return;}const s=G.suspects[i];if(!iHist[i])iHist[i]=[];ql.innerHTML='';s.questions.forEach((q,qi)=>{const asked=iHist[i].includes(qi),b=document.createElement('button');b.className='qbtn';b.textContent=(asked?'\u2713 ':'')+q.q;b.disabled=asked;b.onclick=()=>{iHist[i].push(qi);intCount++;b.disabled=true;b.textContent='\u2713 '+q.q;appAns(s,q,ar);};ql.appendChild(b);});if(!iHist[i].length)ar.innerHTML=`<span style="opacity:0.4;font-style:italic;">Fai una domanda a ${s.name}...</span>`;else{ar.innerHTML='';iHist[i].forEach(qi=>appAns(s,s.questions[qi],ar,false));}}
+function loadQ(){const i=document.getElementById('s-sel').value,ql=document.getElementById('q-list'),ar=document.getElementById('iarea');if(i===''){ql.innerHTML='';ar.innerHTML='<span style="opacity:0.4;font-style:italic;">Seleziona un sospettato e fai una domanda...</span>';return;}const s=G.suspects[i];if(!iHist[i])iHist[i]=[];ql.innerHTML='';s.questions.forEach((q,qi)=>{const asked=iHist[i].includes(qi),b=document.createElement('button');b.className='qbtn';b.textContent=(asked?'\u2713 ':'')+q.q;b.disabled=asked;b.onclick=()=>{iHist[i].push(qi);intCount++;checkEnvUnlock();b.disabled=true;b.textContent='\u2713 '+q.q;appAns(s,q,ar);};ql.appendChild(b);});if(!iHist[i].length)ar.innerHTML=`<span style="opacity:0.4;font-style:italic;">Fai una domanda a ${s.name}...</span>`;else{ar.innerHTML='';iHist[i].forEach(qi=>appAns(s,s.questions[qi],ar,false));}}
 function appAns(s,q,ar,an=true){if(ar.querySelector('span'))ar.innerHTML='';const d=document.createElement('div');d.style.marginBottom='0.75rem';d.innerHTML=`<div class="qlbl">&gt; ${q.q}</div><div class="rbubble">${s.name}: "${q.a}"</div>`;if(an)d.style.animation='fi 0.3s ease';ar.appendChild(d);ar.scrollTop=ar.scrollHeight;}
-function renderTab(){const tb=G.tabulato||M.tabulato,body=document.getElementById('tab-body'),hls=document.getElementById('tab-hls');body.innerHTML='';hls.innerHTML='';tb.forEach((r,i)=>{const tr=document.createElement('tr');if(r.s)tr.classList.add('sc');tr.innerHTML=`<td>${r.ora}</td><td>${r.da}</td><td>${r.a}</td><td>${r.dur}</td>`;body.appendChild(tr);if(r.s){const b=document.createElement('button');b.className='hlbtn';b.textContent=r.ora+' - Sospetta';b.onclick=()=>{b.classList.toggle('hl');if(b.classList.contains('hl'))addEv({icon:'\u260F',title:'Chiamata sospetta '+r.ora,desc:r.da+' \u2192 '+r.a+' ('+r.dur+')'});};hls.appendChild(b);}});}
+function renderTab(){
+  const tb=G.tabulato||M.tabulato;
+  const body=document.getElementById('tab-body');
+  body.innerHTML='';
+  tb.forEach(r=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td>${r.ora}</td><td>${r.da}</td><td>${r.a}</td><td>${r.dur}</td>`;
+    body.appendChild(tr);
+  });
+  // nessun pulsante Sospetta, nessuna evidenziazione
+  const hls=document.getElementById('tab-hls');
+  if(hls)hls.innerHTML='';
+}
 function buildDynamicPuzzle(c){
   const g=c.suspects[c.guiltyIndex];
   const frags=["devo farlo stanotte","nessuno deve sapere","ho preparato tutto","non ho altra scelta","deve finire cosi","tutto e pronto"];
@@ -726,6 +947,7 @@ function doAccusa(){if(selAcc===null)return;clearInterval(timerInt);const ok=G.s
 const CASES = [
 {
   id:"CASO #001", name:"L'Ultima Recita",
+  difficulty:"hard",
   victim:{name:"Edoardo Ferrante",age:"54 anni",role:"Baritono solista, direttore artistico del teatro",cause:"Avvelenamento da cianuro - inalazione",location:"Camerino n. 3, Teatro Regio Scala Minore, Milano"},
   scene:"Il camerino e ordinato. Sul tavolo da trucco: specchio, calice di vino e vasetto dello struccante aperto. Ferrante e seduto, il capo reclinato. Sul pavimento una rosa bianca. La porta era chiusa con il paletto scorrevole.",
   suspects:[
@@ -766,6 +988,7 @@ const CASES = [
 },
 {
   id:"CASO #002", name:"Il Castello Non Mente",
+  difficulty:"hard",
   victim:{name:"Alfredo Baroni",age:"67 anni",role:"Notaio, custode del testamento della contessa Savelli",cause:"Avvelenamento con digitalina nel te",location:"Biblioteca del Castello di Montevecchio, Toscana"},
   scene:"La biblioteca ha soffitti alti, scaffali di noce antico, un camino acceso. Baroni e in poltrona con una tazza di te rovesciata. Sul tavolo: valigetta con fascicoli notarili e taccuino. La finestra e spalancata nonostante il freddo. Sul tavolo un foglio con un nome cerchiato in rosso.",
   suspects:[
@@ -806,6 +1029,7 @@ const CASES = [
 },
 {
   id:"CASO #003", name:"Frequenza Mortale",
+  difficulty:"hard",
   victim:{name:"Valerio Mancini",age:"49 anni",role:"Conduttore radiofonico, socio fondatore dell'emittente",cause:"Soffocamento dopo sedazione con lorazepam",location:"Cabina di registrazione B, Radio Capitale Nera, Roma"},
   scene:"La cabina e insonorizzata, 4x4 metri. Mancini e seduto al mixer, il capo sul piano di lavoro. Un sacchetto trasparente quasi nascosto sotto il mixer ha residui di umidita. Sul piano: un bicchiere con lorazepam e le note della trasmissione. Sul server audio: una registrazione interna di backup che il colpevole non sapeva fosse attiva.",
   suspects:[
@@ -846,6 +1070,7 @@ const CASES = [
 },
 {
   id:"CASO #004", name:"Neve Sopra il Convento",
+  difficulty:"hard",
   victim:{name:"Suor Benedetta",age:"71 anni",role:"Bibliotecaria del convento, custode dell'archivio storico",cause:"Ipotermia indotta - chiusa nella cripta durante la tormenta",location:"Cripta del Convento di Sant'Agata, Dolomiti"},
   scene:"La cripta e umida, 8 gradi. Suor Benedetta giace sul pavimento di pietra. Nessun segno di violenza fisica. Sul pavimento: impronte di scarponi numero 42. Su una mensola: una cassetta di legno vuota. Sul muro scritto col dito nella polvere: NON ERA. Vicino alla porta: una sciarpa blu di lana.",
   suspects:[
@@ -886,6 +1111,7 @@ const CASES = [
 },
 {
   id:"CASO #005", name:"Il Porto delle Nebbie",
+  difficulty:"hard",
   victim:{name:"Sergio Altieri",age:"52 anni",role:"Direttore operativo, Armatore SpA",cause:"Strangolamento e annegamento nel bacino portuale",location:"Molo 7, Porto Commerciale di Genova"},
   scene:"Il molo 7 e buio, mal illuminato, coperto da nebbia. Il corpo di Altieri e in acqua. Sul bordo: segni di trascinamento nella melma con due serie di impronte. Un orologio Patek Philippe si e fermato alle 3:47. Nella tasca: un pen drive impermeabile. La telecamera e stata disattivata alle 3:30.",
   suspects:[
@@ -922,44 +1148,413 @@ const CASES = [
   ],
   guiltyIndex:0,
   puzzle:{fragments:["domani mattina vado dalla polizia","Ho trovato tutto -","Ho paura. Se non mi fai sentire entro le 8","non vengo."],correctOrder:[1,0,2,3],reveal:"SMS ricostruito: Ho trovato tutto - domani mattina vado dalla polizia. Altieri sapeva di essere in pericolo."},
-  tabulato:[{ora:"23:30",da:"S. Altieri",a:"SIM prepagata",dur:"SMS",s:true},{ora:"23:45",da:"SIM prepagata",a:"G. Sacco",dur:"2 min",s:true},{ora:"00:15",da:"G. Sacco",a:"V. Palma",dur:"3 min",s:true},{ora:"03:20",da:"V. Palma",a:"E. Greco",dur:"1 min",s:true}]
+  tabulato:[{ora:"23:30",da:"S. Altieri",a:"SIM prepagata",dur:"SMS",s:false},{ora:"23:45",da:"SIM prepagata",a:"G. Sacco",dur:"2 min",s:false},{ora:"00:15",da:"G. Sacco",a:"V. Palma",dur:"3 min",s:false},{ora:"03:20",da:"V. Palma",a:"E. Greco",dur:"1 min",s:false}]
+},
+// ── CASI FACILI ──────────────────────────────────────────────
+{
+  id:"CASO #F01", name:"Il Veleno nel Bicchiere",
+  difficulty:"easy",
+  victim:{name:"Edoardo Manni",age:"67 anni",role:"Presidente onorario del Circolo degli Scacchi di Valdoria",cause:"Avvelenamento da aconitina nel whisky",location:"Sala riunioni del Circolo degli Scacchi, via Bramante 12"},
+  scene:"Tavolo rettangolare con sei sedie. Il bicchiere di whisky di Manni era alla sua sinistra. Sul pavimento un foglietto strappato con meta di un numero di telefono. La finestra sul cortile era socchiusa. Il veleno era solo nel bicchiere di Edoardo, non nella bottiglia condivisa.",
+  suspects:[
+    {name:"Renato Giusti",role:"Cugino di Edoardo, impiegato in pensione",age:"63 anni",motive:"Erede unico del testamento di Edoardo - 380.000 euro. Edoardo stava valutando di modificarlo a favore di un'associazione benefica.",alibi:"Sostiene di non essersi mai alzato durante la serata. SMENTITO dalla cameriera Dina.",detail:"Indossa guanti di cotone per eczema - positivi ad aconitina. Ricerca web 'aconitina dosi letali' 11 giorni prima sul laptop.",icon:"\u25A3",guilty:true,
+     questions:[
+       {q:"Dove si trovava tra le 19:10 e le 19:18?",a:"Ero seduto al mio posto per tutta la serata. Non mi sono alzato nemmeno un attimo."},
+       {q:"Perche indossa guanti di cotone?",a:"Ho l'eczema da anni, i medici mi consigliano di proteggere la pelle. Non c'e nulla di strano."},
+       {q:"Sa di essere l'erede nel testamento di Edoardo?",a:"...Ne ero a conoscenza, si. Ma non e un motivo per fare del male a mio cugino."},
+       {q:"La cameriera Dina dice che la sua sedia era vuota tra le 19:10 e le 19:18.",a:"La cameriera si sbaglia. Ero al mio posto."}
+     ]},
+    {name:"Marco Ferretti",role:"Membro storico del Circolo, avvocato",age:"55 anni",motive:"Litigio sulle quote del Circolo e lettera anonima. Ambizioni alla presidenza.",alibi:"Era seduto di fronte a Edoardo per tutta la serata. Confermato da Lara.",detail:"Lettera anonima con grafia simile alla sua. Uscita precipitosa dopo il crollo - spiegata dai soccorsi.",icon:"\u270E",guilty:false,
+     questions:[
+       {q:"Dove si trovava tra le 19:10 e le 19:18?",a:"Al mio posto. Stavo giocando a scacchi con Pietro. Chiedetelo a lui."},
+       {q:"Quella lettera anonima e sua?",a:"Assolutamente no. Chiunque puo imitare una grafia."},
+       {q:"Perche e uscito di corsa dopo il crollo?",a:"Per chiamare il 118. Dentro non prendeva. Ho fatto la cosa giusta."}
+     ]},
+    {name:"Lara Bindi",role:"Segretaria del Circolo",age:"41 anni",motive:"Edoardo si opponeva alla sua promozione a direttrice.",alibi:"Era in cucina fino alle 19:35. Si avvicina al tavolo solo col vassoio.",detail:"Ha avuto accesso fisico al bicchiere alle 19:35. Medicinali in borsa - analisi: antipertensivi leciti.",icon:"\u25A4",guilty:false,
+     questions:[
+       {q:"Dove si trovava tra le 19:10 e le 19:18?",a:"In cucina a preparare il vassoio di stuzzichini. Sono uscita solo alle 19:35."},
+       {q:"Si e avvicinata al bicchiere di Edoardo?",a:"Ho posato il vassoio al centro del tavolo. Non ho toccato nessun bicchiere."},
+       {q:"Cosa c'era in quel flacone nella sua borsa?",a:"Ramipril. Sono ipertesa da tre anni. Puo verificare con il mio medico."}
+     ]}
+  ],
+  envelopes:[
+    {id:"e1",title:"Referto tossicologico",icon:"\u25A3",locked:false,content:"Aconitina riscontrata nel bicchiere e nel sangue della vittima. Dose letale. Nessun'altra bevanda contaminata.",evidence:{icon:"\u2295",title:"Referto tossicologico",desc:"Aconitina nel bicchiere di Manni. Dose letale. Bottiglia comune negativa."}},
+    {id:"e2",title:"Testimonianza cameriera Dina",icon:"\u270E",locked:false,content:"Dina Caruso: 'Tra le 19:10 e le 19:18 la sedia di Renato era vuota. Pensavo fosse andato in bagno.'",evidence:{icon:"\u25C9",title:"Testimonianza Dina",desc:"Sedia di Renato vuota tra 19:10 e 19:18 - nega di essersi alzato."}},
+    {id:"e3",title:"Testamento e guanti",icon:"\u25A4",locked:true,content:"Testamento: erede universale Renato Giusti - 380.000 euro. Guanti di Renato: positivi a tracce di aconitina sul lato interno del guanto sinistro.",evidence:{icon:"\u25A2",title:"Guanti positivi ad aconitina",desc:"Aconitina nel guanto sinistro di Renato. Testamento: erede unico."}},
+    {id:"e4",title:"Log browser laptop Renato",icon:"\u271A",locked:true,content:"Cronologia browser del laptop di Renato sequestrato: ricerca 'aconitina dosi letali' undici giorni prima dell'omicidio.",evidence:{icon:"\u229E",title:"Ricerca web premeditazione",desc:"Ricerca aconitina 11 giorni prima. Premeditazione dimostrata."}}
+  ],
+  guiltyIndex:0,
+  puzzle:{fragments:["il bicchiere e pronto","Renato deve agire stasera","nessuno lo vedra alzarsi","i guanti non lasciano tracce"],correctOrder:[0,2,3,1],reveal:"Sequenza ricostruita: il bicchiere e pronto - nessuno lo vedra alzarsi - i guanti non lasciano tracce - Renato deve agire stasera."},
+  tabulato:[{ora:"18:45",da:"Circolo",a:"Tutti presenti",dur:"Riunione",s:false},{ora:"19:10",da:"E. Manni",a:"Corridoio",dur:"8 min",s:false},{ora:"19:35",da:"L. Bindi",a:"Vassoio tavolo",dur:"Servizio",s:false},{ora:"19:40",da:"E. Manni",a:"Bicchiere",dur:"Beve",s:false}]
+},
+{
+  id:"CASO #F02", name:"La Caduta dalla Terrazza",
+  difficulty:"easy",
+  victim:{name:"Silvio Craxi",age:"54 anni",role:"Gallerista e collezionista d'arte",cause:"Colpo alla nuca e caduta dalla terrazza al sesto piano",location:"Terrazza dell'appartamento, via Monterosa 9"},
+  scene:"Terrazza di 18 mq. Ringhiera con un segmento allentato noto. Macchia di sangue sul bordo del vaso di terracotta a sinistra della porta-finestra. La bottiglia rotta sul pavimento aveva capelli di Silvio ma era gia rotta dal pomeriggio.",
+  suspects:[
+    {name:"Giulia Marini",role:"Ex moglie di Silvio, designer",age:"48 anni",motive:"Esclusa dal testamento. Aveva chiesto a Silvio di reintrodurla nell'eredita - rifiuto recente.",alibi:"Era in terrazza con Silvio - nessun alibi. E l'unica presente.",detail:"Ematoma inspiegabile sul palmo destro. Frammenti di terracotta sulle scarpe. Medico legale: colpo inferto da sinistra - Giulia era alla sinistra di Silvio.",icon:"\u25A3",guilty:true,
+     questions:[
+       {q:"Cosa e successo in terrazza?",a:"Stavamo parlando, Silvio si e appoggiato alla ringhiera e questa ha ceduto. Ho cercato di trattenerlo."},
+       {q:"Da dove vengono quell'ematoma sul palmo?",a:"Mi sono graffiata in cucina mentre affettavo. Cose che capitano."},
+       {q:"Perche ha tracce di terracotta sulle scarpe?",a:"Probabilmente ho calpestato qualcosa sul pavimento della terrazza. Non ci ho fatto caso."},
+       {q:"Sapeva di essere stata esclusa dal testamento?",a:"Si, lo sapevo. Ero delusa, ma Silvio aveva il diritto di decidere."}
+     ]},
+    {name:"Fausto Greco",role:"Socio in affari, gallerista",age:"51 anni",motive:"60.000 euro persi per una truffa attribuita a Silvio. Galleria in vendita.",alibi:"Stava prendendo la giacca in salone - confermato da Nadine.",detail:"Coltello pieghevole in tasca - per aprire le bottiglie. Movente economico forte ma alibi solido.",icon:"\u270E",guilty:false,
+     questions:[
+       {q:"Dove si trovava alle 21:33?",a:"Ero rientrato in salone a prendere la mia giacca. Nadine era li che telefonava."},
+       {q:"Il coltello in tasca?",a:"L'ho sempre con me. Apro le bottiglie, taglio il pane. Chiedetelo a chiunque mi conosca."},
+       {q:"Sentiva Silvio urlare?",a:"No, poi ho sentito il grido di Giulia e sono corso fuori."}
+     ]},
+    {name:"Nadine Floris",role:"Amica comune, fotografa",age:"44 anni",motive:"Messaggio rabbioso il giorno prima. Ragione personale sconosciuta.",alibi:"Telefono mostra chiamata attiva 21:31-21:38. Confermata da Fausto.",detail:"Messaggio 'Non ti perdonero mai'. Alibi verificabile da registro telefono.",icon:"\u25A4",guilty:false,
+     questions:[
+       {q:"Cosa faceva alle 21:32?",a:"Stavo telefonando a mia figlia in salone. Il registro chiamate lo dimostra."},
+       {q:"Quel messaggio a Silvio?",a:"Era per una cosa personale, una promessa mancata. Non riguardava soldi o la galleria."},
+       {q:"Fausto era in salone quando telefonava?",a:"Si, e entrato per la giacca poco dopo che avevo iniziato a telefonare."}
+     ]}
+  ],
+  envelopes:[
+    {id:"e1",title:"Referto medico legale",icon:"\u25A3",locked:false,content:"Ecchimosi alla nuca da oggetto curvo, contundente. Impatto avvenuto prima della caduta. Sangue sul vaso compatibile con gruppo sanguigno della vittima.",evidence:{icon:"\u2295",title:"Colpo alla nuca pre-caduta",desc:"Colpo inferto da sinistra con oggetto curvo. Sangue sul vaso di terracotta."}},
+    {id:"e2",title:"Testimonianza Nadine",icon:"\u270E",locked:false,content:"Nadine: 'Giulia e rimasta in terrazza con Silvio. Fausto era rientrato, l'ho visto sul divano quando telefonavo.'",evidence:{icon:"\u25C9",title:"Alibi Fausto confermato",desc:"Fausto in salone confermato da Nadine. Giulia unica in terrazza."}},
+    {id:"e3",title:"Vaso di terracotta e scarpe",icon:"\u25A4",locked:true,content:"Vaso di terracotta: sangue di Silvio sul bordo. Frammenti di terracotta rossa sotto la suola destra di Giulia. Nessun frammento sulle scarpe degli altri.",evidence:{icon:"\u25A2",title:"Prova fisica decisiva",desc:"Terracotta sulle scarpe di Giulia = vaso usato come arma."}},
+    {id:"e4",title:"Testamento e ematoma",icon:"\u271A",locked:true,content:"Testamento aggiornato: Giulia esclusa. Erede: fondazione culturale. Giulia lo sapeva da tre mesi. Ematoma palmo destro: incompatibile con graffiatura in cucina - nessuna traccia trovata.",evidence:{icon:"\u229E",title:"Movente testamentario",desc:"Giulia esclusa dal testamento. Ematoma palmo non spiegato."}}
+  ],
+  guiltyIndex:0,
+  puzzle:{fragments:["il vaso era alla sua portata","Giulia era alla sinistra di Silvio","nessun testimone in terrazza","colpo inferto da sinistra"],correctOrder:[1,3,0,2],reveal:"Ricostruzione: Giulia era alla sinistra di Silvio - colpo inferto da sinistra - il vaso era alla sua portata - nessun testimone in terrazza."},
+  tabulato:[{ora:"21:32",da:"N. Floris",a:"Figlia",dur:"Chiamata attiva",s:false},{ora:"21:33",da:"F. Greco",a:"Salone",dur:"Prende giacca",s:false},{ora:"21:34",da:"G. Marini",a:"Terrazza",dur:"Con Silvio",s:false},{ora:"21:36",da:"S. Craxi",a:"-",dur:"Precipita",s:false}]
+},
+{
+  id:"CASO #F03", name:"L'Archivio Bruciato",
+  difficulty:"easy",
+  victim:{name:"Bruno Lenti",age:"61 anni",role:"Direttore editoriale, casa editrice Voce Nuova",cause:"Asfissia da monossido di carbonio - braciere elettrico manomesso",location:"Ufficio di Bruno Lenti, primo piano, via Crocifisso 3"},
+  scene:"Ufficio chiuso dall'interno a chiave - serratura a scrocco apribile con oggetto piatto. Braciere elettrico con coperchio di ventilazione ostruito da carta pressata. Cassaforte aperta: codice in agenda sul tavolo. La chiave della credenza era nella tasca del notaio.",
+  suspects:[
+    {name:"Carla Esposito",role:"Assistente personale di Bruno",age:"38 anni",motive:"Bruno aveva scoperto che Carla passava informazioni riservate alla concorrenza. L'avrebbe licenziata il lunedi.",alibi:"Dice di essere andata a casa alle 18:30. Nessun testimone per la serata.",detail:"Unica con chiave porta retro E codice allarme. Log allarme: disattivato 20:58, reinserito 21:05. Uscita telecamera retro alle 21:00.",icon:"\u25A3",guilty:true,
+     questions:[
+       {q:"Dove si trovava venerdi sera dopo le 18:30?",a:"Sono andata direttamente a casa. Ho mangiato qualcosa, guardato la TV. Ero sola."},
+       {q:"Bruno aveva scoperto qualcosa su di lei?",a:"Non so di cosa parli. Ero una dipendente modello da sei anni."},
+       {q:"Ha una chiave della porta sul retro?",a:"Si, per le consegne mattutine. Ce l'ho da anni, e parte del mio ruolo."},
+       {q:"Chi conosce il codice dell'allarme?",a:"Bruno, io e teoricamente Dario - anche se non sono sicura che Dario lo sapesse."}
+     ]},
+    {name:"Giacomo Ruiz",role:"Grafico, dipendente da 8 anni",age:"34 anni",motive:"Stipendio arretrato. Conflitto con Bruno.",alibi:"Uscito alle 18:45 confermato dal portinaio. Non ha chiave del retro ne codice allarme.",detail:"Movente visibile ma senza strumenti tecnici per rientrare.",icon:"\u270E",guilty:false,
+     questions:[
+       {q:"Quando ha lasciato l'ufficio venerdi?",a:"Alle 18:45, lo conferma il portinaio. Ero arrabbiato per lo stipendio ma non sono un criminale."},
+       {q:"Ha una chiave del retro o il codice dell'allarme?",a:"No. Bruno non mi ha mai dato ne l'una ne l'altro."}
+     ]},
+    {name:"Vera Solis",role:"Autrice di punta",age:"42 anni",motive:"Voleva i propri contratti originali per cambiare casa editrice.",alibi:"Era a una cena con testimoni dalle 19:00 - confermato da 4 persone.",detail:"Sapeva della cassaforte. Alibi solidissimo.",icon:"\u25A4",guilty:false,
+     questions:[
+       {q:"Voleva i suoi contratti originali?",a:"Li volevo rinegoziare, non rubare. C'e differenza. E comunque venerdi sera ero a cena."},
+       {q:"Conosceva il codice dell'allarme?",a:"No. Sono un'autrice, non una dipendente."}
+     ]}
+  ],
+  envelopes:[
+    {id:"e1",title:"Referto e log allarme",icon:"\u25A3",locked:false,content:"Decesso per asfissia da CO. Ora stimata: tra le 21:00 e le 22:00. Log allarme: inserimento 20:30, disattivazione 20:58, reinserimento 21:05.",evidence:{icon:"\u2295",title:"Log allarme decisivo",desc:"Disattivazione 20:58 - reinserimento 21:05. 27 minuti di accesso."}},
+    {id:"e2",title:"Testimonianza portinaio Aldo",icon:"\u270E",locked:false,content:"Aldo Bruni: 'Alle 20:15 ero ancora nell'edificio. Non ho visto nessuno oltre a Bruno. Sono uscito dalla porta principale.'",evidence:{icon:"\u25C9",title:"Portinaio: edificio vuoto alle 20:15",desc:"Nessun altro visibile alle 20:15. Accesso successivo non autorizzato."}},
+    {id:"e3",title:"Chiave retro e codice allarme",icon:"\u25A4",locked:true,content:"Carla Esposito: unica persona con sia la chiave del retro sia il codice allarme (oltre a Bruno). Dario non conosceva il codice. Giacomo e Vera senza ne chiave ne codice.",evidence:{icon:"\u25A2",title:"Solo Carla aveva entrambi",desc:"Chiave retro + codice allarme = solo Carla poteva entrare e uscire."}},
+    {id:"e4",title:"Carta nel braciere",icon:"\u271A",locked:true,content:"Carta pressata nel coperchio del braciere - tipo identico alla carta per fotocopie usata in ufficio. Fibre della stessa risma trovata sulla scrivania di Carla.",evidence:{icon:"\u229E",title:"Carta del braciere = carta di Carla",desc:"Stessa risma carta ufficio. Manomissione attribuibile a Carla."}}
+  ],
+  guiltyIndex:0,
+  puzzle:{fragments:["il codice dell'allarme e noto a Carla","la chiave del retro era sua","Bruno sarebbe stato licenziato lunedi","27 minuti per agire e uscire"],correctOrder:[2,0,1,3],reveal:"Ricostruzione: Bruno sarebbe stato licenziato lunedi - il codice dell'allarme e noto a Carla - la chiave del retro era sua - 27 minuti per agire e uscire."},
+  tabulato:[{ora:"20:30",da:"Sistema",a:"Allarme inserito",dur:"-",s:false},{ora:"20:58",da:"Sistema",a:"Allarme disattivato",dur:"-",s:false},{ora:"21:00",da:"Telecamera retro",a:"Figura in uscita",dur:"-",s:false},{ora:"21:05",da:"Sistema",a:"Allarme reinserito",dur:"-",s:false}]
+},
+{
+  id:"CASO #F04", name:"Il Testimone Silenzioso",
+  difficulty:"easy",
+  victim:{name:"Aldo Fermi",age:"58 anni",role:"Professore di storia medievale, Universita di Valdoria",cause:"Overdose di sonniferi disciolti nel te - omicidio simulato da suicidio",location:"Studio privato, appartamento via Arcimboldi 7, terzo piano"},
+  scene:"Studio con libri ovunque. Tazza di te sul tavolo - analisi: lorazepam in dosi massive. Laptop aperto con documento interrotto: 'devo parlare con'. Nessuna nota di suicidio. La porta era socchiusa. Il flacone di lorazepam nel cestino apparteneva alla ricercatrice Elena.",
+  suspects:[
+    {name:"Elena Russo",role:"Ricercatrice, collaboratrice di Aldo",age:"33 anni",motive:"Aldo le aveva sottratto la paternita della ricerca nel contratto americano - 120.000 dollari persi.",alibi:"Dice di essere uscita alle 20:30. SMENTITA dal log citofono: uscita alle 21:22.",detail:"Log citofono: uscita 21:22 non 20:30. Vicina Irma sente voci femminili alle 21:00. Flacone lorazepam intestato a Elena. Aldo lucido alle 21:17 (log Wi-Fi).",icon:"\u25A3",guilty:true,
+     questions:[
+       {q:"A che ora ha lasciato l'appartamento di Aldo?",a:"Alle 20:30, forse un po' prima. Siamo stati a cena, poi me ne sono andata."},
+       {q:"Quel flacone di lorazepam e suo?",a:"Era mio, ma l'ho perso circa una settimana fa. Ho anche fatto denuncia di smarrimento."},
+       {q:"Il log del citofono dice 21:22. Come lo spiega?",a:"...Forse mi sono sbagliata sull'orario. Potrei essermi fermata piu a lungo del previsto."},
+       {q:"Era arrabbiata con Aldo per il contratto americano?",a:"Ero delusa. Quella ricerca era anche mia. Ma non... non avrei mai fatto una cosa del genere."}
+     ]},
+    {name:"Piero Conti",role:"Collega, professore associato",age:"52 anni",motive:"Concorrenza per incarico accademico. Aldo era il favorito.",alibi:"Davanti all'edificio alle 20:45 con il cane - testimoniato dal barista. Non e entrato nell'edificio.",detail:"Presenza fisica vicino all'edificio. Movente professionale. Senza accesso all'appartamento.",icon:"\u270E",guilty:false,
+     questions:[
+       {q:"Perche era davanti all'edificio di Aldo alle 20:45?",a:"Portavo a spasso il cane. Abito a 200 metri. E il mio solito giro."},
+       {q:"Ha incontrato Aldo quella sera?",a:"No. Non sono nemmeno entrato nell'edificio. Il barista lo puo confermare."}
+     ]},
+    {name:"Sara Bellucci",role:"Ex studentessa",age:"27 anni",motive:"Rancore per voto basso. Commento furioso online.",alibi:"Non era in citta quella sera - fuori per lavoro, verificabile.",detail:"Rancore pubblico ma alibi solido e nessun accesso.",icon:"\u25A4",guilty:false,
+     questions:[
+       {q:"Sa dell'inchiesta su Aldo Fermi?",a:"Ho letto i giornali. Non sono sorpresa di nulla."},
+       {q:"Era a Valdoria la sera del delitto?",a:"No. Ero a Torino per lavoro. Puo verificare con il mio datore di lavoro."}
+     ]}
+  ],
+  envelopes:[
+    {id:"e1",title:"Log citofono e Wi-Fi",icon:"\u25A3",locked:false,content:"Log citofono: Elena Russo uscita ore 21:22, non 20:30 come dichiarato. Log Wi-Fi laptop: ultima connessione attiva 21:17 - Aldo lavorava ancora.",evidence:{icon:"\u2295",title:"Elena mente sull'orario",desc:"Citofono: uscita 21:22. Wi-Fi: Aldo lucido fino 21:17. Elena era ancora li."}},
+    {id:"e2",title:"Testimonianza vicina Irma",icon:"\u270E",locked:false,content:"Irma Naldi: 'Ho sentito voci alle 21:00. Una voce maschile e una femminile. Poi silenzio verso le 21:30.'",evidence:{icon:"\u25C9",title:"Voci alle 21:00",desc:"Voce femminile sentita alle 21:00 - Elena era ancora nell'appartamento."}},
+    {id:"e3",title:"Flacone lorazepam",icon:"\u25A4",locked:true,content:"Flacone intestato a Elena Russo. Denuncia di smarrimento depositata 5 giorni fa, non una settimana come dichiarato. Il flacone potrebbe essere stato portato appositamente.",evidence:{icon:"\u25A2",title:"Flacone di Elena con denuncia falsa",desc:"Denuncia 5 giorni fa, non una settimana. Possibile copertura preventiva."}},
+    {id:"e4",title:"Contratto americano e agente",icon:"\u271A",locked:true,content:"Contratto con editore americano: 120.000 dollari. Elena esclusa. Agente letterario di Aldo: 'Tre giorni prima mi ha detto: c'e qualcuno che vuole bloccare la mia pubblicazione.'",evidence:{icon:"\u229E",title:"Movente economico forte",desc:"120.000 dollari persi da Elena. Aldo sapeva di essere in pericolo."}}
+  ],
+  guiltyIndex:0,
+  puzzle:{fragments:["il veleno nel te tra 21:17 e 21:22","Elena era ancora nell'appartamento","denuncia di smarrimento come copertura","Aldo lavorava lucido fino alle 21:17"],correctOrder:[3,1,0,2],reveal:"Ricostruzione: Aldo lavorava lucido fino alle 21:17 - Elena era ancora nell'appartamento - il veleno nel te tra 21:17 e 21:22 - denuncia di smarrimento come copertura."},
+  tabulato:[{ora:"20:30",da:"E. Russo",a:"Dichiara uscita",dur:"-",s:false},{ora:"21:00",da:"Irma Naldi",a:"Sente voci",dur:"-",s:false},{ora:"21:17",da:"Laptop Aldo",a:"Ultima connessione",dur:"-",s:false},{ora:"21:22",da:"Citofono",a:"Elena esce",dur:"-",s:false}]
+},
+{
+  id:"CASO #F05", name:"Il Treno delle 23:10",
+  difficulty:"easy",
+  victim:{name:"Cesare Nuti",age:"45 anni",role:"Broker finanziario, Studio Nuti e Partners",cause:"Anestetico volatile sul foulard, poi posizionato sui binari - investimento simulato da incidente",location:"Secondo marciapiede, Stazione di Valgrande"},
+  scene:"Binario 2, zona poco illuminata. Il foulard di Cesare odora di solvente. Telecamera del binario 2 non funzionante da tre giorni. Borsa aperta - manca il tablet. Telecamera binario 1 registra figura con cappello scuro alle 22:50.",
+  suspects:[
+    {name:"Mirko Landi",role:"Assistente personale di Cesare",age:"31 anni",motive:"Cesare stava per licenziarlo dopo aver scoperto accessi abusivi ai dati finanziari dei clienti. Il tablet conteneva le prove.",alibi:"Dice di essere rimasto in ufficio fino alle 22:00, poi a casa. Nessun testimone.",detail:"Sapeva della telecamera guasta - aveva fatto la segnalazione 3 giorni prima. Cappello scuro identico a quello nella telecamera. Statura 177 cm compatibile con figura ripresa (175-180 cm).",icon:"\u25A3",guilty:true,
+     questions:[
+       {q:"Dove si trovava tra le 22:00 e le 23:00?",a:"In ufficio fino alle 22:00, poi sono andato direttamente a casa. Ero stanco."},
+       {q:"Quel cappello e suo?",a:"Ho molti cappelli, e una marca comune. Non prova nulla."},
+       {q:"Sapeva che la telecamera del binario 2 era guasta?",a:"Avevo fatto una segnalazione di servizio, si. Parte del mio lavoro di coordinamento."},
+       {q:"Cesare stava per licenziarla?",a:"Non e vero. Avevamo un ottimo rapporto di lavoro."}
+     ]},
+    {name:"Roberta Fiori",role:"Ex socia, imprenditrice",age:"47 anni",motive:"200.000 euro persi. Messaggio minaccioso 'Pagherai per quello che hai fatto'.",alibi:"Il suo treno arrivava alle 23:40 - dopo il crimine. Biglietto verificato.",detail:"Movente fortissimo ma arriva troppo tardi per il crimine.",icon:"\u270E",guilty:false,
+     questions:[
+       {q:"Perche aveva un biglietto per Valgrande quella sera?",a:"Dovevo incontrare un cliente il sabato mattina. Ho preso il treno serale."},
+       {q:"Il messaggio a Cesare?",a:"Era sfogo emotivo. Non intendevo fargli del male."},
+       {q:"Il suo treno e arrivato alle 23:40?",a:"Si, puo verificare. Sono arrivata a Valgrande quando era gia tutto finito."}
+     ]},
+    {name:"Franco Medici",role:"Imprenditore, contatto d'affari",age:"53 anni",motive:"Affare immobiliare non concluso.",alibi:"Ripreso in stazione alle 22:20, salito sul treno delle 22:50 per altra destinazione. Biglietto verificato.",detail:"Partito prima del crimine - alibi solido.",icon:"\u25A4",guilty:false,
+     questions:[
+       {q:"Era in stazione alle 22:20?",a:"Si, prendevo il treno per Saronno. Biglietto alla mano."},
+       {q:"Ha incontrato Cesare in stazione?",a:"L'ho visto da lontano al bar, ma non gli ho parlato. Avevamo litigato."}
+     ]}
+  ],
+  envelopes:[
+    {id:"e1",title:"Registro segnalazione guasto",icon:"\u25A3",locked:false,content:"Registro segnalazioni stazione: Mirko Landi, 3 giorni prima - segnalazione guasto telecamera binario 2. Era l'unico a sapere con certezza che il binario non era sorvegliato.",evidence:{icon:"\u2295",title:"Mirko sapeva del guasto",desc:"Segnalazione di Mirko 3 giorni prima. Solo lui sapeva del binario cieco."}},
+    {id:"e2",title:"Telecamera binario 1 ore 22:50",icon:"\u270E",locked:false,content:"Figura con cappello scuro, 175-180 cm, si avvicina alle scale del binario 2 alle 22:50. Il cloroformio era rilevabile - applicato tra 22:40 e 22:55.",evidence:{icon:"\u25C9",title:"Figura ripresa alle 22:50",desc:"Cappello scuro, 175-180 cm. Mirko: 177 cm. Finestra compatibile."}},
+    {id:"e3",title:"Cappello sequestrato a Mirko",icon:"\u25A4",locked:true,content:"Cappello scuro sequestrato a Mirko Landi il giorno dopo: identico per forma, colore e marca a quello ripreso dalla telecamera delle 22:50.",evidence:{icon:"\u25A2",title:"Cappello identico",desc:"Cappello di Mirko = cappello in telecamera. Stessa forma, colore, marca."}},
+    {id:"e4",title:"Movente: tablet con prove",icon:"\u271A",locked:true,content:"Cesare aveva scoperto gli accessi abusivi di Mirko ai dati dei clienti. Il tablet mancante conteneva le prove. Mirko rischiava il licenziamento e una denuncia penale.",evidence:{icon:"\u229E",title:"Movente urgente",desc:"Tablet con prove accessi abusivi. Mirko rischiava denuncia penale."}}
+  ],
+  guiltyIndex:0,
+  puzzle:{fragments:["il binario 2 non era sorvegliato","Mirko aveva fatto la segnalazione","il tablet conteneva le prove contro di lui","cappello identico - statura compatibile"],correctOrder:[1,0,3,2],reveal:"Ricostruzione: Mirko aveva fatto la segnalazione - il binario 2 non era sorvegliato - cappello identico, statura compatibile - il tablet conteneva le prove contro di lui."},
+  tabulato:[{ora:"22:30",da:"C. Nuti",a:"Stazione",dur:"Arrivo",s:false},{ora:"22:45",da:"GPS Cesare",a:"Binario 2",dur:"Ultima pos.",s:false},{ora:"22:50",da:"Telecamera B1",a:"Figura cappello",dur:"-",s:false},{ora:"23:10",da:"Treno",a:"Binario 2",dur:"Transita",s:false}]
+},
+// ── CASI NORMALI ─────────────────────────────────────────────
+{
+  id:"CASO #N01", name:"Il Restauro Impossibile",
+  difficulty:"normal",
+  victim:{name:"Albano Greco",age:"63 anni",role:"Maestro restauratore, titolare bottega Greco Restauri",cause:"Trauma cranico da martello da restauro",location:"Bottega Greco Restauri, vicolo Sant'Agata 4"},
+  scene:"Bottega di 40 mq. Corpo vicino al cavalletto. Martello da restauro sul pavimento - pulito, nessuna impronta. Cavalletto vuoto - dipinto del 600 scomparso. Porta principale chiusa dall'interno con chiavistello. Porta retro: serratura difettosa, apribile con una spinta. Impronte scarpa n.43 vicino al corpo.",
+  suspects:[
+    {name:"Nadia Greco",role:"Nipote, studentessa d'arte",age:"24 anni",motive:"Albano stava per modificare il testamento dopo aver scoperto qualcosa su di lei. Perdeva bottega e dipinto valutato 180.000 euro.",alibi:"Dice di arrivare alle 09:00 come ogni sabato. Nessun alibi 07:30-09:00.",detail:"Unica a conoscere la serratura difettosa del retro. SMS di Albano 'Domani mattina devo parlarti' non menzionato. Chiama gallerista di opere non certificate 2 minuti dopo aver letto l'SMS.",icon:"\u25A3",guilty:true,
+     questions:[
+       {q:"Perche e entrata dal retro?",a:"Lo faccio sempre il sabato se la porta e chiusa. La serratura cede con una spinta."},
+       {q:"Ha ricevuto un SMS da Albano venerdi sera?",a:"...Si, l'ho letto sabato mattina. Pensavo riguardasse il lavoro."},
+       {q:"Ha chiamato un gallerista sabato alle 07:54. Perche?",a:"Un contatto per un progetto universitario su opere del 600. Pura coincidenza."},
+       {q:"Sa che Albano stava per modificare il testamento?",a:"Non ne sapevo nulla. E assurdo."}
+     ]},
+    {name:"Tommaso Ferrara",role:"Apprendista, 24 anni",age:"24 anni",motive:"Debito 8.000 euro con Albano. Azioni legali imminenti.",alibi:"Visto fuori alle 08:15 e nel vicolo alle 08:20 - lui nega il vicolo.",detail:"Contraddizione sul vicolo. Scarpa n.43. Ma non conosce la porta sul retro.",icon:"\u270E",guilty:false,
+     questions:[
+       {q:"Era nel vicolo Sant'Agata sabato alle 08:20?",a:"No. Sono passato sulla strada principale. Il vicino si sbaglia."},
+       {q:"Conosceva la porta sul retro?",a:"Non sapevo nemmeno che esistesse."},
+       {q:"Taglia di scarpe?",a:"43. Come tanta altra gente."}
+     ]},
+    {name:"Riccardo Manca",role:"Cliente, collezionista",age:"58 anni",motive:"Quadro danneggiato durante il restauro. Risarcimento negato.",alibi:"Bussa alle 08:40 - dopo il decesso. Impronte spiegate da visita di giovedi.",detail:"Impronte in loco da visita precedente. Non conosce la porta sul retro.",icon:"\u25A4",guilty:false,
+     questions:[
+       {q:"A che ora e arrivato sabato?",a:"Verso le 08:40. Ho bussato, nessuna risposta, me ne sono andato."},
+       {q:"Le sue impronte erano in bottega.",a:"Sono entrato giovedi per controllare il mio quadro. Normale."},
+       {q:"Conosceva il retro?",a:"Non sapevo nemmeno che ci fosse una porta sul retro."}
+     ]}
+  ],
+  envelopes:[
+    {id:"e1",title:"Referto e orario decesso",icon:"\u25A3",locked:false,content:"Trauma cranico posteriore, colpo singolo. Decesso stimato 07:45-08:30. Martello compatibile con lesione. Nessuna impronta sul martello.",evidence:{icon:"\u2295",title:"Decesso 07:45-08:30",desc:"Colpo singolo posteriore. Finestra critica 07:45-08:30."}},
+    {id:"e2",title:"SMS e chiamata gallerista",icon:"\u270E",locked:false,content:"SMS Albano a Nadia venerdi 22:00: 'Domani mattina devo parlarti. Importante.' Nadia non lo menziona. Log telefono Nadia: chiamata gallerista Foschi 07:54 sabato (4 min) - Foschi noto per opere senza provenienza certificata.",evidence:{icon:"\u25C9",title:"SMS taciuto e chiamata sospetta",desc:"Nadia tace l'SMS. 2 minuti dopo la lettura chiama un gallerista di opere irregolari."}},
+    {id:"e3",title:"Serratura difettosa e testamento",icon:"\u25A4",locked:true,content:"La serratura difettosa del retro era nota solo ad Albano e Nadia. Tommaso e Riccardo ignoravano l'esistenza della porta retro. Notaio: 'Albano mi ha detto: ho scoperto qualcosa su mia nipote, voglio rivedere tutto.'",evidence:{icon:"\u25A2",title:"Solo Nadia conosceva il retro",desc:"Accesso esclusivo al retro. Testamento a rischio per Nadia."}},
+    {id:"e4",title:"Sequenza 07:52-07:54",icon:"\u271A",locked:true,content:"Nadia riceve SMS alle 07:52. Chiama gallerista alle 07:54. In 2 minuti ha letto l'SMS, capito il rischio testamento e contattato un acquirente per il dipinto. Premeditazione o piano gia pronto.",evidence:{icon:"\u229E",title:"2 minuti rivelatori",desc:"SMS letto 07:52, gallerista chiamato 07:54. Piano gia preparato."}}
+  ],
+  guiltyIndex:0,
+  puzzle:{fragments:["SMS taciuto deliberatamente","serratura retro nota solo a Nadia","testamento a rischio - dipinto da vendere","gallerista chiamato 2 minuti dopo l'SMS"],correctOrder:[1,0,3,2],reveal:"Ricostruzione: serratura retro nota solo a Nadia - SMS taciuto deliberatamente - gallerista chiamato 2 minuti dopo l'SMS - testamento a rischio, dipinto da vendere."},
+  tabulato:[{ora:"07:52",da:"Nadia",a:"Legge SMS Albano",dur:"-",s:false},{ora:"07:54",da:"N. Greco",a:"Gallerista Foschi",dur:"4 min",s:false},{ora:"08:20",da:"Sig. Remo",a:"Vede Tommaso",dur:"Vicolo",s:false},{ora:"09:00",da:"N. Greco",a:"Bottega retro",dur:"Trova corpo",s:false}]
+},
+{
+  id:"CASO #N02", name:"La Conferenza dei Veleni",
+  difficulty:"normal",
+  victim:{name:"Prof. Gino Berra",age:"55 anni",role:"Tossicologista, Universita di Nordvale",cause:"Avvelenamento da nicotina concentrata nel bicchiere d'acqua sul comodino",location:"Stanza 214, Hotel Meridian, secondo piano ala relatori"},
+  scene:"Bicchiere d'acqua sul comodino con residui di nicotina concentrata - non in commercio, uso esclusivamente di laboratorio. Porta chiusa con card magnetica. Bozza della presentazione con nota cerchiata: 'dati falsificati - confrontare con report 2019'. Gino prendeva sonniferi - blister trovato in stanza.",
+  suspects:[
+    {name:"Prof. Sandro Valli",role:"Collega, co-autore studio 2019",age:"52 anni",motive:"La presentazione di Gino avrebbe smascherato la falsificazione nel loro studio comune - ritiro finanziamento 400.000 euro e procedimenti penali.",alibi:"Al bar 21:15-22:30 (dichiara). Barman lo colloca solo dalle 21:45 - gap 30 minuti.",detail:"Unico ad aver visto Gino in ascensore alle 21:00 - sapeva orario preciso. Accesso al laboratorio di Irene. Co-autore studio 2019 con dati falsificati.",icon:"\u25A3",guilty:true,
+     questions:[
+       {q:"A che ora e arrivato al bar?",a:"Verso le 21:15, subito dopo essere salito un attimo in stanza."},
+       {q:"Il barman la colloca alle 21:45. Dov'era prima?",a:"Forse il barman si sbaglia sull'orario. Ero li, lo posso assicurare."},
+       {q:"Cosa conteneva la presentazione di Gino?",a:"Non lo sapevo esattamente. Avevamo collaborato anni fa, non di recente."},
+       {q:"Il vostro studio del 2019 aveva dati falsificati?",a:"Assolutamente no. Quella e una calunnia. Gino interpretava male i dati."}
+     ]},
+    {name:"Dott.ssa Irene Landi",role:"Ricercatrice, stesso dipartimento",age:"44 anni",motive:"Litigio con Gino alla cena. Laboratorio usa nicotina concentrata. Furto nicotina nel lab 3 mesi prima.",alibi:"Dichiara di essere in stanza dalle 21:30. Nessun testimone.",detail:"Litigio pubblico. Accesso al veleno. Lettore card magnetiche in valigia. Non co-autrice del 2019.",icon:"\u270E",guilty:false,
+     questions:[
+       {q:"Cosa si sono detti lei e Gino alla cena?",a:"Una discussione su metodologie di ricerca. Accesa, si, ma professionale."},
+       {q:"Il suo laboratorio usa nicotina concentrata?",a:"Per ricerche sui recettori, si. Ma e sotto chiave e inventariata."},
+       {q:"Il lettore card nel bagaglio?",a:"Per i tornelli del campus. Lo porto sempre. Non l'ho usato qui."}
+     ]},
+    {name:"Marco Dusi",role:"Ricercatore, rivale accademico",age:"48 anni",motive:"Scandalo furto dati 2 anni prima - Gino poteva riaprire la questione.",alibi:"Vicino all'ala relatori alle 22:00 senza spiegazione. Tentativo accesso email Gino.",detail:"Presenza sospetta. Nessun accesso al veleno confermato. Movente meno urgente.",icon:"\u25A4",guilty:false,
+     questions:[
+       {q:"Perche era vicino all'ala relatori alle 22:00?",a:"Mi ero perso cercando il distributore automatico. L'hotel e un labirinto."},
+       {q:"Ha tentato di accedere all'email di Gino?",a:"Ho sbagliato a digitare il Wi-Fi e per errore si e aperta una schermata di login."},
+       {q:"Lo scandalo dati del 2019 - temeva che Gino ne parlasse?",a:"Quella storia era chiusa. Non aveva nulla a che fare con la conferenza."}
+     ]}
+  ],
+  envelopes:[
+    {id:"e1",title:"Gap del barman",icon:"\u25A3",locked:false,content:"Barman hotel: 'Il Prof. Valli e arrivato al bar intorno alle 21:45, non prima.' Sandro dichiara 21:15. Gap di 30 minuti non coperti - finestra critica di avvelenamento.",evidence:{icon:"\u2295",title:"Gap 30 minuti non coperti",desc:"Barman: Sandro al bar dalle 21:45. Lui dice 21:15. 30 min di buco."}},
+    {id:"e2",title:"Email al rettore e studio 2019",icon:"\u270E",locked:false,content:"Email di Gino al rettore il giorno prima: 'Domani presento prove che uno studio del 2019 ha dati alterati. Il co-autore deve rispondere.' Studio 2019 co-firmato da Sandro Valli.",evidence:{icon:"\u25C9",title:"Sandro rischiava tutto",desc:"Co-autore 2019 con dati falsificati. Ritiro 400.000 euro + procedimenti penali."}},
+    {id:"e3",title:"Accesso al laboratorio e furto nicotina",icon:"\u25A4",locked:true,content:"Sandro ha lavorato nello stesso dipartimento di Irene per 2 anni - conosceva il laboratorio e i protocolli. Furto nicotina nel lab di Irene 3 mesi prima - mai risolto. Tempistica compatibile con pianificazione.",evidence:{icon:"\u25A2",title:"Sandro conosceva il lab di Irene",desc:"Accesso al lab + furto nicotina 3 mesi fa = provenienza del veleno."}},
+    {id:"e4",title:"Incontro in ascensore e sonnifero",icon:"\u271A",locked:true,content:"Sandro era l'unico ad aver visto Gino in ascensore alle 21:00 - sapeva con precisione quando sarebbe stato in stanza. Gino prendeva sonniferi - blister in stanza - era parzialmente sedato. Finestra perfetta per agire.",evidence:{icon:"\u229E",title:"Sandro sapeva l'orario preciso",desc:"Incontro ascensore 21:00 + sonnifero = Sandro sapeva quando agire."}}
+  ],
+  guiltyIndex:0,
+  puzzle:{fragments:["co-autore dello studio falsificato","gap 30 minuti al momento dell'avvelenamento","conosceva il lab di Irene e la nicotina","Gino parzialmente sedato dal sonnifero"],correctOrder:[0,2,3,1],reveal:"Ricostruzione: co-autore dello studio falsificato - conosceva il lab di Irene e la nicotina - Gino parzialmente sedato dal sonnifero - gap 30 minuti al momento dell'avvelenamento."},
+  tabulato:[{ora:"21:00",da:"G. Berra",a:"Ascensore",dur:"Visto da Sandro",s:false},{ora:"21:15",da:"S. Valli",a:"Bar (dichiara)",dur:"-",s:false},{ora:"21:45",da:"S. Valli",a:"Bar (barman)",dur:"Arriva",s:false},{ora:"Giorno 2",da:"07:30",a:"Gino assente",dur:"Sandro bussa",s:false}]
+},
+{
+  id:"CASO #N03", name:"Il Testamento della Vigna",
+  difficulty:"normal",
+  victim:{name:"Osvaldo Dasti",age:"71 anni",role:"Proprietario Tenuta Dasti, viticoltore",cause:"Colpo alla tempia e annegamento nella vasca di macerazione",location:"Cantina della Villa Dasti, Strada della Vigna 1"},
+  scene:"Cantina seminterrata. Vasca di macerazione aperta con corpo di Osvaldo. Livido sinistro alla tempia. Mestolo di acciaio sul pavimento con macchia rossastra. Porta cantina accessibile dall'interno villa o dal retro giardino con chiave master. Osvaldo aveva firmato un nuovo testamento il lunedi.",
+  suspects:[
+    {name:"Lorena Dasti",role:"Moglie, 58 anni",age:"58 anni",motive:"Con il vecchio testamento prendeva meta. Con il nuovo prende tutto. Osvaldo poteva ripensarci.",alibi:"Videochiamata sorella 21:15-21:23 (8 minuti). Poi nessun alibi fino alle 23:00.",detail:"Videochiamata dura solo 8 minuti. Unica con chiave master. Sorella: 'Lorena sembrava agitata, si e congedata in fretta.' Cantina a 2 minuti dalla camera.",icon:"\u25A3",guilty:true,
+     questions:[
+       {q:"Dove si trovava dalle 21:00 alle 23:00?",a:"In camera mia. Ho fatto videochiamata con mia sorella verso le 21:15, poi ho letto e dormito."},
+       {q:"La videochiamata e durata solo 8 minuti.",a:"Mia sorella aveva fretta. Ci siamo salutate presto. Poi sono rimasta in camera."},
+       {q:"Aveva la chiave master della cantina?",a:"Si, come mia moglie. Ma non sono scesa in cantina quella sera."},
+       {q:"Come si sente riguardo al nuovo testamento?",a:"Osvaldo voleva che la tenuta restasse nelle mie mani. Era una sua decisione libera."}
+     ]},
+    {name:"Filippo Dasti",role:"Figlio (primo matrimonio), 38 anni",age:"38 anni",motive:"Escluso dal testamento. Debiti di gioco 35.000 euro.",alibi:"Log scacchi online 21:30-22:45 - ma non prova presenza fisica.",detail:"Movente fortissimo. Non aveva la chiave master. Per entrare doveva passare dalla scala interna - in salotto c'era lui stesso.",icon:"\u270E",guilty:false,
+     questions:[
+       {q:"Dove si trovava dalle 21:00 alle 23:00?",a:"In salotto. Stavo giocando a scacchi online. Il server lo conferma."},
+       {q:"Il log del server non prova che fosse fisicamente li.",a:"Stavo giocando. Non ero in cantina a fare del male a mio padre."},
+       {q:"Aveva accesso alla cantina?",a:"Non ho la chiave master. Potevo entrare solo se la porta interna era aperta."}
+     ]},
+    {name:"Vera Conti",role:"Enologa della tenuta",age:"39 anni",motive:"Rifiuto sentimentale. Competenze tecniche in cantina.",alibi:"Esce alle 22:00, vista rientrare a casa alle 22:15. Alibi solido per 22:00+.",detail:"Competenza cantina. Chiave master riconsegnata 3 mesi fa. Alibi copre la finestra critica.",icon:"\u25A4",guilty:false,
+     questions:[
+       {q:"A che ora ha lasciato la villa?",a:"Verso le 22:00. Sono tornata a piedi a casa mia, dieci minuti."},
+       {q:"Aveva ancora la chiave master della cantina?",a:"No, l'ho riconsegnata tre mesi fa quando e cambiato il sistema di accesso."},
+       {q:"Poteva operare in cantina da sola?",a:"Tecnicamente si, ma non quella sera."}
+     ]}
+  ],
+  envelopes:[
+    {id:"e1",title:"Referto e videochiamata",icon:"\u25A3",locked:false,content:"Livido tempia sinistra da oggetto smussato. Annegamento. Decesso 21:20-22:10. Mestolo compatibile con lesione. Videochiamata Lorena-sorella: 21:15-21:23 (8 minuti). Sorella: 'Era agitata, si e congedata in fretta.'",evidence:{icon:"\u2295",title:"Decesso 21:20-22:10, videochiamata 8 min",desc:"Lorena senza alibi dalle 21:23. 47 minuti non coperti nella finestra critica."}},
+    {id:"e2",title:"Chiave master e testamento",icon:"\u270E",locked:false,content:"Testamento firmato lunedi: tutto a Lorena. Chiave master cantina: solo Lorena e Osvaldo. Filippo non ce l'aveva. Vera l'aveva riconsegnata 3 mesi prima.",evidence:{icon:"\u25C9",title:"Solo Lorena aveva la chiave master",desc:"Filippo senza chiave. Vera senza chiave. Solo Lorena poteva entrare dal giardino."}},
+    {id:"e3",title:"Mestolo con sangue",icon:"\u25A4",locked:true,content:"Mestolo: sangue di Osvaldo sul bordo. Peso 2,3 kg. Compatibile con il livido alla tempia. Il mestolo era usato normalmente in cantina - nessuna impronta digitale (pulito).",evidence:{icon:"\u25A2",title:"Mestolo = arma del colpo",desc:"Sangue di Osvaldo sul mestolo. Arma accessibile a chi era in cantina."}},
+    {id:"e4",title:"Filippo senza chiave - Lorena con alibi bucato",icon:"\u271A",locked:true,content:"Filippo aveva il movente piu forte - sembra il colpevole. Ma: non aveva la chiave master. Per entrare doveva passare dal salotto dove stava lui stesso. Lorena invece: videochiamata 8 min + chiave master + 47 min senza alibi.",evidence:{icon:"\u229E",title:"Lorena: movente + accesso + alibi bucato",desc:"Filippo non poteva entrare dalla cantina senza la chiave. Lorena aveva tutto."}}
+  ],
+  guiltyIndex:0,
+  puzzle:{fragments:["videochiamata durata solo 8 minuti","chiave master solo a Lorena","Filippo non poteva entrare senza chiave","47 minuti senza alibi nella finestra critica"],correctOrder:[1,2,0,3],reveal:"Ricostruzione: chiave master solo a Lorena - Filippo non poteva entrare senza chiave - videochiamata durata solo 8 minuti - 47 minuti senza alibi nella finestra critica."},
+  tabulato:[{ora:"21:00",da:"Osvaldo",a:"Cantina",dur:"Scende",s:false},{ora:"21:15",da:"Lorena",a:"Sorella",dur:"Videochiamata",s:false},{ora:"21:23",da:"Videochiamata",a:"Fine",dur:"8 minuti",s:false},{ora:"22:00",da:"Vera",a:"Villa",dur:"Lascia",s:false}]
+},
+{
+  id:"CASO #N04", name:"L'Ultima Nota",
+  difficulty:"normal",
+  victim:{name:"Mauro Fanti",age:"49 anni",role:"Direttore artistico, Teatro Nuovo",cause:"Overdose di betabloccanti disciolti nel bicchiere d'acqua del camerino",location:"Camerino 3, Teatro Nuovo, via della Scena 8"},
+  scene:"Camerino di 15 mq. Mauro trovato sulla poltrona. Betabloccanti disciolti in concentrazione letale nel bicchiere. Blister personale di Mauro intatto - non aveva ancora aperto la confezione nuova. Fonte del farmaco: ignota. Mauro stava per rivelare una truffa ai danni del teatro - 60.000 euro spariti.",
+  suspects:[
+    {name:"Davide Pomi",role:"Contabile del teatro, 44 anni",age:"44 anni",motive:"Gestiva i 60.000 euro mancanti. Se Mauro avesse presentato le prove, sarebbe stato arrestato.",alibi:"Dice di essere in ufficio 20:45-22:00. Log porta: uscito alle 20:58, rientrato 21:22. Gap di 24 minuti.",detail:"Log porta oggettivo e inconfutabile. Stesso farmaco nella sua ricetta. Gap copre la finestra critica. Camerino a 2 minuti dall'ufficio.",icon:"\u25A3",guilty:true,
+     questions:[
+       {q:"Il log della porta mostra che e uscito dall'ufficio alle 20:58. Dov'era?",a:"Sono uscito un attimo per prendere un caffe al distributore. Non mi sembrava rilevante."},
+       {q:"Il log mostra rientro alle 21:22. Sono 24 minuti. Dov'era?",a:"Forse mi sono fermato a parlare con qualcuno. Non ricordo precisamente."},
+       {q:"Sa dei 60.000 euro mancanti?",a:"I conti sono complessi. Ci sono voci che possono sembrare irregolari senza esserlo."},
+       {q:"Ha una ricetta per betabloccanti?",a:"Si, per ipertensione. Ma non ho mai portato farmaci in teatro."}
+     ]},
+    {name:"Giada Morelli",role:"Prima attrice, 35 anni",age:"35 anni",motive:"Litigio su ruolo nella prossima stagione. Comportamento instabile.",alibi:"Camerino adiacente - vicinanza fisica. Nessun testimone per 21:00-22:00.",detail:"Litigio pubblico. Vicinanza al camerino. Precedenti instabilita. Nessun accesso al farmaco specifico.",icon:"\u270E",guilty:false,
+     questions:[
+       {q:"Cosa si sono detti lei e Mauro alle 20:45?",a:"Era arrabbiato per la mia interpretazione. Come sempre. Io gli ho risposto. Niente di grave."},
+       {q:"Dov'era tra le 21:00 e le 22:00?",a:"Nel mio camerino. Rivedevo le note di regia."},
+       {q:"Aveva motivi per fare del male a Mauro?",a:"Ho motivi per essere arrabbiata con lui. Non per ucciderlo."}
+     ]},
+    {name:"Stefan Bruni",role:"Tecnico luci, 41 anni",age:"41 anni",motive:"Messaggio minaccioso. Timore licenziamento.",alibi:"Log sistema luci 21:00-21:45 - ma log automatico.",detail:"Minaccia scritta. Alibi non conclusivo. Nessun farmaco. Movente meno urgente.",icon:"\u25A4",guilty:false,
+     questions:[
+       {q:"Quel messaggio a Mauro?",a:"Ero arrabbiato. Non intendevo una minaccia fisica."},
+       {q:"I log del sistema luci la confermano in cabina?",a:"Si, ero li a lavorare sui cue per lo spettacolo."},
+       {q:"Ha visto qualcuno avvicinarsi al camerino di Mauro?",a:"Dalla cabina non vedo il corridoio camerini."}
+     ]}
+  ],
+  envelopes:[
+    {id:"e1",title:"Log porta ufficio Davide",icon:"\u25A3",locked:false,content:"Log porta ufficio: uscita 20:58, rientro 21:22 (24 minuti). Il farmaco e stato assorbito 21:20-21:40. Camerino a 2 minuti dall'ufficio. Gap copre la finestra critica.",evidence:{icon:"\u2295",title:"Gap 24 minuti - finestra critica coperta",desc:"Davide fuori dall'ufficio 20:58-21:22. Betabloccanti assorbiti 21:20-21:40."}},
+    {id:"e2",title:"Prova truffa e presidenza CdA",icon:"\u270E",locked:false,content:"Presidente CdA: 'Mauro mi ha chiamato venerdi: ho le prove della truffa, domani le presento.' Ricetta medica di Davide per betabloccanti trovata nell'ufficio durante perquisizione.",evidence:{icon:"\u25C9",title:"Mauro aveva le prove - Davide il farmaco",desc:"Prove presentate il giorno dopo = arresto per Davide. Stesso farmaco nella sua ricetta."}},
+    {id:"e3",title:"Blister intatto di Mauro",icon:"\u25A4",locked:true,content:"Il blister personale di Mauro era intatto - non aveva ancora aperto la confezione nuova. Il farmaco nel bicchiere era dello stesso tipo ma di provenienza ignota. Solo Davide aveva la ricetta per lo stesso principio attivo.",evidence:{icon:"\u25A2",title:"Farmaco non di Mauro",desc:"Blister intatto. Farmaco portato da fuori. Solo Davide aveva la ricetta."}},
+    {id:"e4",title:"Movente urgente e irreversibile",icon:"\u271A",locked:true,content:"La truffa da 60.000 euro era sotto gestione esclusiva di Davide. Le prove erano pronte per il giorno dopo. Per Davide era l'arresto certo. Giada e Stefan avevano moventi di carriera - non penali.",evidence:{icon:"\u229E",title:"Solo Davide rischiava l'arresto immediato",desc:"60.000 euro truffa. Prove pronte. Domani = arresto certo. Movente piu urgente."}}
+  ],
+  guiltyIndex:0,
+  puzzle:{fragments:["log porta: 24 minuti fuori dall'ufficio","le prove presentate il giorno dopo significavano l'arresto","stesso farmaco nella ricetta di Davide","blister di Mauro intatto - farmaco portato da fuori"],correctOrder:[1,0,2,3],reveal:"Ricostruzione: le prove il giorno dopo significavano l'arresto - log porta: 24 minuti fuori - stesso farmaco nella ricetta di Davide - blister di Mauro intatto, farmaco portato da fuori."},
+  tabulato:[{ora:"20:45",da:"G. Morelli",a:"Litiga con Mauro",dur:"-",s:false},{ora:"20:58",da:"Log porta",a:"Davide esce ufficio",dur:"-",s:false},{ora:"21:22",da:"Log porta",a:"Davide rientra",dur:"24 min fuori",s:false},{ora:"22:00",da:"L. Gatti",a:"Trova Mauro",dur:"-",s:false}]
+},
+{
+  id:"CASO #N05", name:"Il Brevetto Silenzioso",
+  difficulty:"normal",
+  victim:{name:"Nico Varga",age:"38 anni",role:"Fondatore e CTO, Startup NovaTech",cause:"Scarica elettrica letale - circuito di sicurezza bypassato con ponticello di rame",location:"Laboratorio NovaTech, secondo piano, via Innovazione 5"},
+  scene:"Prototipo elettronico sul banco centrale. Circuito di sicurezza bypassato con ponticello di rame - operazione che richiede competenza elettronica. Badge log registra tutti gli accessi. Nico stava per depositare un brevetto che avrebbe reso obsoleto il lavoro di due soci.",
+  suspects:[
+    {name:"Ing. Petra Salvi",role:"Ingegnere elettronica, co-fondatrice",age:"35 anni",motive:"Il brevetto di Nico rendeva obsoleti 3 anni di suo lavoro e 200.000 euro investiti di tasca propria.",alibi:"In laboratorio 18:15-18:45. Poi a casa senza testimoni. La manomissione e nella sua finestra.",detail:"Unica con competenza elettronica hardware. Prima in laboratorio. Ricerca browser 'bypass fusibile protezione circuito' 5 giorni prima. Storia del calibro non regge - log digitale non registra misurazioni.",icon:"\u25A3",guilty:true,
+     questions:[
+       {q:"Perche era in laboratorio martedi sera?",a:"Dovevo controllare un calibro per una misurazione del giorno dopo."},
+       {q:"Il log digitale del calibro non mostra nessuna misurazione.",a:"L'ho controllato visivamente, non ho fatto misurazioni attive."},
+       {q:"Ha cercato 'bypass fusibile protezione circuito' cinque giorni fa.",a:"Stavo facendo ricerche per un progetto personale. Non c'entra nulla."},
+       {q:"Tre anni di lavoro resi obsoleti dal brevetto di Nico. Come si sentiva?",a:"Delusa. Ma avrei risolto la cosa legalmente. Non sono una criminale."}
+     ]},
+    {name:"Cesare Naldi",role:"Responsabile commerciale, co-fondatore",age:"44 anni",motive:"Vendita info a concorrenti - il brevetto lo smascherava. Email minacciosa a Nico.",alibi:"In laboratorio 19:00-19:20. Prima di Nico. Nessun testimone per 18:45-19:00.",detail:"Movente forte ma nessuna competenza hardware. Non poteva installare il ponticello.",icon:"\u270E",guilty:false,
+     questions:[
+       {q:"Quelle email alla concorrenza?",a:"Stavo esplorando opzioni. Non avevo ancora fatto nulla di concreto."},
+       {q:"Sa bypassare un circuito di sicurezza?",a:"Sono commerciale. Non so nemmeno da che parte iniziare con l'elettronica."},
+       {q:"L'email a Nico - 'te ne pentirai'?",a:"Ero arrabbiato. Non era una minaccia fisica."}
+     ]},
+    {name:"Dario Comi",role:"Sviluppatore software",age:"29 anni",motive:"Licenziamento imminente per furto di codice sorgente.",alibi:"Presente con Nico al momento del decesso. Ma la manomissione era gia avvenuta prima.",detail:"Sviluppatore software, nessuna competenza hardware. Presente ma non il responsabile.",icon:"\u25A4",guilty:false,
+     questions:[
+       {q:"Ha copiato il codice sorgente di Nico?",a:"Ho fatto un backup di sicurezza. Non era una copia illegale."},
+       {q:"Sa manomettere hardware elettronico?",a:"Sono sviluppatore software. Non ho mai lavorato sull'hardware."},
+       {q:"Era con Nico quando e morto. Cos'ha visto?",a:"Era al banco, poi ha toccato il prototipo e e caduto. Non ho capito subito."}
+     ]}
+  ],
+  envelopes:[
+    {id:"e1",title:"Badge log e competenze",icon:"\u25A3",locked:false,content:"Badge log: Petra 18:15-18:45, Cesare 19:00-19:20, Nico+Dario 19:30+. Il ponticello era gia inserito quando Nico e entrato alle 19:30. Tecnico esterno: 'Chi lo ha installato sapeva esattamente cosa faceva.'",evidence:{icon:"\u2295",title:"Ponticello gia presente all'arrivo di Nico",desc:"Installato tra 18:15-18:45 (Petra) o 19:00-19:20 (Cesare). Solo Petra aveva le competenze."}},
+    {id:"e2",title:"Ricerca browser e calibro",icon:"\u270E",locked:false,content:"Petra ha cercato 'bypass fusibile protezione circuito' dal suo computer aziendale 5 giorni prima. Log digitale del calibro: nessuna misurazione registrata la sera del delitto. La storia del calibro e falsa.",evidence:{icon:"\u25C9",title:"Premeditazione e copertura falsa",desc:"Ricerca 5 giorni prima. Calibro non usato. Petra mentiva sul motivo della visita."}},
+    {id:"e3",title:"Movente definitivo",icon:"\u25A4",locked:true,content:"Tre anni di lavoro e 200.000 euro di Petra resi obsoleti. Non negoziabile - nessuna via legale avrebbe recuperato il tempo perduto. Cesare e Dario avevano moventi 'recuperabili'. Il movente di Petra era esistenziale.",evidence:{icon:"\u25A2",title:"Movente piu forte e non recuperabile",desc:"200.000 euro + 3 anni persi. Nessuna via legale. Movente definitivo solo per Petra."}},
+    {id:"e4",title:"Eliminazione per competenza",icon:"\u271A",locked:true,content:"Il ponticello richiedeva competenza elettronica hardware specifica. Petra: ingegnere elettronica. Cesare: commerciale, zero competenze hardware. Dario: software, nessuna competenza hardware. Solo Petra poteva farlo.",evidence:{icon:"\u229E",title:"Solo Petra poteva installare il ponticello",desc:"Competenza esclusiva hardware. Cesare e Dario impossibilitati tecnicamente."}}
+  ],
+  guiltyIndex:0,
+  puzzle:{fragments:["ricerca browser 5 giorni prima","solo Petra aveva competenze hardware","ponticello installato nella finestra 18:15-18:45","calibro non usato - copertura falsa"],correctOrder:[1,0,3,2],reveal:"Ricostruzione: solo Petra aveva competenze hardware - ricerca browser 5 giorni prima - calibro non usato, copertura falsa - ponticello installato nella finestra 18:15-18:45."},
+  tabulato:[{ora:"18:15",da:"Petra",a:"Laboratorio",dur:"Entra",s:false},{ora:"18:45",da:"Petra",a:"Laboratorio",dur:"Esce",s:false},{ora:"19:00",da:"Cesare",a:"Laboratorio",dur:"Entra",s:false},{ora:"19:30",da:"Nico",a:"Laboratorio",dur:"Entra - ponticello gia li",s:false}]
 }
 ];
 
-function buildArchivio(){
+let _archDiff='hard';
+// Mappa difficoltà archivio -> diff globale (che controlla timer e buste)
+const ARCH_DIFF_MAP = {easy:'easy', normal:'medium', hard:'hard'};
+function openArchivio(d){
+  _archDiff=d;
+  const labels={easy:'FACILE — PRINCIPIANTE',normal:'NORMALE — INVESTIGATORE',hard:'DIFFICILE — DETECTIVE CAPO'};
+  const el=document.getElementById('arch-title-label');
+  if(el)el.textContent=labels[d]||'ARCHIVIO INVESTIGATIVO';
+  showScreen('archivio-screen');
+  buildArchivio(d);
+}
+function buildArchivio(d){
   const list=document.getElementById('arch-list');
   if(!list)return;
   list.innerHTML='';
-  CASES.forEach((c,i)=>{
+  const diffLabel={easy:'FACILE',normal:'NORMALE',hard:'DIFFICILE'};
+  const diffColor={easy:'var(--green)',normal:'var(--gold)',hard:'var(--red)'};
+  const filtered=CASES.filter(c=>c.difficulty===(d||_archDiff||'hard'));
+  if(!filtered.length){
+    list.innerHTML='<div style="padding:2rem;text-align:center;font-style:italic;color:var(--ink-faded);font-size:0.88rem;">Nessun caso disponibile per questa difficolta.<br><br>Prossimamente in arrivo.</div>';
+    return;
+  }
+  filtered.forEach((c,i)=>{
     const card=document.createElement('div');
     card.className='arch-card';
+    const dl=c.difficulty||'hard';
     card.innerHTML=`
       <div class="arch-card-head">
         <span class="arch-card-id">${c.id}</span>
-        <span class="arch-card-diff">DIFFICILE</span>
+        <span class="arch-card-diff" style="color:${diffColor[dl]}">${diffLabel[dl]}</span>
       </div>
       <div class="arch-card-body">
         <div class="arch-card-name">${c.name}</div>
         <div class="arch-card-victim">Vittima: ${c.victim.name}, ${c.victim.age}</div>
         <div class="arch-card-loc">${c.victim.location}</div>
       </div>`;
-    card.onclick=()=>startArchivioCaso(i);
+    const realIdx=CASES.indexOf(c);
+    card.onclick=()=>startArchivioCaso(realIdx);
     list.appendChild(card);
   });
 }
 
 function startArchivioCaso(idx){
   G=JSON.parse(JSON.stringify(CASES[idx]));
-  diff='hard';
-  showScreen('difficulty-screen');
-  // pre-select hard
-  document.querySelectorAll('.diff-card').forEach(d=>d.classList.remove('selected'));
-  const hardBtn=document.querySelector('.diff-card[data-diff="hard"]');
-  if(hardBtn)hardBtn.classList.add('selected');
-  document.querySelector('.action-btn[onclick="startSelected()"]') && (window._archivioIdx=idx);
-  // bypass difficulty screen - go straight to intro
-  G=JSON.parse(JSON.stringify(CASES[idx]));
-  diff='hard';
+  // mappa difficoltà archivio → diff globale (timer + buste)
+  diff = ARCH_DIFF_MAP[_archDiff] || 'hard';
   showIntro();
 }
 
