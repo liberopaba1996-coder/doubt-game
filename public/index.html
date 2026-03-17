@@ -230,6 +230,30 @@ body{font-family:'Crimson Text',Georgia,serif;background:#1a1208;min-height:100v
 
 </head>
 <body>
+
+<div id="err-overlay" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.9);z-index:99999;padding:1rem;overflow-y:auto;">
+  <div style="color:#ff6b6b;font-family:monospace;font-size:0.7rem;white-space:pre-wrap;" id="err-txt"></div>
+</div>
+<script>
+window.onerror = function(msg, src, line, col, err) {
+  var o = document.getElementById('err-overlay');
+  var t = document.getElementById('err-txt');
+  if(o && t) {
+    o.style.display = 'block';
+    t.textContent += 'ERROR: ' + msg + '\nFile: ' + src + '\nLine: ' + line + ':' + col + '\n' + (err ? err.stack : '') + '\n\n';
+  }
+  return false;
+};
+window.addEventListener('unhandledrejection', function(e) {
+  var o = document.getElementById('err-overlay');
+  var t = document.getElementById('err-txt');
+  if(o && t) {
+    o.style.display = 'block';
+    t.textContent += 'PROMISE ERROR: ' + e.reason + '\n\n';
+  }
+});
+</script>
+
 <div id="app">
 
 <div id="main-menu" class="screen active">
